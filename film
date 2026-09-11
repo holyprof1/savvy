@@ -3,6 +3,7 @@
 <head>
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
 <title>Film & Entertainment - Savvy Media Africa</title>
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -769,7 +770,7 @@ const filmProjects = [
     id:'avatar',
     title:'Avatar: The Way of Water',
     category:'pr',
-    image:'https://savvymediaafrica.com/wp-content/uploads/2025/12/IMG_6526.webp',
+    image:'IMG_6526.webp',
     img2:'https://savvymediaafrica.com/wp-content/uploads/2025/12/download-6.jpg',
     img3:'https://savvymediaafrica.com/wp-content/uploads/2025/12/download-5.jpg',
     client:'20th Century Studios',

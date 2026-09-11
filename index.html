@@ -3,6 +3,7 @@
 <head>
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
 <title>Savvy Media Africa - Where Creativity Lives, Results Matter</title>
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -93,6 +94,16 @@ nav .nav-container{
   text-decoration:none;
 }
 .nav-logo img{height:50px;width:auto;display:block;filter:none}
+/* Text wordmark - stands in for the logo image */
+.nav-logo-text{
+  font-size:1.35rem;
+  font-weight:800;
+  letter-spacing:.02em;
+  color:var(--white);
+  white-space:nowrap;
+}
+.nav-logo-text span{color:var(--bright-cyan)}
+nav.scrolled .nav-logo-text{color:var(--navy)}
 .nav-links{
   display:flex;
   gap:2.6rem;
@@ -161,6 +172,11 @@ nav .nav-container{
   cursor:pointer;
   z-index:9100;
   flex-shrink:0;
+  align-items:center;
+  justify-content:center;
+  min-width:44px;
+  min-height:44px;
+  -webkit-tap-highlight-color:transparent;
 }
 .nav-search{
   background:none;
@@ -171,6 +187,12 @@ nav .nav-container{
   transition:.25s;
   margin-left:2.6rem;
   flex-shrink:0;
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  min-width:44px;
+  min-height:44px;
+  -webkit-tap-highlight-color:transparent;
 }
 nav.scrolled{
   background:#ffffff;
@@ -286,33 +308,71 @@ nav.scrolled .nav-links .dropdown a{
   top:0;
   right:-100%;
   width:80%;
-  max-width:300px;
+  max-width:320px;
   height:100vh;
+  /* dvh tracks the real viewport so the panel is not cut off
+     behind the iOS Safari address bar. Ignored where unsupported. */
+  height:100dvh;
   background:var(--deep-navy);
-  padding:6rem 2rem 2rem;
+  padding:5rem 1.5rem 2rem;
   z-index:9050;
   transition:right .35s ease;
   overflow-y:auto;
+  -webkit-overflow-scrolling:touch;
   box-shadow:-4px 0 20px rgba(0,0,0,.5);
 }
 .mobile-menu.open{
   right:0;
 }
+/* Close (X) button - previously the overlay was the only way out. */
+.mobile-menu-close{
+  position:absolute;
+  top:1rem;
+  right:1rem;
+  width:44px;
+  height:44px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  background:rgba(0,212,255,.1);
+  border:1px solid rgba(0,212,255,.25);
+  border-radius:50%;
+  color:var(--bright-cyan);
+  font-size:1.1rem;
+  cursor:pointer;
+  -webkit-tap-highlight-color:transparent;
+}
+.mobile-menu-close:focus-visible{
+  outline:2px solid var(--bright-cyan);
+  outline-offset:2px;
+}
 .mobile-menu ul{
   list-style:none;
   display:flex;
   flex-direction:column;
-  gap:2rem;
+  gap:0.25rem;
 }
+/* min-height 44px meets the recommended touch-target size */
 .mobile-menu a{
   color:var(--white);
   text-decoration:none;
   font-weight:700;
-  font-size:1.2rem;
-  display:block;
+  font-size:1.15rem;
+  display:flex;
+  align-items:center;
+  min-height:44px;
+  padding:0.35rem 0.5rem;
+  border-radius:8px;
   transition:.25s;
+  -webkit-tap-highlight-color:transparent;
 }
 .mobile-menu a:hover{
+  color:var(--bright-cyan);
+}
+.mobile-menu a:active{
+  background:rgba(0,212,255,.12);
+}
+.mobile-menu a.active{
   color:var(--bright-cyan);
 }
 .mobile-menu-overlay{
@@ -1040,7 +1100,7 @@ footer{
   .ceo-content{order:2}
   .ceo-name-card{right:50%;transform:translateX(50%)}
 }
-/* CLEAN MOBILE HERO â€“ DESKTOP FEEL */
+/* CLEAN MOBILE HERO – DESKTOP FEEL */
 @media (max-width:768px){
   .mobile-hero-accent{
     position:absolute;
@@ -1272,9 +1332,21 @@ nav.scrolled .nav-logo img{
 }
 
 /* Mobile menu cleanup */
+/* Work sub-links: indented, always visible (no toggle to get stuck) */
+.mobile-menu .mobile-sub{
+  list-style:none;
+  display:flex;
+  flex-direction:column;
+  gap:0.25rem;
+  margin-top:0.25rem;
+  padding-left:1rem;
+  border-left:2px solid rgba(0,212,255,.25);
+}
 .mobile-menu .mobile-sub a {
   padding-left: 1.2rem;
   font-weight: 700;
+  font-size:1rem;
+  color:rgba(255,255,255,.85);
 }
 .mobile-menu .mobile-sub a::before { content: none !important; }
 .mobile-menu .badge,
@@ -1284,6 +1356,36 @@ nav.scrolled .nav-logo img{
   display: none !important;
 }
 .mobile-menu > ul > li > a { font-weight:700; }
+
+/* "Send Brief" pill in the desktop nav (shared header) */
+.nav-cta{
+  padding:.4rem .9rem;
+  border-radius:999px;
+  border:1px solid rgba(0,212,255,.6);
+  background:rgba(0,212,255,.12);
+}
+.nav-cta:hover{
+  background:var(--bright-cyan);
+  color:var(--navy);
+}
+nav.scrolled .nav-cta{
+  border-color:var(--navy);
+  background:rgba(0,40,85,.05);
+  color:var(--navy);
+}
+nav.scrolled .nav-cta:hover{
+  background:var(--navy);
+  color:#fff;
+}
+
+/* Screen-reader-only helper (search label in shared header) */
+.sr-only{
+  position:absolute!important;
+  width:1px;height:1px;
+  padding:0;margin:-1px;
+  overflow:hidden;clip:rect(0,0,0,0);
+  white-space:nowrap;border:0;
+}
 
 
 
@@ -1311,7 +1413,7 @@ body.capture-mode .quote-section{
 <div class="cursor-follower"></div>
 
 <!-- HEADER INCLUDE -->
-<div data-include="header.html"></div>
+<div data-include="/header.html"></div>
 
 <section class="hero">
   <div class="floating-shape shape-1" data-parallax="-12"></div>
@@ -1349,18 +1451,18 @@ body.capture-mode .quote-section{
   <h3 class="client-title">Trusted By Leading Brands</h3>
   <div class="logos-marquee">
     <div class="marquee-track">
-      <div class="logo-item"><img src="1.png" alt="Client 1"></div>
-      <div class="logo-item"><img src="2.png" alt="Client 2"></div>
-      <div class="logo-item"><img src="3.png" alt="Client 3"></div>
-      <div class="logo-item"><img src="4.png" alt="Client 4"></div>
-      <div class="logo-item"><img src="5.png" alt="Client 5"></div>
-      <div class="logo-item"><img src="6.png" alt="Client 6"></div>
-      <div class="logo-item"><img src="1.png" alt="Client 1"></div>
-      <div class="logo-item"><img src="2.png" alt="Client 2"></div>
-      <div class="logo-item"><img src="3.png" alt="Client 3"></div>
-      <div class="logo-item"><img src="4.png" alt="Client 4"></div>
-      <div class="logo-item"><img src="5.png" alt="Client 5"></div>
-      <div class="logo-item"><img src="6.png" alt="Client 6"></div>
+      <div class="logo-item"><img src="1.png" alt="Client 1" width="971" height="620" decoding="async"></div>
+      <div class="logo-item"><img src="2.png" alt="Client 2" width="320" height="320" decoding="async"></div>
+      <div class="logo-item"><img src="3.png" alt="Client 3" width="3840" height="2160" decoding="async"></div>
+      <div class="logo-item"><img src="4.png" alt="Client 4" width="3182" height="1419" decoding="async"></div>
+      <div class="logo-item"><img src="5.png" alt="Client 5" width="722" height="202" decoding="async"></div>
+      <div class="logo-item"><img src="6.png" alt="Client 6" width="1200" height="704" decoding="async"></div>
+      <div class="logo-item"><img src="1.png" alt="Client 1" width="971" height="620" loading="lazy" decoding="async"></div>
+      <div class="logo-item"><img src="2.png" alt="Client 2" width="320" height="320" loading="lazy" decoding="async"></div>
+      <div class="logo-item"><img src="3.png" alt="Client 3" width="3840" height="2160" loading="lazy" decoding="async"></div>
+      <div class="logo-item"><img src="4.png" alt="Client 4" width="3182" height="1419" loading="lazy" decoding="async"></div>
+      <div class="logo-item"><img src="5.png" alt="Client 5" width="722" height="202" loading="lazy" decoding="async"></div>
+      <div class="logo-item"><img src="6.png" alt="Client 6" width="1200" height="704" loading="lazy" decoding="async"></div>
     </div>
   </div>
 </section>
@@ -1404,28 +1506,28 @@ body.capture-mode .quote-section{
     </div>
     <div class="dna-grid">
       <div class="dna-card">
-        <img class="dna-image" src="SAVVY-WORK-ETHIC-4.jpg" alt="We are Magical">
+        <img class="dna-image" src="SAVVY-WORK-ETHIC-4.jpg" alt="We are Magical" width="1080" height="1080" loading="lazy" decoding="async">
         <div class="dna-content">
           <h3 class="dna-title">We are Magical</h3>
           <p class="dna-description">We create extraordinary experiences that leave lasting impressions and turn brands into movements.</p>
         </div>
       </div>
       <div class="dna-card">
-        <img class="dna-image" src="SAVVY-WORK-ETHIC-3.jpg" alt="We are Inclusive">
+        <img class="dna-image" src="SAVVY-WORK-ETHIC-3.jpg" alt="We are Inclusive" width="1080" height="1080" loading="lazy" decoding="async">
         <div class="dna-content">
           <h3 class="dna-title">We are Inclusive</h3>
           <p class="dna-description">Diverse perspectives fuel our creativity and innovation, making us stronger together.</p>
         </div>
       </div>
       <div class="dna-card">
-        <img class="dna-image" src="SAVVY-WORK-ETHIC-2.jpg" alt="We are Cool">
+        <img class="dna-image" src="SAVVY-WORK-ETHIC-2.jpg" alt="We are Cool" width="1080" height="1080" loading="lazy" decoding="async">
         <div class="dna-content">
           <h3 class="dna-title">We are Cool</h3>
           <p class="dna-description">We stay ahead of trends and set the pace for what's next in culture and creativity.</p>
         </div>
       </div>
       <div class="dna-card">
-        <img class="dna-image" src="SAVVY-CULTUREFIT-4.jpg" alt="Made for the World">
+        <img class="dna-image" src="SAVVY-CULTUREFIT-4.jpg" alt="Made for the World" width="1080" height="1080" loading="lazy" decoding="async">
         <div class="dna-content">
           <h3 class="dna-title">Made for the World</h3>
           <p class="dna-description">Rooted in Africa, built for global impact. We bring African creativity to the world stage.</p>
@@ -1499,7 +1601,7 @@ body.capture-mode .quote-section{
         <div class="swiper-wrapper">
           <div class="swiper-slide">
             <div class="case-card">
-              <div class="case-image-wrapper"><img class="case-image" src="cinema.png" alt="Film & Entertainment"></div>
+              <div class="case-image-wrapper"><img class="case-image" src="cinema.png" alt="Film & Entertainment" width="546" height="424" loading="lazy" decoding="async"></div>
               <div class="case-content">
                 <span class="case-tag">Film & Entertainment</span>
                 <h3 class="case-title">Film & Entertainment Campaigns</h3>
@@ -1510,7 +1612,7 @@ body.capture-mode .quote-section{
           </div>
           <div class="swiper-slide">
             <div class="case-card">
-              <div class="case-image-wrapper"><img class="case-image" src="mtn-naija.png" alt="Corporate Campaigns"></div>
+              <div class="case-image-wrapper"><img class="case-image" src="mtn-naija.png" alt="Corporate Campaigns" width="525" height="457" loading="lazy" decoding="async"></div>
               <div class="case-content">
                 <span class="case-tag">Corporate Campaigns</span>
                 <h3 class="case-title">Corporate Campaigns</h3>
@@ -1521,7 +1623,7 @@ body.capture-mode .quote-section{
           </div>
           <div class="swiper-slide">
             <div class="case-card">
-              <div class="case-image-wrapper"><img class="case-image" src="purna.png" alt="Consumer Brands"></div>
+              <div class="case-image-wrapper"><img class="case-image" src="purna.png" alt="Consumer Brands" width="221" height="228" loading="lazy" decoding="async"></div>
               <div class="case-content">
                 <span class="case-tag">Consumer Brands</span>
                 <h3 class="case-title">Consumer Brand Campaigns</h3>
@@ -1549,7 +1651,7 @@ body.capture-mode .quote-section{
       </p>
     </div>
     <div class="ceo-image-wrapper">
-      <img src="Tofunmi-Akinseye-1.png" alt="Tofunmi">
+      <img src="Tofunmi-Akinseye-1.png" alt="Tofunmi" width="1014" height="1280" loading="lazy" decoding="async">
       <div class="ceo-name-card">
         <h3>Tofunmi<br>Akinseye</h3>
         <p>CEO, Savvy Media Africa</p>
@@ -1565,7 +1667,7 @@ body.capture-mode .quote-section{
 </section>
 
 <!-- FOOTER INCLUDE -->
-<div data-include="footer.html"></div>
+<div data-include="/footer.html"></div>
 
 <button class="scroll-top" id="scrollTopBtn" aria-label="Back to top">
   <div class="inner"><span class="pct" id="scrollPct">0%</span></div>
@@ -1610,92 +1712,27 @@ document.addEventListener('mouseout',(e)=>{
   }
 });
 
-/* Init all header-related JS after header.html is injected */
-function initHeaderStuff(){
-  const nav=document.getElementById('nav');
-  const mobileMenuBtn=document.getElementById('mobileMenuBtn');
-  const mobileMenu=document.getElementById('mobileMenu');
-  const mobileMenuOverlay=document.getElementById('mobileMenuOverlay');
-  const mobileMenuLinks=document.querySelectorAll('.mobile-menu a');
+/* Header behaviour lives in include.js (single source of truth).
+   This page only supplies its own search index plus smooth
+   scrolling for same-page anchors. */
+window.SAVVY_SEARCH_INDEX=[
+  {title:'Work',text:'Projects That Made Waves',url:'#work'},
+  {title:'Services',text:'Creative Campaigns, Media Distribution',url:'#services'},
+  {title:'About',text:'Our Story Values Team',url:'/about'},
+  {title:'Contact',text:'Ready to Make Waves',url:'#contact'},
+  {title:'Film & Entertainment',text:'Premieres, PR and viral campaigns',url:'/film'},
+  {title:'Corporate',text:'Multi-platform campaigns for brands',url:'/corporate'},
+  {title:'Consumer Brands',text:'Culture-led storytelling',url:'/consumer'}
+];
 
-  const navSearch=document.getElementById('navSearch');
-  const searchOverlay=document.getElementById('searchOverlay');
-  const searchModal=document.getElementById('searchModal');
-  const searchClose=document.getElementById('searchClose');
-  const searchInput=document.getElementById('searchInput');
-  const searchResults=document.getElementById('searchResults');
-
-  if(nav){
-    window.addEventListener('scroll',()=>{
-      window.scrollY>100?nav.classList.add('scrolled'):nav.classList.remove('scrolled');
-    });
-  }
-
-  function closeMobileMenu(){
-    if(!mobileMenu || !mobileMenuOverlay) return;
-    mobileMenu.classList.remove('open');
-    mobileMenuOverlay.classList.remove('open');
-    document.body.style.overflow='auto';
-  }
-  function openMobileMenu(){
-    if(!mobileMenu || !mobileMenuOverlay) return;
-    mobileMenu.classList.add('open');
-    mobileMenuOverlay.classList.add('open');
-    document.body.style.overflow='hidden';
-  }
-
-  if(mobileMenuBtn && mobileMenu && mobileMenuOverlay){
-    mobileMenuBtn.addEventListener('click',()=>{
-      mobileMenu.classList.contains('open')?closeMobileMenu():openMobileMenu();
-    });
-    mobileMenuOverlay.addEventListener('click',closeMobileMenu);
-    mobileMenuLinks.forEach(link=>link.addEventListener('click',closeMobileMenu));
-  }
-
-  const searchIndex=[
-    {title:'Work',text:'Projects That Made Waves',url:'#work'},
-    {title:'Services',text:'Creative Campaigns, Media Distribution',url:'#services'},
-    {title:'About',text:'Our Story Values Team',url:'/about'},
-    {title:'Contact',text:'Ready to Make Waves',url:'#contact'},
-  ];
-
-  function performSearch(q){
-    if(!searchResults) return;
-    if(!q.trim()){searchResults.innerHTML='';return;}
-    const s=q.toLowerCase();
-    const r=searchIndex.filter(i=>i.title.toLowerCase().includes(s)||i.text.toLowerCase().includes(s));
-    if(r.length===0){
-      searchResults.innerHTML='<p style="color:rgba(255,255,255,.6);margin-top:2rem">No results found</p>';
-      return;
-    }
-    searchResults.innerHTML=r.map(i=>`<a href="${i.url}" class="search-result-item" onclick="document.getElementById('searchOverlay').click()"><h3 style="color:var(--bright-cyan)">${i.title}</h3><p style="color:rgba(255,255,255,.7)">${i.text}</p></a>`).join('');
-  }
-
-  function openSearch(){
-    if(!searchOverlay || !searchModal) return;
-    searchOverlay.classList.add('open');
-    searchModal.classList.add('open');
-    document.body.style.overflow='hidden';
-    if(searchInput) setTimeout(()=>searchInput.focus(),300);
-  }
-  function closeSearch(){
-    if(!searchOverlay || !searchModal) return;
-    searchOverlay.classList.remove('open');
-    searchModal.classList.remove('open');
-    document.body.style.overflow='auto';
-    if(searchInput) searchInput.value='';
-    if(searchResults) searchResults.innerHTML='';
-  }
-
-  if(navSearch) navSearch.addEventListener('click',openSearch);
-  if(searchClose) searchClose.addEventListener('click',closeSearch);
-  if(searchOverlay) searchOverlay.addEventListener('click',closeSearch);
-  if(searchInput) searchInput.addEventListener('input',(e)=>performSearch(e.target.value));
-  document.addEventListener('keydown',(e)=>{if(e.key==='Escape'&&searchModal && searchModal.classList.contains('open')){closeSearch();}});
-
+function initSmoothAnchors(){
   document.querySelectorAll('a[href^="#"]').forEach(a=>{
+    if(a.dataset.smoothBound) return;
+    a.dataset.smoothBound='1';
     a.addEventListener('click',e=>{
-      const target=document.querySelector(a.getAttribute('href'));
+      const href=a.getAttribute('href');
+      if(!href||href==='#') return;
+      const target=document.querySelector(href);
       if(target){
         e.preventDefault();
         target.scrollIntoView({behavior:'smooth',block:'start'});
@@ -1703,9 +1740,8 @@ function initHeaderStuff(){
     });
   });
 }
-
-/* include.js should dispatch this when header.html is loaded */
-document.addEventListener('headerLoaded',initHeaderStuff);
+document.addEventListener('headerLoaded',initSmoothAnchors);
+initSmoothAnchors();
 
 /* GSAP & scroll animations */
 gsap.registerPlugin(ScrollTrigger);
@@ -1812,56 +1848,21 @@ if(scrollBtn){
   scrollBtn.addEventListener('click',()=>scrollTo({top:0,behavior:'smooth'}));
 }
 
-/* Swiper */
+/* Swiper - loop needs more slides than the widest slidesPerView (3),
+   otherwise Swiper disables it and logs a warning. */
+const caseSlideCount=document.querySelectorAll('.caseSwiper .swiper-slide').length;
 const caseSwiper=new Swiper('.caseSwiper',{
   slidesPerView:1,
   spaceBetween:26,
-  loop:true,
+  loop:caseSlideCount>3,
   autoplay:{delay:5000},
   pagination:{el:'.swiper-pagination',clickable:true},
   breakpoints:{768:{slidesPerView:2},1024:{slidesPerView:3}}
 });
 
-// mobile submenu toggle (works after include injection)
-(function(){
-  const mobileSubToggles = document.querySelectorAll('.mobile-sub-toggle');
-  mobileSubToggles.forEach(btn=>{
-    btn.addEventListener('click', ()=>{
-      const id = btn.getAttribute('aria-controls');
-      const ul = document.getElementById(id);
-      if(!ul) return;
-      const expanded = btn.getAttribute('aria-expanded') === 'true';
-      btn.setAttribute('aria-expanded', String(!expanded));
-      ul.hidden = expanded;
-      const ind = btn.querySelector('.mobile-sub-indicator');
-      if(ind) ind.textContent = expanded ? '+' : 'âˆ’';
-    });
-  });
-
-  const mobileMenuClose = document.getElementById('mobileMenuClose');
-  const mobileMenuOverlay = document.getElementById('mobileMenuOverlay');
-  const mobileMenu = document.getElementById('mobileMenu');
-  const mobileMenuBtn = document.getElementById('mobileMenuBtn');
-
-  function closeMobile(){
-    if(mobileMenu) mobileMenu.classList.remove('open');
-    if(mobileMenuOverlay) mobileMenuOverlay.classList.remove('open');
-    document.body.style.overflow = '';
-  }
-  function openMobile(){
-    if(mobileMenu) mobileMenu.classList.add('open');
-    if(mobileMenuOverlay) mobileMenuOverlay.classList.add('open');
-    document.body.style.overflow = 'hidden';
-  }
-
-  if(mobileMenuBtn) mobileMenuBtn.addEventListener('click', openMobile);
-  if(mobileMenuOverlay) mobileMenuOverlay.addEventListener('click', closeMobile);
-  if(mobileMenuClose) mobileMenuClose.addEventListener('click', closeMobile);
-
-  document.querySelectorAll('.mobile-menu a').forEach(a=>{
-    a.addEventListener('click', () => closeMobile());
-  });
-})();
+// Mobile submenu + menu handlers removed: include.js owns all
+// header behaviour now, and this block ran before the async
+// include finished so it never bound to anything.
 
 </script>
 

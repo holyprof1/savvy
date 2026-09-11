@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>Savvy Media Africa â€“ Where Creativity Lives, Results Matter</title>
+<title>Savvy Media Africa – Where Creativity Lives, Results Matter</title>
 
 <!-- Google Fonts: Using Sora as AsenPro alternative (bold, geometric sans-serif) -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -1033,10 +1033,10 @@ footer{
         <path id="arcBottom" d="M 80 370 C 450 540, 1150 540, 1520 370"/>
       </defs>
       <use href="#arcTop" class="pre-arc"/><use href="#arcBottom" class="pre-arc"/>
-      <text class="pre-text"><textPath href="#arcTop" startOffset="5%">THIS â€¢ IS â€¢ SAVVY</textPath></text>
-      <text class="pre-text"><textPath href="#arcBottom" startOffset="45%">MEDIA â€¢ AFRICA</textPath></text>
+      <text class="pre-text"><textPath href="#arcTop" startOffset="5%">THIS • IS • SAVVY</textPath></text>
+      <text class="pre-text"><textPath href="#arcBottom" startOffset="45%">MEDIA • AFRICA</textPath></text>
     </svg>
-    <div class="pre-right" id="preRight">SAVVY â€¢ MEDIA â€¢ AFRICA</div>
+    <div class="pre-right" id="preRight">SAVVY • MEDIA • AFRICA</div>
     <div class="pre-center">
       <div class="pre-ring" id="preRing" style="--p:0%">
         <div class="pre-count" id="preCount">0%</div>
@@ -1091,7 +1091,7 @@ footer{
       <div class="hero-pill">Results-Driven</div>
     </div>
 
-    <p class="hero-subtitle">We make work that moves culture â€” then we measure it.</p>
+    <p class="hero-subtitle">We make work that moves culture — then we measure it.</p>
 
     <div class="hero-cta-group">
       <a href="#contact" class="btn-primary breathe">Send Us A Brief <i class="fas fa-arrow-right"></i></a>
@@ -1302,7 +1302,7 @@ footer{
         <span class="quote-word" style="--i:1">don't</span>
         <span class="quote-word" style="--i:2">just</span>
         <span class="quote-word" style="--i:3">follow</span>
-        <span class="quote-word" style="--i:4">trendsâ€”we</span>
+        <span class="quote-word" style="--i:4">trends—we</span>
         <span class="quote-word" style="--i:5;color:var(--bright-cyan)">create</span>
         <span class="quote-word" style="--i:6">them."</span>
       </h2>
@@ -1316,7 +1316,7 @@ footer{
 <!-- CTA -->
 <section class="contact-cta cta" id="contact">
   <h2 class="cta-title">Ready to Make Waves?</h2>
-  <p class="cta-subtitle">Send us your brief â€” let's create something extraordinary.</p>
+  <p class="cta-subtitle">Send us your brief — let's create something extraordinary.</p>
   <a href="#" class="btn-primary breathe" style="opacity:1">Send Us A Brief <i class="fas fa-paper-plane"></i></a>
 </section>
 

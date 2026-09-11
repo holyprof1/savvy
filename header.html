@@ -1,0 +1,75 @@
+<!-- ============================================================
+     SAVVY MEDIA AFRICA - GLOBAL HEADER
+     Injected by include.js into <div data-include="/header.html">
+     Styled by savvy.css (inner pages) and the inline <style> in
+     index.html (homepage). Keep class names in sync with both.
+     ============================================================ -->
+
+<nav id="nav">
+  <div class="nav-container">
+
+    <a href="/" class="nav-logo" aria-label="Savvy Media Africa - home">
+      <span class="nav-logo-text">SAVVY<span>MEDIA</span></span>
+    </a>
+
+    <ul class="nav-links">
+      <li><a href="/">Home</a></li>
+      <li><a href="/about">About</a></li>
+      <li class="has-dropdown">
+        <a href="/film">Work</a>
+        <ul class="dropdown">
+          <li><a href="/film">Film &amp; Entertainment</a></li>
+          <li><a href="/corporate">Corporate</a></li>
+          <li><a href="/consumer">Consumer Brands</a></li>
+        </ul>
+      </li>
+      <li><a href="/contact" class="nav-cta">Send Brief</a></li>
+    </ul>
+
+    <button class="nav-search" id="navSearch" type="button" aria-label="Open search">
+      <i class="fas fa-search" aria-hidden="true"></i>
+    </button>
+
+    <button class="mobile-menu-btn" id="mobileMenuBtn" type="button"
+            aria-label="Open menu" aria-expanded="false" aria-controls="mobileMenu">
+      <i class="fas fa-bars" aria-hidden="true"></i>
+    </button>
+
+  </div>
+</nav>
+
+<!-- Mobile menu -->
+<div class="mobile-menu-overlay" id="mobileMenuOverlay"></div>
+
+<nav class="mobile-menu" id="mobileMenu" aria-label="Mobile navigation">
+  <button class="mobile-menu-close" id="mobileMenuClose" type="button" aria-label="Close menu">
+    <i class="fas fa-times" aria-hidden="true"></i>
+  </button>
+
+  <ul>
+    <li><a href="/">Home</a></li>
+    <li><a href="/about">About</a></li>
+    <li><a href="/film">Work</a></li>
+    <li>
+      <ul class="mobile-sub">
+        <li><a href="/film">Film &amp; Entertainment</a></li>
+        <li><a href="/corporate">Corporate</a></li>
+        <li><a href="/consumer">Consumer Brands</a></li>
+      </ul>
+    </li>
+    <li><a href="/contact">Send Brief</a></li>
+  </ul>
+</nav>
+
+<!-- Search -->
+<div class="search-overlay" id="searchOverlay"></div>
+
+<div class="search-modal" id="searchModal" role="dialog" aria-modal="true" aria-label="Search this site">
+  <button class="search-close" id="searchClose" type="button" aria-label="Close search">
+    <i class="fas fa-times" aria-hidden="true"></i>
+  </button>
+  <label class="sr-only" for="searchInput">Search</label>
+  <input class="search-input" id="searchInput" type="search" placeholder="Search Savvy Media Africa..."
+         autocomplete="off" autocapitalize="none" spellcheck="false">
+  <div id="searchResults"></div>
+</div>

@@ -1,234 +1,236 @@
-// SIMPLIFIED include.js - debug version
-console.log('✅ include.js loaded at', new Date().toLocaleTimeString());
+/* ============================================================
+   SAVVY MEDIA AFRICA - partial loader + global nav behaviour
+   Single source of truth for header/footer injection and all
+   nav, mobile-menu and search interaction. Pages must NOT
+   re-bind these handlers; listen for the `headerLoaded` event
+   instead (see window.SAVVY_SEARCH_INDEX for page search data).
+   ============================================================ */
+(function () {
+  'use strict';
 
-async function loadIncludes() {
-  console.log('🔄 Looking for [data-include] elements...');
-  
-  const includes = document.querySelectorAll('[data-include]');
-  console.log(`Found ${includes.length} includes`);
+  var navInitDone = false;
 
-  if (includes.length === 0) {
-    console.error('❌ No [data-include] elements found!');
-    return;
-  }
+  /* ---------- partial injection ---------- */
 
-  for (const el of includes) {
-    const file = el.getAttribute('data-include');
-    console.log(`Processing: ${file}`);
-    
-    if (!file) continue;
-
-    // Ensure path starts with /
-    const path = file.startsWith('/') ? file : '/' + file;
-    console.log(`📂 Fetching from: ${path}`);
-
-    try {
-      const response = await fetch(path);
-      console.log(`Response status: ${response.status} for ${path}`);
-      
-      if (!response.ok) {
-        console.error(`❌ HTTP ${response.status} for ${path}`);
-        el.innerHTML = `<div style="background:#ff4444;color:#fff;padding:2rem;text-align:center;border-radius:8px;margin:2rem;"><h3>Error Loading ${file}</h3><p>HTTP ${response.status}</p><small>Check browser console</small></div>`;
-        continue;
-      }
-
-      const html = await response.text();
-      console.log(`✅ Got ${html.length} bytes for ${path}`);
-      
-      el.innerHTML = html;
-      console.log(`✅ Injected ${path} into DOM`);
-
-    } catch (err) {
-      console.error(`❌ Fetch failed for ${path}:`, err.message);
-      el.innerHTML = `<div style="background:#ff4444;color:#fff;padding:2rem;text-align:center;border-radius:8px;margin:2rem;"><h3>Network Error</h3><p>${err.message}</p></div>`;
+  function loadIncludes() {
+    var nodes = Array.prototype.slice.call(document.querySelectorAll('[data-include]'));
+    if (!nodes.length) {
+      initNav();
+      return;
     }
-  }
 
-  console.log('✅ All includes processed');
-  
-  // Tell page that header is ready
-  document.dispatchEvent(new CustomEvent('headerLoaded'));
-  console.log('📢 Dispatched: headerLoaded');
-  
-  initializeNavigation();
-}
+    var jobs = nodes.map(function (el) {
+      var file = el.getAttribute('data-include');
+      if (!file) return Promise.resolve();
 
-function initializeNavigation() {
-  console.log('⚙️ Initializing navigation...');
-  
-  const nav = document.getElementById('nav');
-  const mobileMenuBtn = document.getElementById('mobileMenuBtn');
-  const mobileMenu = document.getElementById('mobileMenu');
-  const mobileMenuOverlay = document.getElementById('mobileMenuOverlay');
-  
-  console.log('nav:', !!nav);
-  console.log('mobileMenuBtn:', !!mobileMenuBtn);
-  console.log('mobileMenu:', !!mobileMenu);
-  console.log('mobileMenuOverlay:', !!mobileMenuOverlay);
+      var path = file.charAt(0) === '/' ? file : '/' + file;
 
-  // Scroll event
-  if (nav) {
-    window.addEventListener('scroll', () => {
-      if (window.scrollY > 100) {
-        nav.classList.add('scrolled');
-      } else {
-        nav.classList.remove('scrolled');
-      }
-    });
-    console.log('✅ Scroll handler attached');
-  }
-
-  // Mobile menu toggle
-  if (mobileMenuBtn && mobileMenu && mobileMenuOverlay) {
-    const toggleMobileMenu = () => {
-      mobileMenu.classList.toggle('open');
-      mobileMenuOverlay.classList.toggle('open');
-      document.body.style.overflow = mobileMenu.classList.contains('open') ? 'hidden' : 'auto';
-      console.log('📱 Mobile menu toggled');
-    };
-    
-    // Touch + Click support for iOS/Android
-    mobileMenuBtn.addEventListener('click', toggleMobileMenu);
-    mobileMenuBtn.addEventListener('touchend', (e) => {
-      e.preventDefault();
-      toggleMobileMenu();
-    }, false);
-
-    // Overlay click
-    const handleOverlayClick = () => {
-      mobileMenu.classList.remove('open');
-      mobileMenuOverlay.classList.remove('open');
-      document.body.style.overflow = 'auto';
-      console.log('📱 Mobile menu closed via overlay');
-    };
-    
-    mobileMenuOverlay.addEventListener('click', handleOverlayClick);
-    mobileMenuOverlay.addEventListener('touchend', (e) => {
-      if (e.target === mobileMenuOverlay) {
-        e.preventDefault();
-        handleOverlayClick();
-      }
-    }, false);
-
-    // Work dropdown toggle FIRST (before general link handlers)
-     // Mobile submenu toggle buttons (created in header markup as .mobile-sub-toggle)
-    document.querySelectorAll('.mobile-sub-toggle').forEach(btn => {
-      const controls = btn.getAttribute('aria-controls');
-      const panel = controls ? document.getElementById(controls) : null;
-      btn.addEventListener('click', (e) => {
-        const expanded = btn.getAttribute('aria-expanded') === 'true';
-        btn.setAttribute('aria-expanded', String(!expanded));
-        if (panel) {
-          panel.hidden = expanded; // toggle hidden
-          // toggle an 'open' class on parent to allow CSS styling
-          const parent = btn.closest('.has-dropdown');
-          if (parent) parent.classList.toggle('open', !expanded);
-        }
-        // update indicator character
-        const ind = btn.querySelector('.mobile-sub-indicator');
-        if (ind) ind.textContent = expanded ? '+' : '−';
-        e.stopPropagation();
-      }, false);
-
-      // for touch devices: make sure touch doesn't accidentally navigate
-      btn.addEventListener('touchend', (e) => {
-        e.preventDefault();
-        btn.click();
-      }, false);
-    });
-
-
-    // Close on link click (but NOT Work dropdown items)
-       // Close on link click (but NOT child items of .has-dropdown that should toggle)
-    // Use a short timeout to avoid race conditions on iOS where immediate DOM changes can cancel navigation.
-    document.querySelectorAll('.mobile-menu a').forEach(link => {
-      // if link is inside a has-dropdown (the dropdown children) we still want clicks to navigate AND keep menu open if needed.
-      // We only skip the top-level anchor that is meant to open a submenu toggle — the toggle button handles submenu open/close.
-      if (link.closest('.has-dropdown') && link.closest('.has-dropdown').querySelector('.mobile-sub-toggle')) {
-        // allow normal navigation for the parent <a> (so tapping "Work" still goes to /work).
-        link.addEventListener('click', () => {
-          // close menu but delay slightly to let browser perform navigation (fix for iOS).
-          setTimeout(() => {
-            if (mobileMenu) mobileMenu.classList.remove('open');
-            if (mobileMenuOverlay) mobileMenuOverlay.classList.remove('open');
-            document.body.style.overflow = 'auto';
-            console.log('📱 Menu closed via link click (delayed)');
-          }, 60);
+      return fetch(path)
+        .then(function (res) {
+          if (!res.ok) throw new Error('HTTP ' + res.status);
+          return res.text();
+        })
+        .then(function (html) {
+          el.innerHTML = html;
+        })
+        .catch(function (err) {
+          /* Fail quietly for visitors - an empty slot is far better
+             than an error panel. Details go to the console only. */
+          el.innerHTML = '';
+          if (window.console) console.error('[include] ' + path + ': ' + err.message);
         });
-        link.addEventListener('touchend', () => {
-          setTimeout(() => {
-            if (mobileMenu) mobileMenu.classList.remove('open');
-            if (mobileMenuOverlay) mobileMenuOverlay.classList.remove('open');
-            document.body.style.overflow = 'auto';
-          }, 60);
-        }, false);
+    });
+
+    Promise.all(jobs).then(function () {
+      document.dispatchEvent(new CustomEvent('headerLoaded'));
+      initNav();
+    });
+  }
+
+  /* ---------- helpers ---------- */
+
+  var scrollLockY = 0;
+
+  function lockScroll() {
+    scrollLockY = window.pageYOffset || document.documentElement.scrollTop || 0;
+    document.body.style.overflow = 'hidden';
+  }
+
+  function unlockScroll() {
+    document.body.style.overflow = '';
+    /* iOS can drift the scroll position while the body is locked. */
+    window.scrollTo(0, scrollLockY);
+  }
+
+  function markActiveLink() {
+    var here = window.location.pathname.replace(/\/+$/, '') || '/';
+    var links = document.querySelectorAll('.nav-links a, .mobile-menu a');
+    Array.prototype.forEach.call(links, function (a) {
+      var href = (a.getAttribute('href') || '').replace(/\/+$/, '') || '/';
+      if (href === here) a.classList.add('active');
+    });
+  }
+
+  function setFooterYear() {
+    var y = document.getElementById('footerYear');
+    if (y) y.textContent = String(new Date().getFullYear());
+  }
+
+  /* ---------- navigation ---------- */
+
+  function initNav() {
+    if (navInitDone) return;
+    navInitDone = true;
+
+    var nav = document.getElementById('nav');
+    var menuBtn = document.getElementById('mobileMenuBtn');
+    var menu = document.getElementById('mobileMenu');
+    var overlay = document.getElementById('mobileMenuOverlay');
+    var menuClose = document.getElementById('mobileMenuClose');
+
+    var searchBtn = document.getElementById('navSearch');
+    var searchOverlay = document.getElementById('searchOverlay');
+    var searchModal = document.getElementById('searchModal');
+    var searchClose = document.getElementById('searchClose');
+    var searchInput = document.getElementById('searchInput');
+    var searchResults = document.getElementById('searchResults');
+
+    /* sticky nav */
+    if (nav) {
+      var onScroll = function () {
+        nav.classList.toggle('scrolled', window.pageYOffset > 100);
+      };
+      window.addEventListener('scroll', onScroll, { passive: true });
+      onScroll();
+    }
+
+    /* mobile menu */
+    function menuIsOpen() {
+      return !!menu && menu.classList.contains('open');
+    }
+
+    function openMenu() {
+      if (!menu) return;
+      menu.classList.add('open');
+      if (overlay) overlay.classList.add('open');
+      if (menuBtn) menuBtn.setAttribute('aria-expanded', 'true');
+      lockScroll();
+      if (menuClose) menuClose.focus();
+    }
+
+    function closeMenu() {
+      if (!menu) return;
+      menu.classList.remove('open');
+      if (overlay) overlay.classList.remove('open');
+      if (menuBtn) menuBtn.setAttribute('aria-expanded', 'false');
+      unlockScroll();
+    }
+
+    if (menuBtn) {
+      menuBtn.addEventListener('click', function () {
+        menuIsOpen() ? closeMenu() : openMenu();
+      });
+    }
+    if (overlay) overlay.addEventListener('click', closeMenu);
+    if (menuClose) menuClose.addEventListener('click', closeMenu);
+
+    /* Let the link navigate; just dismiss the panel behind it. */
+    if (menu) {
+      Array.prototype.forEach.call(menu.querySelectorAll('a'), function (a) {
+        a.addEventListener('click', closeMenu);
+      });
+    }
+
+    /* search */
+    function openSearch() {
+      if (!searchModal) return;
+      searchModal.classList.add('open');
+      if (searchOverlay) searchOverlay.classList.add('open');
+      lockScroll();
+      if (searchInput) setTimeout(function () { searchInput.focus(); }, 280);
+    }
+
+    function closeSearch() {
+      if (!searchModal) return;
+      searchModal.classList.remove('open');
+      if (searchOverlay) searchOverlay.classList.remove('open');
+      unlockScroll();
+      if (searchInput) searchInput.value = '';
+      if (searchResults) searchResults.innerHTML = '';
+    }
+
+    function searchIsOpen() {
+      return !!searchModal && searchModal.classList.contains('open');
+    }
+
+    function escapeHtml(s) {
+      return String(s).replace(/[&<>"']/g, function (c) {
+        return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c];
+      });
+    }
+
+    var defaultIndex = [
+      { title: 'Home', text: 'Where Creativity Lives, Results Matter', url: '/' },
+      { title: 'About', text: 'Our story, values and team', url: '/about' },
+      { title: 'Film & Entertainment', text: 'Premieres, PR and viral campaigns', url: '/film' },
+      { title: 'Corporate', text: 'Multi-platform campaigns for leading brands', url: '/corporate' },
+      { title: 'Consumer Brands', text: 'Culture-led storytelling for emerging brands', url: '/consumer' },
+      { title: 'Contact', text: 'Ready to make waves? Send us a brief', url: '/contact' }
+    ];
+
+    function runSearch(q) {
+      if (!searchResults) return;
+      var query = (q || '').trim().toLowerCase();
+      if (!query) {
+        searchResults.innerHTML = '';
+        return;
+      }
+      var index = window.SAVVY_SEARCH_INDEX || defaultIndex;
+      var hits = index.filter(function (item) {
+        return (item.title + ' ' + (item.text || '')).toLowerCase().indexOf(query) !== -1;
+      });
+
+      if (!hits.length) {
+        searchResults.innerHTML =
+          '<p style="color:rgba(255,255,255,.6);margin-top:1.5rem">No results found</p>';
         return;
       }
 
-      // Normal links (non-dropdown parents / submenu items) — close after a small delay to ensure navigation works on iOS.
-      link.addEventListener('click', () => {
-        setTimeout(() => {
-          if (mobileMenu) mobileMenu.classList.remove('open');
-          if (mobileMenuOverlay) mobileMenuOverlay.classList.remove('open');
-          document.body.style.overflow = 'auto';
-          console.log('📱 Menu closed via link click (delayed)');
-        }, 60);
-      });
+      searchResults.innerHTML = hits.map(function (item) {
+        return '<a class="search-result-item" href="' + escapeHtml(item.url) + '">' +
+               '<h3>' + escapeHtml(item.title) + '</h3>' +
+               '<p>' + escapeHtml(item.text || '') + '</p></a>';
+      }).join('');
+    }
 
-      link.addEventListener('touchend', () => {
-        setTimeout(() => {
-          if (mobileMenu) mobileMenu.classList.remove('open');
-          if (mobileMenuOverlay) mobileMenuOverlay.classList.remove('open');
-          document.body.style.overflow = 'auto';
-        }, 60);
-      }, false);
+    if (searchBtn) searchBtn.addEventListener('click', openSearch);
+    if (searchClose) searchClose.addEventListener('click', closeSearch);
+    if (searchOverlay) searchOverlay.addEventListener('click', closeSearch);
+    if (searchInput) {
+      searchInput.addEventListener('input', function (e) { runSearch(e.target.value); });
+    }
+
+    /* one Escape handler for whichever layer is open */
+    document.addEventListener('keydown', function (e) {
+      if (e.key !== 'Escape') return;
+      if (searchIsOpen()) closeSearch();
+      else if (menuIsOpen()) closeMenu();
     });
 
-
-    console.log('✅ Mobile menu handlers attached');
-  }
-
-  // Search
-  const navSearch = document.getElementById('navSearch');
-  const searchOverlay = document.getElementById('searchOverlay');
-  const searchModal = document.getElementById('searchModal');
-  const searchClose = document.getElementById('searchClose');
-  const searchInput = document.getElementById('searchInput');
-
-  if (navSearch) {
-    navSearch.addEventListener('click', () => {
-      if (searchOverlay) searchOverlay.classList.add('open');
-      if (searchModal) searchModal.classList.add('open');
-      if (searchInput) searchInput.focus();
-      console.log('🔍 Search opened');
+    /* reset panels if the viewport grows past the mobile breakpoint */
+    window.addEventListener('resize', function () {
+      if (window.innerWidth > 768 && menuIsOpen()) closeMenu();
     });
+
+    markActiveLink();
+    setFooterYear();
   }
 
-  if (searchClose) {
-    searchClose.addEventListener('click', () => {
-      if (searchOverlay) searchOverlay.classList.remove('open');
-      if (searchModal) searchModal.classList.remove('open');
-      console.log('🔍 Search closed');
-    });
+  /* ---------- boot ---------- */
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', loadIncludes);
+  } else {
+    loadIncludes();
   }
-
-  if (searchOverlay) {
-    searchOverlay.addEventListener('click', (e) => {
-      if (e.target === searchOverlay) {
-        searchOverlay.classList.remove('open');
-        if (searchModal) searchModal.classList.remove('open');
-      }
-    });
-  }
-
-  console.log('✅ Navigation initialization complete');
-}
-
-// Run when DOM is ready
-if (document.readyState === 'loading') {
-  document.addEventListener('DOMContentLoaded', loadIncludes);
-} else {
-  loadIncludes();
-}
-
-console.log('✅ include.js setup complete');
+})();

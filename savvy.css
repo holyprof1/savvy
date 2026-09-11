@@ -66,6 +66,23 @@ nav{
   display:block;
 }
 
+/* Text wordmark - stands in for the logo image */
+.nav-logo-text{
+  font-size:1.35rem;
+  font-weight:800;
+  letter-spacing:0.02em;
+  color:var(--white);
+  white-space:nowrap;
+}
+
+.nav-logo-text span{
+  color:var(--bright-cyan);
+}
+
+nav.scrolled .nav-logo-text{
+  color:var(--navy);
+}
+
 .nav-links{
   list-style:none;
   display:flex;
@@ -128,8 +145,11 @@ nav{
   display:inline-flex;
   align-items:center;
   justify-content:center;
+  min-width:44px;
+  min-height:44px;
   -webkit-user-select:none;
   user-select:none;
+  -webkit-tap-highlight-color:transparent;
 }
 
 .mobile-menu-btn{
@@ -140,6 +160,10 @@ nav{
   cursor:pointer;
   margin-left:1rem;
   display:none;
+  align-items:center;
+  justify-content:center;
+  min-width:44px;
+  min-height:44px;
   -webkit-user-select:none;
   user-select:none;
   -webkit-tap-highlight-color:transparent;
@@ -277,13 +301,41 @@ nav.scrolled .nav-links .dropdown a{
   width:80%;
   max-width:320px;
   height:100vh;
+  /* dvh tracks the real viewport so the panel is not cut off
+     behind the iOS Safari address bar. Ignored where unsupported. */
+  height:100dvh;
   background:var(--deep-navy);
-  padding:5rem 2rem 2rem;
+  padding:5rem 1.5rem 2rem;
   z-index:9050;
   transition:right .3s ease;
   overflow-y:auto;
   -webkit-overflow-scrolling:touch;
   box-shadow:-4px 0 20px rgba(0,0,0,.5);
+}
+
+/* Close (X) button - previously there was no way to dismiss the
+   panel except tapping the overlay. */
+.mobile-menu-close{
+  position:absolute;
+  top:1rem;
+  right:1rem;
+  width:44px;
+  height:44px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  background:rgba(0,212,255,.1);
+  border:1px solid rgba(0,212,255,.25);
+  border-radius:50%;
+  color:var(--bright-cyan);
+  font-size:1.1rem;
+  cursor:pointer;
+  -webkit-tap-highlight-color:transparent;
+}
+
+.mobile-menu-close:focus-visible{
+  outline:2px solid var(--bright-cyan);
+  outline-offset:2px;
 }
 
 .mobile-menu.open{
@@ -294,17 +346,32 @@ nav.scrolled .nav-links .dropdown a{
   list-style:none;
   display:flex;
   flex-direction:column;
-  gap:1.5rem;
+  gap:0.25rem;
 }
 
+/* min-height 44px meets the recommended touch-target size -
+   these links used to be text-height only. */
 .mobile-menu a{
   color:var(--white);
   text-decoration:none;
   font-size:1.05rem;
   font-weight:600;
-  display:block;
+  display:flex;
+  align-items:center;
+  min-height:44px;
+  padding:0.35rem 0.5rem;
+  border-radius:8px;
   -webkit-user-select:none;
   user-select:none;
+  -webkit-tap-highlight-color:transparent;
+}
+
+.mobile-menu a:active{
+  background:rgba(0,212,255,.12);
+}
+
+.mobile-menu a.active{
+  color:var(--bright-cyan);
 }
 
 /* MOBILE DROPDOWN - Work submenu */
