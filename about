@@ -1,0 +1,1319 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>About Savvy Media Africa - Where Creativity Lives, Results Matter</title>
+
+<!-- Google Fonts: Using Sora -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+<!-- Global header/footer + nav styles -->
+<link rel="stylesheet" href="/savvy.css">
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+
+:root{
+  --deep-navy:#001d3d;
+  --navy:#002855;
+  --bright-cyan:#00D4FF;
+  --cyan:#00A8E8;
+  --bright-green:#00FF88;
+  --green:#00E676;
+  --orange:#FF6B35;
+  --yellow:#FFB800;
+  --white:#FFFFFF;
+  --section-pad:8rem;
+}
+
+body{
+  font-family:'Sora',sans-serif;
+  color:var(--white);
+  background:var(--deep-navy);
+  overflow-x:hidden;
+  line-height:1.6;
+  font-weight:400;
+  cursor:none
+}
+
+.cursor{
+  position:fixed;
+  width:8px;
+  height:8px;
+  border-radius:50%;
+  background:var(--bright-cyan);
+  pointer-events:none;
+  z-index:99999;
+  opacity:.8;
+  transition:transform .1s ease;
+  mix-blend-mode:screen;
+  box-shadow:0 0 12px var(--bright-cyan),0 0 24px rgba(0,212,255,.5)
+}
+
+.cursor-follower{
+  position:fixed;
+  width:32px;
+  height:32px;
+  border-radius:50%;
+  border:1.5px solid var(--bright-cyan);
+  pointer-events:none;
+  z-index:99998;
+  opacity:.4;
+  transition:all .25s ease;
+  box-shadow:inset 0 0 8px rgba(0,212,255,.3)
+}
+
+h1,h2,h3,h4,h5,h6{font-weight:500;line-height:1.1;letter-spacing:-0.02em}
+h1{font-size:clamp(3rem,9vw,10rem)}
+h2{font-size:clamp(2.2rem,6vw,5.5rem)}
+h3{font-size:clamp(1.6rem,4vw,2.8rem)}
+
+.underline-text{display:inline-block;position:relative;padding-bottom:6px}
+.underline-text::after{content:'';position:absolute;bottom:0;left:0;width:100%;height:4px;background:var(--bright-cyan);border-radius:2px}
+.underline-green::after{background:var(--bright-green)}
+.underline-orange::after{background:var(--orange)}
+
+/* ========== HERO ========== */
+.hero{
+  min-height:100vh;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  position:relative;
+  padding:12rem 4rem 6rem;
+  overflow:hidden;
+  background:linear-gradient(135deg,var(--deep-navy) 0%,var(--navy) 100%)
+}
+
+.floating-shape{
+  position:absolute;
+  border-radius:50%;
+  filter:blur(120px);
+  opacity:.12;
+  pointer-events:none;
+  animation:float 20s ease-in-out infinite
+}
+
+.shape-1{
+  width:700px;
+  height:700px;
+  background:linear-gradient(135deg,var(--bright-cyan),var(--cyan));
+  top:10%;
+  left:5%
+}
+
+.shape-2{
+  width:600px;
+  height:600px;
+  background:linear-gradient(135deg,var(--orange),var(--yellow));
+  bottom:6%;
+  right:5%;
+  animation-delay:-10s
+}
+
+@keyframes float{
+  0%,100%{transform:translate(0,0) scale(1)}
+  25%{transform:translate(50px,-50px) scale(1.1)}
+  50%{transform:translate(80px,-80px) scale(1.2)}
+  75%{transform:translate(30px,-40px) scale(1.15)}
+}
+
+.hero-content{text-align:center;max-width:1600px;position:relative;z-index:2}
+
+.hero-title{
+  font-family:'Sora',sans-serif;
+  font-size:clamp(3rem,9.6vw,10.6rem);
+  font-weight:500;
+  line-height:1.05;
+  margin-bottom:1.6rem
+}
+
+.title-line{display:block;margin-bottom:.6rem}
+
+.word{
+  display:inline-block;
+  margin-right:.25em;
+  position:relative;
+  opacity:0;
+  transform:translate3d(0,100px,0) scale(.9) rotate(4deg)
+}
+
+.word.cyan{color:var(--bright-cyan)}
+.word.green{color:var(--bright-green)}
+.word.orange{color:var(--orange)}
+
+.word.gradient-cyan{
+  background:linear-gradient(135deg,var(--bright-cyan),var(--cyan));
+  -webkit-background-clip:text;
+  background-clip:text;
+  -webkit-text-fill-color:transparent;
+  color:transparent;
+  display:inline;
+  line-height:1
+}
+
+.comma{display:inline-block;transform:translateY(-.12em);opacity:0}
+
+.hero-pills-container{
+  display:flex;
+  justify-content:center;
+  gap:1.2rem;
+  flex-wrap:wrap;
+  margin:1.2rem 0
+}
+
+.hero-pill{
+  background:rgba(255,255,255,.08);
+  backdrop-filter:blur(10px);
+  padding:.9rem 1.8rem;
+  border-radius:999px;
+  font-size:1rem;
+  font-weight:700;
+  border:1px solid rgba(0,212,255,.2);
+  opacity:0;
+  transform:scale(.9)
+}
+
+.hero-pill.cyan{
+  background:linear-gradient(135deg,var(--bright-cyan),var(--cyan));
+  border:none;
+  color:var(--deep-navy)
+}
+
+.hero-subtitle{
+  font-size:clamp(1.05rem,2vw,1.35rem);
+  color:rgba(255,255,255,.9);
+  max-width:900px;
+  margin:1.1rem auto 0;
+  line-height:1.9;
+  opacity:0;
+  font-weight:400
+}
+
+/* ========== SECTIONS ========== */
+.section{padding:var(--section-pad) 2rem}
+
+.section-label{
+  display:inline-block;
+  background:linear-gradient(135deg,var(--orange),var(--yellow));
+  color:var(--deep-navy);
+  padding:.7rem 1.6rem;
+  border-radius:999px;
+  font-size:.88rem;
+  font-weight:500;
+  text-transform:uppercase;
+  letter-spacing:2px;
+  margin-bottom:1.2rem
+}
+
+.section-title{
+  font-size:clamp(2.6rem,6vw,5.5rem);
+  font-weight:500;
+  margin-bottom:.8rem;
+  text-align:center
+}
+
+.section-subtitle{
+  font-size:1.25rem;
+  color:rgba(255,255,255,.85);
+  text-align:center;
+  max-width:900px;
+  margin:0 auto 3rem;
+  font-weight:400
+}
+
+.title-animate{display:inline-block;overflow:hidden}
+.title-animate .tword{display:inline-block;transform:translateY(115%);opacity:0}
+
+/* ========== STORY SECTION ========== */
+.story-section{
+  padding:var(--section-pad) 2rem;
+  background:var(--navy);
+}
+
+.story-grid{
+  max-width:1400px;
+  margin:0 auto;
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:5rem;
+  align-items:center
+}
+
+.story-content h2{
+  font-size:clamp(2.2rem,5vw,4.5rem);
+  font-weight:500;
+  line-height:1.15;
+  margin-bottom:2rem
+}
+
+.story-content h2 .orange{color:var(--orange)}
+.story-content h2 .cyan{color:var(--bright-cyan)}
+
+.story-text{
+  font-size:1.15rem;
+  line-height:1.85;
+  color:rgba(255,255,255,.9);
+  margin-bottom:1.8rem;
+  font-weight:400
+}
+
+.story-highlights{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:2rem;
+  margin-top:2.4rem
+}
+
+.highlight-card{
+  background:rgba(0,212,255,.08);
+  border:1px solid rgba(0,212,255,.2);
+  padding:2rem;
+  border-radius:20px;
+  transition:.35s;
+  opacity:0;
+  transform:translateY(40px)
+}
+
+.highlight-card:hover{
+  background:rgba(0,212,255,.15);
+  border-color:rgba(0,212,255,.4);
+  transform:translateY(-8px)
+}
+
+.highlight-number{
+  font-size:2.8rem;
+  font-weight:600;
+  background:linear-gradient(135deg,var(--bright-cyan),var(--orange));
+  -webkit-background-clip:text;
+  background-clip:text;
+  -webkit-text-fill-color:transparent;
+  margin-bottom:.5rem
+}
+
+.highlight-label{
+  font-size:.95rem;
+  color:rgba(255,255,255,.8);
+  text-transform:uppercase;
+  letter-spacing:1.5px;
+  font-weight:500
+}
+
+.story-image{
+  position:relative;
+  opacity:0;
+  transform:scale(.95);
+  --emoji-top:50%;
+  --emoji-left:50%;
+}
+
+.story-emoji{
+  position:absolute;
+  top:var(--emoji-top);
+  left:var(--emoji-left);
+  transform:translate(-50%,-50%);
+  width:80px;
+  height:80px;
+  border-radius:50%;
+  background:rgba(0,29,61,.9);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:2rem;
+  color:#fff;
+  box-shadow:0 12px 30px rgba(0,0,0,.45);
+  z-index:8;
+}
+
+.story-image img{
+  width:100%;
+  border-radius:28px;
+  box-shadow:0 30px 80px rgba(0,0,0,.5)
+}
+
+.story-badge{
+  position:absolute;
+  bottom:-15px;
+  left:30px;
+  background:var(--bright-green);
+  color:var(--deep-navy);
+  padding:1.5rem 2.5rem;
+  border-radius:18px;
+  box-shadow:0 15px 50px rgba(0,255,136,.35);
+  animation:floatBadge 4s ease-in-out infinite;
+  z-index:10;
+  font-weight:600;
+  font-size:1.1rem
+}
+
+@keyframes floatBadge{
+  0%,100%{transform:translateY(0)}
+  50%{transform:translateY(-12px)}
+}
+
+/* ========== MISSION & VALUES ========== */
+.mission-section{
+  padding:var(--section-pad) 2rem;
+  background:var(--deep-navy)
+}
+
+.mission-grid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:4rem;
+  max-width:1400px;
+  margin:0 auto
+}
+
+.mission-card{
+  opacity:0;
+  transform:translateY(40px)
+}
+
+.mission-card h3{
+  font-size:2.2rem;
+  margin-bottom:1.2rem;
+  color:var(--bright-cyan)
+}
+
+.mission-card h3 .orange{color:var(--orange)}
+
+.mission-card p{
+  font-size:1.12rem;
+  line-height:1.9;
+  color:rgba(255,255,255,.88);
+  font-weight:400
+}
+
+/* ========== VALUES GRID ========== */
+.values-section{
+  padding:var(--section-pad) 2rem;
+  background:var(--navy)
+}
+
+.values-grid{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:2.8rem;
+  max-width:1400px;
+  margin:0 auto;
+  margin-top:2rem
+}
+
+.value-card{
+  background:rgba(255,255,255,.04);
+  backdrop-filter:blur(10px);
+  padding:2.8rem;
+  border-radius:28px;
+  border:1px solid rgba(0,212,255,.15);
+  transition:.45s;
+  opacity:0;
+  transform:translateY(50px);
+  position:relative;
+  overflow:hidden;
+  text-align:center
+}
+
+.value-card::after{
+  content:'';
+  position:absolute;
+  inset:-1px;
+  border-radius:29px;
+  background:radial-gradient(500px 200px at var(--x,50%) var(--y,50%),rgba(0,212,255,.2),transparent 60%);
+  opacity:0;
+  transition:.4s
+}
+
+.value-card:hover{
+  border-color:rgba(0,212,255,.4);
+  transform:translateY(-8px)
+}
+
+.value-card:hover::after{opacity:1}
+
+.value-icon{
+  width:80px;
+  height:80px;
+  background:linear-gradient(135deg,var(--bright-cyan),var(--cyan));
+  border-radius:20px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:2.2rem;
+  color:var(--deep-navy);
+  margin:0 auto 1.4rem;
+  transition:.6s;
+  transform:perspective(600px) rotateY(0)
+}
+
+.value-card:nth-child(2) .value-icon{
+  background:linear-gradient(135deg,var(--bright-green),var(--green))
+}
+
+.value-card:nth-child(3) .value-icon{
+  background:linear-gradient(135deg,var(--orange),var(--yellow))
+}
+
+.value-card:hover .value-icon{
+  transform:perspective(600px) rotateY(360deg) scale(1.1)
+}
+
+.value-card h4{
+  font-size:1.6rem;
+  font-weight:600;
+  margin-bottom:.8rem;
+  position:relative;
+  z-index:1
+}
+
+.value-card p{
+  font-size:1.02rem;
+  color:rgba(255,255,255,.82);
+  line-height:1.8;
+  font-weight:400;
+  position:relative;
+  z-index:1
+}
+
+/* ========== ORGANIZATIONAL CHART ========== */
+.team-section{
+  padding:var(--section-pad) 2rem;
+  background:var(--deep-navy)
+}
+
+.team-container{
+  max-width:1400px;
+  margin:0 auto
+}
+
+.org-chart{
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  gap:3rem;
+  margin-top:3rem
+}
+
+.org-level{
+  display:flex;
+  justify-content:center;
+  gap:2rem;
+  width:100%;
+  flex-wrap:wrap
+}
+
+.org-node{
+  background:rgba(0,212,255,.08);
+  border:2px solid rgba(0,212,255,.3);
+  border-radius:16px;
+  padding:2rem;
+  text-align:center;
+  min-width:200px;
+  transition:.35s;
+  opacity:0;
+  transform:translateY(30px);
+  position:relative;
+}
+
+.org-node:hover{
+  background:rgba(0,212,255,.15);
+  border-color:rgba(0,212,255,.6);
+  transform:translateY(-8px);
+  box-shadow:0 15px 50px rgba(0,212,255,.25)
+}
+
+.ceo-node{
+  background:linear-gradient(135deg,rgba(0,212,255,.15),rgba(255,107,53,.08));
+  border-color:var(--bright-cyan);
+  min-width:240px;
+  padding:2.5rem
+}
+
+.level-2-node{
+  background:rgba(0,255,136,.08);
+  border-color:rgba(0,255,136,.4);
+  min-width:200px
+}
+
+.level-2-node:hover{
+  background:rgba(0,255,136,.15);
+  border-color:var(--bright-green);
+  box-shadow:0 15px 50px rgba(0,255,136,.2)
+}
+
+.level-3-node{
+  background:rgba(255,107,53,.08);
+  border-color:rgba(255,107,53,.4);
+  min-width:180px
+}
+
+.level-3-node:hover{
+  background:rgba(255,107,53,.15);
+  border-color:var(--orange);
+  box-shadow:0 15px 50px rgba(255,107,53,.2)
+}
+
+.org-position{
+  font-size:.85rem;
+  color:rgba(255,255,255,.7);
+  text-transform:uppercase;
+  letter-spacing:1.5px;
+  font-weight:600;
+  margin-bottom:.8rem
+}
+
+.org-name{
+  font-size:1.4rem;
+  font-weight:700;
+  color:var(--white);
+  margin:0
+}
+
+.ceo-node .org-name{
+  font-size:1.6rem;
+  color:var(--bright-cyan)
+}
+
+.level-2-node .org-name{
+  color:var(--bright-green)
+}
+
+.level-3-node .org-name{
+  color:var(--orange)
+}
+
+.org-connector{
+  width:2px;
+  background:linear-gradient(180deg,rgba(0,212,255,.4),transparent);
+  height:2rem
+}
+
+.level-1-connector{
+  opacity:0;
+  animation:slideDown 0.8s ease 0.4s forwards
+}
+
+.level-2-connector{
+  opacity:0;
+  animation:slideDown 0.8s ease 0.7s forwards
+}
+
+@keyframes slideDown{
+  to{opacity:1}
+}
+
+/* Org Values Stats */
+.org-values{
+  background:rgba(0,212,255,.05);
+  border:1px solid rgba(0,212,255,.15);
+  border-radius:20px;
+  padding:3rem 2rem;
+  max-width:1000px;
+  margin:0 auto!important
+}
+
+.values-row{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:2.5rem
+}
+
+.value-stat{
+  display:flex;
+  gap:1.5rem;
+  align-items:flex-start;
+  text-align:left;
+  opacity:0;
+  transform:translateY(20px)
+}
+
+.stat-icon{
+  font-size:2.5rem;
+  flex-shrink:0
+}
+
+.stat-text{
+  flex:1
+}
+
+.stat-number{
+  font-size:1.8rem;
+  font-weight:700;
+  color:var(--bright-cyan);
+  margin-bottom:.4rem
+}
+
+.stat-label{
+  font-size:.95rem;
+  color:rgba(255,255,255,.8);
+  line-height:1.5
+}
+
+/* ========== CTA SECTION ========== */
+.cta-section{
+  padding:var(--section-pad) 2rem;
+  background:linear-gradient(135deg,var(--bright-cyan),var(--orange));
+  text-align:center
+}
+
+.cta-title{
+  font-family:'Sora',sans-serif;
+  font-size:clamp(2.6rem,7vw,5.5rem);
+  font-weight:500;
+  margin-bottom:.6rem;
+  color:var(--deep-navy)
+}
+
+.cta-subtitle{
+  font-size:1.4rem;
+  margin-bottom:2.2rem;
+  opacity:.96;
+  color:var(--deep-navy);
+  font-weight:400
+}
+
+.btn-primary{
+  background:var(--deep-navy);
+  color:var(--bright-cyan);
+  padding:1.1rem 2.8rem;
+  border-radius:999px;
+  text-decoration:none;
+  font-weight:500;
+  font-size:1.05rem;
+  display:inline-flex;
+  align-items:center;
+  gap:.7rem;
+  box-shadow:0 10px 40px rgba(0,0,0,.3);
+  opacity:0;
+  transition:transform .2s,box-shadow .2s;
+  border:none;
+  cursor:pointer
+}
+
+.btn-primary:hover{
+  transform:translateY(-2px);
+  box-shadow:0 15px 50px rgba(0,0,0,.4)
+}
+
+/* ========== SCROLL TOP ========== */
+.scroll-top{
+  position:fixed;
+  bottom:26px;
+  right:26px;
+  width:68px;
+  height:68px;
+  border-radius:50%;
+  z-index:9000;
+  display:grid;
+  place-items:center;
+  cursor:pointer;
+  background:conic-gradient(var(--bright-cyan) calc(var(--scroll,0)*1%),rgba(0,212,255,.15) 0);
+  box-shadow:0 12px 35px rgba(0,212,255,.38),inset 0 0 0 8px rgba(0,29,61,.5);
+  transform:scale(.9) rotate(0deg);
+  opacity:0;
+  pointer-events:none;
+  transition:.25s ease;
+  border:none
+}
+
+.scroll-top.visible{
+  opacity:1;
+  pointer-events:auto;
+  transform:scale(1) rotate(0deg);
+}
+
+.scroll-top.scrolling{
+  animation:rotateProgress 0.8s linear infinite;
+}
+
+@keyframes rotateProgress{
+  0%{transform:scale(1) rotate(0deg)}
+  100%{transform:scale(1) rotate(360deg)}
+}
+
+.scroll-top .inner{
+  width:50px;
+  height:50px;
+  border-radius:50%;
+  display:grid;
+  place-items:center;
+  background:var(--navy);
+  color:#fff;
+  font-weight:500
+}
+
+.scroll-top .pct{font-size:.92rem}
+
+/* ========== RESPONSIVE ========== */
+@media (max-width:1200px){
+  .values-grid{grid-template-columns:repeat(2,1fr)}
+}
+
+@media (max-width:1024px){
+  .story-grid{grid-template-columns:1fr}
+  .story-image{order:1}
+  .story-content{order:2}
+  .story-badge{right:50%;transform:translateX(50%)}
+  .mission-grid{grid-template-columns:1fr}
+}
+
+@media (max-width:900px){
+  .org-level{gap:1.5rem}
+  .org-node{min-width:160px;padding:1.5rem}
+  .org-name{font-size:1.2rem}
+  .ceo-node{min-width:180px}
+  .level-2-node{min-width:150px}
+  .level-3-node{min-width:140px}
+}
+
+@media (max-width:768px){
+  :root{--section-pad:4rem}
+  
+  .values-grid{grid-template-columns:1fr}
+  
+  .story-highlights{grid-template-columns:1fr}
+  .story-badge{
+    position:static;
+    transform:none!important;
+    margin-top:-30px;
+    margin-left:20px;
+    width:fit-content;
+    animation:none
+  }
+  
+  .org-node{min-width:140px;padding:1.2rem}
+  .org-name{font-size:1rem}
+  .org-position{font-size:.75rem}
+  .org-connector{height:1.5rem}
+  
+  .values-row{grid-template-columns:1fr;gap:2rem}
+  .value-stat{text-align:center;justify-content:center;flex-direction:column;align-items:center}
+  
+  body{cursor:default}
+  .cursor,.cursor-follower{display:none}
+}
+
+/* ========== NEW ORG STRUCTURE (CLEAN GRID) ========== */
+
+.org-new{
+  display:grid;
+  gap:2rem;
+  margin-bottom:2.5rem;
+}
+
+.ceo-row{
+  grid-template-columns:1fr;
+  justify-items:center;
+}
+
+.level-2{
+  grid-template-columns:repeat(2,1fr);
+  max-width:900px;
+  margin:0 auto;
+}
+
+.level-3{
+  grid-template-columns:repeat(3,1fr);
+  max-width:1200px;
+  margin:0 auto;
+}
+
+.org-box{
+  background:rgba(0,212,255,.08);
+  border:2px solid rgba(0,212,255,.3);
+  border-radius:18px;
+  padding:2rem;
+  text-align:center;
+  font-weight:600;
+  transition:.35s;
+}
+
+.org-box:hover{
+  background:rgba(0,212,255,.15);
+  border-color:rgba(0,212,255,.6);
+  transform:translateY(-6px);
+}
+
+.org-box.ceo{
+  max-width:360px;
+  background:linear-gradient(135deg,rgba(0,212,255,.18),rgba(255,107,53,.1));
+  border-color:var(--bright-cyan);
+}
+
+.org-box.creative span{
+  display:block;
+  margin-top:.6rem;
+  font-size:.9rem;
+  color:rgba(255,255,255,.75);
+  font-weight:400;
+}
+
+.org-caption{
+  text-align:center;
+  font-size:1rem;
+  color:rgba(255,255,255,.75);
+  margin-top:2rem;
+}
+
+/* ========== MOBILE OPTIMIZATION ========== */
+@media (max-width:768px){
+  .org-new{
+    gap:1.5rem;
+  }
+  
+  .org-box{
+    padding:1.5rem 1rem;
+    font-size:0.9rem;
+  }
+  
+  .org-box.ceo{
+    max-width:100%;
+    padding:2rem 1.5rem;
+  }
+  
+  /* Keep Level 2 side by side on mobile - looks better than stacking */
+  .level-2{
+    grid-template-columns:1fr 1fr;
+    gap:1rem;
+    max-width:100%;
+  }
+  
+  /* Level 3: 2 columns, creative team full width below */
+  .level-3{
+    grid-template-columns:1fr 1fr;
+    gap:1rem;
+    max-width:100%;
+  }
+  
+  .level-3 .org-box.creative{
+    grid-column:1 / -1;
+  }
+  
+  .org-box.creative span{
+    font-size:0.8rem;
+  }
+  
+  .org-caption{
+    font-size:0.9rem;
+    padding:0 1rem;
+  }
+}
+
+/* Extra small phones */
+@media (max-width:480px){
+  .org-box{
+    font-size:0.85rem;
+    padding:1.2rem 0.8rem;
+  }
+  
+  .level-2{
+    gap:0.8rem;
+  }
+  
+  .level-3{
+    gap:0.8rem;
+  }
+}
+
+</style>
+
+</head>
+<body>
+
+<!-- Custom Cursor -->
+<div class="cursor"></div>
+<div class="cursor-follower"></div>
+
+<!-- Global header include -->
+<div data-include="/header.html"></div>
+
+<!-- ========== HERO ========== -->
+<section class="hero">
+  <div class="floating-shape shape-1" data-parallax="-12"></div>
+  <div class="floating-shape shape-2" data-parallax="14"></div>
+
+  <div class="hero-content">
+    <div class="hero-title">
+      <div class="title-line">
+        <span class="word">Architects</span>
+        <span class="word cyan">of</span>
+      </div>
+      <div class="title-line">
+        <span class="word green">African</span>
+        <span class="word orange">Creativity</span>
+      </div>
+      <div class="title-line">
+        <span class="word">& <span class="gradient-cyan">Cultural</span></span>
+        <span class="word">Impact</span>
+      </div>
+    </div>
+
+    <div class="hero-pills-container">
+      <div class="hero-pill">Since 2013</div>
+      <div class="hero-pill cyan">Award-Winning</div>
+    </div>
+
+    <p class="hero-subtitle">   Savvy Media Africa is a multi-dimensional media company that amplifies youth-driven narratives, builds culturally resonant brands, and delivers strategic storytelling across PR, digital publishing, and content production. </p>
+  </div>
+</section>
+
+<!-- ========== STORY SECTION ========== -->
+<section class="story-section section">
+  <div class="story-grid">
+    <div class="story-content">
+      <h2>Why We <span class="orange">Exist</span></h2>
+      
+<p class="story-text">
+  We exist to give African youth the mic to tell their stories, shape perception, and own their narrative in the global space.
+</p>
+
+<p class="story-text">
+  We believe every idea, voice, and creative spark has value and deserves a stage. We exist to move culture, not just content, by amplifying the talents and voices shaping tomorrow's Africa.
+</p>
+
+<p class="story-text">
+  Our purpose is to make visibility accessible whether through press, platforms, or production so that young Africans can own their narrative.
+</p>
+
+
+      <div class="story-highlights">
+        <div class="highlight-card">
+          <div class="highlight-number">12+</div>
+          <div class="highlight-label">Years of Bold Innovation</div>
+        </div>
+        <div class="highlight-card">
+          <div class="highlight-number">50+</div>
+          <div class="highlight-label">Culture-Moving Campaigns</div>
+        </div>
+        <div class="highlight-card">
+          <div class="highlight-number">100+</div>
+          <div class="highlight-label">African Brands Transformed</div>
+        </div>
+        <div class="highlight-card">
+          <div class="highlight-number">15+</div>
+          <div class="highlight-label">Gifted Creatives On Board</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="story-image">
+      <img src="https://savvymediaafrica.com/wp-content/uploads/2025/12/IMG_7725.jpg" alt="Savvy Media Africa Team">
+      <div class="story-emoji">✨</div>
+      <div class="story-badge">Crafting Culture ✓</div>
+    </div>
+  </div>
+</section>
+
+<!-- ========== MISSION & VALUES ========== -->
+<section class="mission-section section">
+  <div class="mission-grid">
+    <div class="mission-card">
+      <h3>Our <span class="cyan">Mission</span></h3>
+      <p>
+  To amplify African youth narratives and ideas through purposeful storytelling, strategic visibility, and culture-driven media solutions across digital, PR, and production.
+</p>
+
+    </div>
+
+    <div class="mission-card">
+      <h3>Our <span class="orange">Vision</span></h3>
+     <p>
+  To become Africa's most influential youth media and storytelling company, shaping culture, driving visibility, and powering creative economies.
+</p>
+
+    </div>
+  </div>
+</section>
+
+<!-- ========== VALUES ========== -->
+<section class="values-section section">
+  <div style="text-align:center;margin-bottom:2rem">
+    <span class="section-label">Our Values</span>
+    <h2 class="section-title title-animate"><span class="tword">What</span> <span class="tword">We</span> <span class="tword">Stand</span> <span class="tword">For</span></h2>
+    <p class="section-subtitle">The principles that guide every decision we make</p>
+  </div>
+
+  <div class="values-grid">
+    <div class="value-card">
+      <div class="value-icon"><i class="fas fa-spark"></i></div>
+      <h4>Culture First</h4>
+      <p>We don't create campaigns in a vacuum. Every idea is rooted in deep understanding of African culture, trends, and the zeitgeist that moves our people.</p>
+    </div>
+
+    <div class="value-card">
+      <div class="value-icon"><i class="fas fa-rocket"></i></div>
+      <h4>Fearlessly Bold</h4>
+      <p>We take calculated risks. We challenge norms, question conventions, and create work that makes people stop scrolling and start listening.</p>
+    </div>
+
+    <div class="value-card">
+      <div class="value-icon"><i class="fas fa-target"></i></div>
+      <h4>Results-Obsessed</h4>
+      <p>Beautiful ideas matter. But measurable impact matters more. We track, optimize, and deliver real business results that make your investment worthwhile.</p>
+    </div>
+
+    <div class="value-card">
+      <div class="value-icon"><i class="fas fa-gem"></i></div>
+      <h4>Excellence Always</h4>
+      <p>From the briefing to the brief, from strategy to the final pixel, we obsess over every detail. Good isn't good enough. We demand excellence.</p>
+    </div>
+
+    <div class="value-card">
+      <div class="value-icon"><i class="fas fa-handshake"></i></div>
+      <h4>Partner Mentality</h4>
+      <p>Your wins are our wins. We're invested in your success, available when you need us, and committed to growing together for the long term.</p>
+    </div>
+
+    <div class="value-card">
+      <div class="value-icon"><i class="fas fa-crown"></i></div>
+      <h4>Authentically African</h4>
+      <p>We're rooted here. We understand the market, the people, the nuances. We bring global expertise to local insights—that's our superpower.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ========== ORGANIZATIONAL CHART ========== -->
+
+<section class="team-section section">
+  <div class="team-container">
+
+    <div style="text-align:center;margin-bottom:3rem">
+      <span class="section-label">Organizational Chart</span>
+   <!--   <h2 class="section-title title-animate">
+        <span class="tword">Our</span>
+        <span class="tword">Team</span>
+        <span class="tword">Structure</span>
+      </h2>
+    </div> -->
+
+    <!-- CEO -->
+    <div class="org-new ceo-row">
+      <div class="org-box ceo">
+        Chief Executive Officer (CEO)
+      </div>
+    </div>
+
+    <!-- Level 2 -->
+    <div class="org-new level-2">
+      <div class="org-box">Chief Operating Officer (COO)</div>
+      <div class="org-box">Vice President, Branding & Strategy</div>
+    </div>
+
+    <!-- Level 3 -->
+<div class="org-new level-3 mobile-group">
+  <div class="org-box small">Account Managers</div>
+  <div class="org-box small">Marketing Executive</div>
+  <div class="org-box creative small">
+    Creative Team
+    <span>Design • Content • Video • Digital</span>
+  </div>
+</div>
+
+   
+
+  </div>
+</section>
+
+
+
+<!-- ========== CTA ========== -->
+<section class="cta-section section" id="contact">
+  <h2 class="cta-title">Ready to Work With <span class="underline-text" style="color:var(--deep-navy)">Us</span>?</h2>
+  <p class="cta-subtitle">Let's create something extraordinary for your brand.</p>
+  <a href="/contact" class="btn-primary" style="opacity:1">Get In Touch <i class="fas fa-paper-plane"></i></a>
+</section>
+
+<!-- Global footer include -->
+<div data-include="/footer.html"></div>
+
+<!-- ========== SCROLL-TO-TOP ========== -->
+<button class="scroll-top" id="scrollTopBtn" aria-label="Back to top">
+  <div class="inner"><span class="pct" id="scrollPct">0%</span></div>
+</button>
+
+<script>
+gsap.registerPlugin(ScrollTrigger);
+
+// Custom Cursor
+const cursor = document.querySelector('.cursor');
+const cursorFollower = document.querySelector('.cursor-follower');
+
+document.addEventListener('mousemove',(e)=>{
+  cursor.style.left = (e.clientX - 4) + 'px';
+  cursor.style.top  = (e.clientY - 4) + 'px';
+  setTimeout(()=>{
+    cursorFollower.style.left = (e.clientX - 16) + 'px';
+    cursorFollower.style.top  = (e.clientY - 16) + 'px';
+  },60);
+});
+
+document.addEventListener('mouseover',(e)=>{
+  const interactive = e.target.closest('a, button, [role="button"], .value-card, .org-node, input, textarea');
+  if(interactive){
+    cursor.style.transform = 'scale(1.6)';
+    cursor.style.opacity = '1';
+    cursorFollower.style.transform = 'scale(2.2)';
+    cursorFollower.style.borderColor = 'var(--bright-cyan)';
+    cursorFollower.style.boxShadow = '0 0 16px var(--bright-cyan), inset 0 0 12px rgba(0,212,255,.4)';
+  }
+});
+
+document.addEventListener('mouseout',(e)=>{
+  const interactive = e.target.closest('a, button, [role="button"], .value-card, .org-node, input, textarea');
+  if(interactive){
+    cursor.style.transform = 'scale(1)';
+    cursor.style.opacity = '0.8';
+    cursorFollower.style.transform = 'scale(1)';
+    cursorFollower.style.borderColor = 'var(--bright-cyan)';
+    cursorFollower.style.boxShadow = 'inset 0 0 8px rgba(0,212,255,.3)';
+  }
+});
+
+// ANIMATIONS
+gsap.to('.hero-title .word, .hero-title .comma',{
+  y:0,scale:1,rotation:0,opacity:1,duration:1,stagger:0.06,ease:'power4.out',delay:.05
+});
+
+gsap.to('.hero-pill',{opacity:1,scale:1,duration:.7,stagger:.1,delay:.6,ease:'back.out(1.7)'});
+gsap.to('.hero-subtitle',{opacity:1,duration:.8,delay:.8});
+
+gsap.utils.toArray('[data-parallax]').forEach(el=>{
+  const amt = +el.getAttribute('data-parallax') || 10;
+  gsap.to(el,{y:amt,scrollTrigger:{trigger:'.hero',start:'top top',end:'bottom top',scrub:1}});
+});
+
+gsap.to('.story-image',{
+  scrollTrigger:{trigger:'.story-section',start:'top 75%'},
+  opacity:1,scale:1,duration:.8,ease:'back.out(1.7)'
+});
+
+gsap.to('.highlight-card',{
+  scrollTrigger:{trigger:'.story-highlights',start:'top 85%'},
+  opacity:1,y:0,duration:.6,stagger:.1,ease:'back.out(1.5)'
+});
+
+document.querySelectorAll('.title-animate').forEach(title=>{
+  gsap.to(title.querySelectorAll('.tword'),{
+    scrollTrigger:{trigger:title,start:'top 82%'},
+    y:0,opacity:1,duration:.55,stagger:.07,ease:'power3.out'
+  });
+});
+
+gsap.utils.toArray('.mission-card').forEach((card,i)=>{
+  gsap.to(card,{
+    scrollTrigger:{trigger:card,start:'top 85%'},
+    y:0,opacity:1,duration:.65,delay:i*0.2
+  });
+});
+
+gsap.utils.toArray('.value-card').forEach((card,i)=>{
+  gsap.to(card,{
+    scrollTrigger:{trigger:card,start:'top 90%'},
+    y:0,opacity:1,duration:.6,delay:i*0.08,ease:'back.out(1.5)'
+  });
+  card.addEventListener('mousemove',e=>{
+    const r=card.getBoundingClientRect();
+    card.style.setProperty('--x',(e.clientX-r.left)+'px');
+    card.style.setProperty('--y',(e.clientY-r.top)+'px');
+  });
+});
+
+// Org Chart animations
+gsap.utils.toArray('.org-node').forEach((node,i)=>{
+  gsap.to(node,{
+    scrollTrigger:{trigger:'.org-chart',start:'top 80%'},
+    y:0,opacity:1,duration:.6,delay:i*0.12,ease:'back.out(1.5)'
+  });
+});
+
+gsap.utils.toArray('.value-stat').forEach((stat,i)=>{
+  gsap.to(stat,{
+    scrollTrigger:{trigger:'.org-values',start:'top 85%'},
+    y:0,opacity:1,duration:.6,delay:i*0.1,ease:'back.out(1.5)'
+  });
+});
+
+// Scroll-to-top
+const scrollBtn=document.getElementById('scrollTopBtn');
+const scrollPct=document.getElementById('scrollPct');
+let scrollTimeout;
+
+function setScrollProgress(){
+  const st=window.scrollY;
+  const h=document.documentElement.scrollHeight - innerHeight;
+  const p=h>0?Math.round((st/h)*100):0;
+  document.documentElement.style.setProperty('--scroll',p);
+  scrollBtn.style.setProperty('--scroll',p);
+  scrollPct.textContent=p+'%';
+  
+  if(st>380){
+    scrollBtn.classList.add('visible');
+    scrollBtn.classList.add('scrolling');
+    clearTimeout(scrollTimeout);
+    scrollTimeout = setTimeout(()=>{scrollBtn.classList.remove('scrolling');}, 500);
+  } else {
+    scrollBtn.classList.remove('visible','scrolling');
+    clearTimeout(scrollTimeout);
+  }
+}
+
+setScrollProgress();
+window.addEventListener('scroll',setScrollProgress,{passive:true});
+scrollBtn.addEventListener('click',()=>scrollTo({top:0,behavior:'smooth'}));
+</script>
+
+<!-- Load header/footer includes -->
+<script src="/include.js"></script>
+
+<!-- Header scroll behaviour -->
+<script>
+(function waitForNav(){
+  const nav = document.getElementById('nav');
+  if (!nav){
+    requestAnimationFrame(waitForNav);
+    return;
+  }
+  function handleNavScroll(){
+    if (window.scrollY > 40){
+      nav.classList.add('scrolled');
+      nav.style.background = 'rgba(255,255,255,0.95)';
+      nav.style.backdropFilter = 'blur(10px)';
+
+      const navLinks = nav.querySelectorAll('.nav-link');
+      navLinks.forEach(link => {
+        link.style.color = '#001d3d';
+      });
+
+      const logo = nav.querySelector('.logo-text');
+      if(logo) logo.style.color = '#001d3d';
+    } else {
+      nav.classList.remove('scrolled');
+      nav.style.background = '';
+      nav.style.backdropFilter = '';
+
+      const navLinks = nav.querySelectorAll('.nav-link');
+      navLinks.forEach(link => {
+        link.style.color = '';
+      });
+
+      const logo = nav.querySelector('.logo-text');
+      if(logo) logo.style.color = '';
+    }
+  }
+  handleNavScroll();
+  window.addEventListener('scroll', handleNavScroll, { passive: true });
+})();
+</script>
+
+</body>
+</html>

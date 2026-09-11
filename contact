@@ -1,0 +1,1045 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Contact Us - Savvy Media Africa</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+<!-- Global header/footer + nav styles -->
+<link rel="stylesheet" href="/savvy.css">
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+
+:root{
+  --deep-navy:#001d3d;
+  --navy:#002855;
+  --bright-cyan:#00D4FF;
+  --cyan:#00A8E8;
+  --bright-green:#00FF88;
+  --green:#00E676;
+  --orange:#FF6B35;
+  --yellow:#FFB800;
+  --white:#FFFFFF;
+  --section-pad:8rem;
+}
+
+body{
+  font-family:'Sora',sans-serif;
+  color:var(--white);
+  background:var(--deep-navy);
+  overflow-x:hidden;
+  line-height:1.6;
+  font-weight:400;
+  cursor:none;
+}
+
+.cursor{
+  position:fixed;
+  width:8px;
+  height:8px;
+  border-radius:50%;
+  background:var(--bright-cyan);
+  pointer-events:none;
+  z-index:99999;
+  opacity:.8;
+  transition:transform .1s ease;
+  mix-blend-mode:screen;
+  box-shadow:0 0 12px var(--bright-cyan),0 0 24px rgba(0,212,255,.5);
+}
+
+.cursor-follower{
+  position:fixed;
+  width:32px;
+  height:32px;
+  border-radius:50%;
+  border:1.5px solid var(--bright-cyan);
+  pointer-events:none;
+  z-index:99998;
+  opacity:.4;
+  transition:all .25s ease;
+  box-shadow:inset 0 0 8px rgba(0,212,255,.3);
+}
+
+h1,h2,h3,h4,h5,h6{
+  font-weight:500;
+  line-height:1.1;
+  letter-spacing:-0.02em;
+}
+h1{font-size:clamp(3rem,9vw,10rem)}
+h2{font-size:clamp(2.2rem,6vw,5.5rem)}
+h3{font-size:clamp(1.6rem,4vw,2.8rem)}
+
+.underline-text{
+  display:inline-block;
+  position:relative;
+  padding-bottom:6px;
+}
+.underline-text::after{
+  content:'';
+  position:absolute;
+  bottom:0;
+  left:0;
+  width:100%;
+  height:4px;
+  background:var(--bright-cyan);
+  border-radius:2px;
+}
+
+/* ========== HERO ========== */
+.hero{
+  min-height:70vh;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  position:relative;
+  padding:12rem 4rem 6rem;
+  overflow:hidden;
+  background:linear-gradient(135deg,var(--deep-navy) 0%,var(--navy) 100%);
+}
+
+.floating-shape{
+  position:absolute;
+  border-radius:50%;
+  filter:blur(120px);
+  opacity:.12;
+  pointer-events:none;
+  animation:float 20s ease-in-out infinite;
+}
+
+.shape-1{
+  width:700px;
+  height:700px;
+  background:linear-gradient(135deg,var(--bright-cyan),var(--cyan));
+  top:10%;
+  left:5%;
+}
+
+.shape-2{
+  width:600px;
+  height:600px;
+  background:linear-gradient(135deg,var(--orange),var(--yellow));
+  bottom:6%;
+  right:5%;
+  animation-delay:-10s;
+}
+
+@keyframes float{
+  0%,100%{transform:translate(0,0) scale(1)}
+  25%{transform:translate(50px,-50px) scale(1.1)}
+  50%{transform:translate(80px,-80px) scale(1.2)}
+  75%{transform:translate(30px,-40px) scale(1.15)}
+}
+
+.hero-content{
+  text-align:center;
+  max-width:1200px;
+  position:relative;
+  z-index:2;
+}
+
+.hero-title{
+  font-family:'Sora',sans-serif;
+  font-size:clamp(3rem,8vw,7rem);
+  font-weight:500;
+  line-height:1.1;
+  margin-bottom:1.6rem;
+  opacity:0;
+  transform:translateY(50px);
+}
+
+.hero-subtitle{
+  font-size:clamp(1.1rem,2vw,1.4rem);
+  color:rgba(255,255,255,.9);
+  max-width:800px;
+  margin:0 auto;
+  line-height:1.8;
+  opacity:0;
+  transform:translateY(30px);
+  font-weight:400;
+}
+
+/* ========== CONTACT SECTION ========== */
+.contact-section{
+  padding:6rem 2rem;
+  background:var(--deep-navy);
+}
+
+.contact-container{
+  max-width:1400px;
+  margin:0 auto;
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:6rem;
+  align-items:flex-start;
+}
+
+.contact-info{
+  opacity:0;
+  transform:translateY(40px);
+}
+
+.contact-info h2{
+  font-size:clamp(2rem,4vw,3rem);
+  margin-bottom:1.5rem;
+  color:var(--white);
+}
+
+.contact-info p{
+  font-size:1.15rem;
+  line-height:1.8;
+  color:rgba(255,255,255,.85);
+  margin-bottom:3rem;
+}
+
+.contact-details{
+  display:flex;
+  flex-direction:column;
+  gap:2rem;
+  margin-bottom:3rem;
+}
+
+.contact-item{
+  display:flex;
+  align-items:flex-start;
+  gap:1.5rem;
+  padding:1.5rem;
+  background:rgba(0,212,255,.05);
+  border:1px solid rgba(0,212,255,.15);
+  border-radius:16px;
+  transition:.35s;
+}
+
+.contact-item:hover{
+  background:rgba(0,212,255,.1);
+  border-color:rgba(0,212,255,.3);
+  transform:translateX(8px);
+}
+
+.contact-icon{
+  width:50px;
+  height:50px;
+  background:linear-gradient(135deg,var(--bright-cyan),var(--cyan));
+  border-radius:12px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:1.4rem;
+  color:var(--deep-navy);
+  flex-shrink:0;
+}
+
+.contact-text h4{
+  font-size:1rem;
+  color:var(--bright-cyan);
+  margin-bottom:.5rem;
+  font-weight:600;
+  text-transform:uppercase;
+  letter-spacing:1px;
+}
+
+.contact-text p{
+  font-size:1.1rem;
+  color:rgba(255,255,255,.9);
+  margin:0;
+  line-height:1.6;
+}
+
+.contact-text a{
+  color:rgba(255,255,255,.9);
+  text-decoration:none;
+  transition:.25s;
+}
+
+.contact-text a:hover{
+  color:var(--bright-cyan);
+}
+
+.social-links{
+  display:flex;
+  gap:1rem;
+  margin-top:2rem;
+}
+
+.social-link{
+  width:50px;
+  height:50px;
+  background:rgba(0,212,255,.1);
+  border-radius:50%;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  color:#fff;
+  transition:.25s;
+  border:1px solid rgba(0,212,255,.2);
+  text-decoration:none;
+  font-size:1.2rem;
+}
+
+.social-link:hover{
+  background:var(--bright-cyan);
+  color:var(--deep-navy);
+  transform:translateY(-3px) rotate(360deg);
+  border-color:var(--bright-cyan);
+}
+
+/* ========== CONTACT FORM ========== */
+.contact-form-wrapper{
+  background:rgba(255,255,255,.04);
+  padding:3rem;
+  border-radius:24px;
+  border:1px solid rgba(0,212,255,.15);
+  opacity:0;
+  transform:translateY(40px);
+}
+
+.contact-form-wrapper h3{
+  font-size:1.8rem;
+  margin-bottom:1.5rem;
+  color:var(--white);
+}
+
+.form-group{
+  margin-bottom:1.5rem;
+}
+
+.form-group label{
+  display:block;
+  font-size:.95rem;
+  font-weight:500;
+  color:rgba(255,255,255,.9);
+  margin-bottom:.6rem;
+  text-transform:uppercase;
+  letter-spacing:1px;
+}
+
+.form-group input,
+.form-group textarea,
+.form-group select{
+  width:100%;
+  padding:1rem 1.2rem;
+  background:rgba(0,212,255,.08);
+  border:1px solid rgba(0,212,255,.2);
+  border-radius:12px;
+  color:var(--white);
+  font-family:'Sora',sans-serif;
+  font-size:1rem;
+  transition:.3s;
+  outline:none;
+}
+
+.form-group input::placeholder,
+.form-group textarea::placeholder{
+  color:rgba(255,255,255,.5);
+}
+
+.form-group input:focus,
+.form-group textarea:focus,
+.form-group select:focus{
+  border-color:var(--bright-cyan);
+  background:rgba(0,212,255,.12);
+  box-shadow:0 0 0 3px rgba(0,212,255,.1);
+}
+
+.form-group textarea{
+  resize:vertical;
+  min-height:150px;
+}
+
+.form-group select{
+  cursor:pointer;
+  appearance:none;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%2300D4FF' d='M6 9L1 4h10z'/%3E%3C/svg%3E");
+  background-repeat:no-repeat;
+  background-position:right 1rem center;
+  padding-right:3rem;
+}
+
+.form-group select option{
+  background:var(--navy);
+  color:var(--white);
+}
+
+.submit-btn{
+  width:100%;
+  padding:1.2rem 2rem;
+  background:linear-gradient(135deg,var(--bright-cyan),var(--cyan));
+  color:var(--deep-navy);
+  border:none;
+  border-radius:12px;
+  font-family:'Sora',sans-serif;
+  font-size:1.05rem;
+  font-weight:600;
+  cursor:pointer;
+  transition:.3s;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:.8rem;
+  text-decoration:none;
+}
+
+.submit-btn:hover{
+  transform:translateY(-2px);
+  box-shadow:0 10px 30px rgba(0,212,255,.4);
+}
+
+.submit-btn:active{
+  transform:translateY(0);
+}
+
+.success-message{
+  display:none;
+  padding:1rem;
+  background:rgba(0,255,136,.1);
+  border:1px solid rgba(0,255,136,.3);
+  border-radius:12px;
+  color:var(--bright-green);
+  margin-top:1rem;
+  text-align:center;
+}
+
+.success-message.show{
+  display:block;
+  animation:slideIn .5s ease;
+}
+
+@keyframes slideIn{
+  from{opacity:0;transform:translateY(-10px)}
+  to{opacity:1;transform:translateY(0)}
+}
+
+/* ========== CALENDLY BOOKING SECTION ========== */
+.calendly-section{
+  padding:6rem 2rem;
+  background:var(--navy);
+  text-align:center;
+}
+
+.calendly-container{
+  max-width:1200px;
+  margin:0 auto;
+}
+
+.calendly-header{
+  margin-bottom:3rem;
+  opacity:0;
+  transform:translateY(30px);
+}
+
+.calendly-header .section-label{
+  display:inline-block;
+  background:linear-gradient(135deg,var(--orange),var(--yellow));
+  color:var(--deep-navy);
+  padding:.7rem 1.6rem;
+  border-radius:999px;
+  font-size:.88rem;
+  font-weight:500;
+  text-transform:uppercase;
+  letter-spacing:2px;
+  margin-bottom:1.2rem;
+}
+
+.calendly-header h2{
+  font-size:clamp(2.2rem,5vw,4rem);
+  margin-bottom:1rem;
+  color:var(--white);
+}
+
+.calendly-header p{
+  font-size:1.2rem;
+  color:rgba(255,255,255,.85);
+  max-width:700px;
+  margin:0 auto;
+  line-height:1.7;
+}
+
+.calendly-embed-wrapper{
+  background:rgba(255,255,255,.04);
+  border:1px solid rgba(0,212,255,.15);
+  border-radius:24px;
+  padding:2rem;
+  min-height:520px; /* reduced from 700px */
+  opacity:0;
+  transform:translateY(40px);
+}
+
+/* ========== MAP SECTION ========== */
+.map-section{
+  padding:6rem 2rem;
+  background:var(--deep-navy);
+}
+
+.map-container{
+  max-width:1400px;
+  margin:0 auto;
+  opacity:0;
+  transform:translateY(40px);
+}
+
+.map-container h2{
+  font-size:clamp(2rem,4vw,3rem);
+  text-align:center;
+  margin-bottom:3rem;
+  color:var(--white);
+}
+
+.map-wrapper{
+  border-radius:24px;
+  overflow:hidden;
+  border:2px solid rgba(0,212,255,.2);
+  height:450px;
+  background:rgba(255,255,255,.04);
+}
+
+.map-wrapper iframe{
+  width:100%;
+  height:100%;
+  border:none;
+}
+
+/* ========== SCROLL TOP ========== */
+.scroll-top{
+  position:fixed;
+  bottom:26px;
+  right:26px;
+  width:68px;
+  height:68px;
+  border-radius:50%;
+  z-index:9000;
+  display:grid;
+  place-items:center;
+  cursor:pointer;
+  background:conic-gradient(var(--bright-cyan) calc(var(--scroll,0)*1%),rgba(0,212,255,.15) 0);
+  box-shadow:0 12px 35px rgba(0,212,255,.38),inset 0 0 0 8px rgba(0,29,61,.5);
+  transform:scale(.9) rotate(0deg);
+  opacity:0;
+  pointer-events:none;
+  transition:.25s ease;
+  border:none;
+}
+
+.scroll-top.visible{
+  opacity:1;
+  pointer-events:auto;
+  transform:scale(1) rotate(0deg);
+}
+
+.scroll-top.scrolling{
+  animation:rotateProgress 0.8s linear infinite;
+}
+
+@keyframes rotateProgress{
+  0%{transform:scale(1) rotate(0deg)}
+  100%{transform:scale(1) rotate(360deg)}
+}
+
+.scroll-top .inner{
+  width:50px;
+  height:50px;
+  border-radius:50%;
+  display:grid;
+  place-items:center;
+  background:var(--navy);
+  color:#fff;
+  font-weight:500;
+}
+
+.scroll-top .pct{font-size:.92rem}
+
+/* ========== RESPONSIVE ========== */
+@media (max-width:1024px){
+  .contact-container{
+    grid-template-columns:1fr;
+    gap:4rem;
+  }
+}
+
+@media (max-width:768px){
+  .hero{
+    padding:9rem 2rem 4rem;
+  }
+  .contact-form-wrapper{
+    padding:2rem;
+  }
+  .calendly-embed-wrapper{
+    min-height:480px;
+  }
+  .map-section{
+    padding:4rem 1.5rem;
+  }
+
+  body{cursor:default}
+  .cursor,.cursor-follower{display:none}
+}
+
+/* ========== MOBILE / RESPONSIVE FIXES - paste AFTER existing responsive rules ========== */
+/* Prevent Android font zooming and inconsistent scaling */
+html, body {
+  -webkit-text-size-adjust: 100%;
+  -ms-text-size-adjust: 100%;
+}
+
+/* Make sure grid and containers truly stretch on small screens */
+.contact-container,
+.calendly-container,
+.map-container,
+.hero-content {
+  width: 100%;
+  max-width: 100%;
+  padding-left: 1rem;
+  padding-right: 1rem;
+  box-sizing: border-box;
+}
+
+/* Ensure child elements cannot force overflow or be clipped */
+.contact-info,
+.contact-form-wrapper,
+.calendly-embed-wrapper,
+.map-wrapper,
+.calendly-inline-widget,
+.calendly-inline-widget * {
+  max-width: 100% !important;
+  min-width: 0 !important;
+  box-sizing: border-box !important;
+}
+
+/* Make Calendly inline widget fluid and responsive */
+.calendly-embed-wrapper {
+  padding: 1.25rem; /* slightly smaller on small screens */
+  overflow: hidden;
+}
+.calendly-embed-wrapper .calendly-inline-widget {
+  width: 100% !important;
+  min-width: 0 !important;
+  height: 520px !important; /* keep desired height */
+}
+
+/* Force iframe inside wrapper (if you use iframe embed) to fill container */
+.calendly-embed-wrapper iframe {
+  width: 100% !important;
+  height: 100% !important;
+  min-width: 0 !important;
+  border: 0;
+  display: block;
+}
+
+/* Defensive: inputs/buttons/selects shouldn't overflow on android */
+.form-group input,
+.form-group textarea,
+.form-group select,
+.submit-btn {
+  max-width: 100% !important;
+  box-sizing: border-box !important;
+}
+
+/* Hide large floating decoration shapes on smaller screens to avoid overflow */
+@media (max-width: 880px) {
+  .shape-1, .shape-2 { display: none; }
+}
+
+/* Slight spacing tweaks for smaller viewports */
+@media (max-width: 480px) {
+  .hero { padding: 6rem 1rem 3rem; }
+  .calendly-embed-wrapper { padding: 1rem; }
+  .contact-form-wrapper { padding: 1.25rem; border-radius:16px; }
+  .calendly-embed-wrapper { min-height: 420px; }
+}
+
+</style>
+</head>
+<body>
+
+<!-- Custom Cursor -->
+<div class="cursor"></div>
+<div class="cursor-follower"></div>
+
+<!-- Global header include -->
+<div data-include="/header.html"></div>
+
+<!-- ========== HERO ========== -->
+<section class="hero">
+  <div class="floating-shape shape-1"></div>
+  <div class="floating-shape shape-2"></div>
+
+  <div class="hero-content">
+    <h1 class="hero-title">Let's Create Something <span class="underline-text">Extraordinary</span></h1>
+    <p class="hero-subtitle">Ready to make waves? Get in touch with us and let's turn your vision into a culture-moving campaign.</p>
+  </div>
+</section>
+
+<!-- ========== CONTACT SECTION ========== -->
+<section class="contact-section">
+  <div class="contact-container">
+    <!-- Contact Info -->
+    <div class="contact-info">
+      <h2>Get in <span class="underline-text">Touch</span></h2>
+      <p>Whether you need a campaign strategy, creative production, or just want to chat about possibilities—we're here to help.</p>
+
+      <div class="contact-details">
+        <div class="contact-item">
+          <div class="contact-icon">
+            <i class="fas fa-envelope"></i>
+          </div>
+          <div class="contact-text">
+            <h4>Email Us</h4>
+            <p><a href="mailto:hello@savvymediaafrica.com">hello@savvymediaafrica.com</a></p>
+          </div>
+        </div>
+
+        <div class="contact-item">
+          <div class="contact-icon">
+            <i class="fas fa-phone"></i>
+          </div>
+          <div class="contact-text">
+            <h4>Call Us</h4>
+            <p><a href="tel:+2348134737798">+234 813 473 7798</a></p>
+          </div>
+        </div>
+
+        <div class="contact-item">
+          <div class="contact-icon">
+            <i class="fas fa-map-marker-alt"></i>
+          </div>
+          <div class="contact-text">
+            <h4>Visit Us</h4>
+            <p>Impact Hub, Ikoyi<br>Lagos, Nigeria</p>
+          </div>
+        </div>
+
+        <div class="contact-item">
+          <div class="contact-icon">
+            <i class="fas fa-clock"></i>
+          </div>
+          <div class="contact-text">
+            <h4>Business Hours</h4>
+           
+          </div>
+        </div>
+      </div>
+
+      <div class="social-links">
+        <a href="https://www.facebook.com/savvymediaafrica/" class="social-link"><i class="fab fa-facebook-f"></i></a>
+        <a href="https://www.instagram.com/savvymediaafrica_/" class="social-link"><i class="fab fa-instagram"></i></a>
+        <a href="https://www.linkedin.com/company/savvy-media-africa/" class="social-link"><i class="fab fa-linkedin-in"></i></a>
+        <a href="https://www.youtube.com/@savvymediaafrica7496" class="social-link"><i class="fab fa-youtube"></i></a>
+      </div>
+    </div>
+
+    <!-- Contact Form -->
+    <div class="contact-form-wrapper">
+      <h3>Send Us a Message</h3>
+      <form id="contactForm">
+        <div class="form-group">
+          <label for="name">Full Name *</label>
+          <input type="text" id="name" name="name" placeholder="Your name" required>
+        </div>
+
+        <div class="form-group">
+          <label for="email">Email Address *</label>
+          <input type="email" id="email" name="email" placeholder="your@email.com" required>
+        </div>
+
+        <div class="form-group">
+          <label for="phone">Phone Number</label>
+          <input type="tel" id="phone" name="phone" placeholder="+234 XXX XXX XXXX">
+        </div>
+
+        <div class="form-group">
+          <label for="service">Interested In</label>
+          <select id="service" name="service">
+            <option value="">Select a service</option>
+            <option value="creative-campaigns">Creative Campaigns</option>
+            <option value="media-distribution">Media & Distribution</option>
+            <option value="pr-reputation">PR & Reputation</option>
+            <option value="consulting">Consulting & Strategy</option>
+            <option value="content-production">Content Production</option>
+            <option value="other">Other</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label for="message">Your Message *</label>
+          <textarea id="message" name="message" placeholder="Tell us about your project..." required></textarea>
+        </div>
+
+        <button type="submit" class="submit-btn">
+          Send Message
+          <i class="fas fa-paper-plane"></i>
+        </button>
+
+        <div class="success-message" id="successMessage">
+          <i class="fas fa-check-circle"></i> Thank you! We'll get back to you soon.
+        </div>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- ========== CALENDLY BOOKING SECTION ========== -->
+<section class="calendly-section">
+  <div class="calendly-container">
+    <div class="calendly-header">
+      <span class="section-label">Book a Call</span>
+      <h2>Schedule a Free 30-Min Strategy Call with the team</h2>
+      <p>Get expert insights and strategic guidance from the team. First 30 minutes are free!</p>
+    </div>
+
+    <div class="calendly-embed-wrapper">
+      <!-- 
+        ========== CALENDLY INTEGRATION ==========
+        OPTION A - INLINE EMBED (Recommended):
+
+        <div class="calendly-inline-widget" 
+             data-url="https://calendly.com/YOUR-USERNAME/30min" 
+             style="min-width:320px;height:520px;">
+        </div>
+        <script type="text/javascript" src="https://assets.calendly.com/assets/external/widget.js" async></script>
+
+        OPTION B - POPUP:
+
+        <a href="" 
+           onclick="Calendly.initPopupWidget({url: 'https://calendly.com/YOUR-USERNAME/30min'});return false;" 
+           class="submit-btn" 
+           style="display:inline-flex;max-width:400px;margin:0 auto;">
+          Schedule Your Free Call
+          <i class="fas fa-calendar-alt"></i>
+        </a>
+        <script type="text/javascript" src="https://assets.calendly.com/assets/external/widget.js" async></script>
+      -->
+
+      <!-- TEMPORARY PLACEHOLDER -->
+    <!-- INLINE CALENDLY WIDGET - uses your provided link -->
+<div class="calendly-inline-widget" 
+     data-url="https://calendly.com/hello-savvymediaafrica/30min" 
+     style="width:100%;min-width:0;height:520px;">
+</div>
+<script type="text/javascript" src="https://assets.calendly.com/assets/external/widget.js" async></script>
+
+    </div>
+  </div>
+</section>
+
+<!-- ========== MAP SECTION ========== -->
+<section class="map-section">
+  <div class="map-container">
+    <h2>Find Us on the <span class="underline-text">Map</span></h2>
+    <div class="map-wrapper">
+      <iframe
+        src="https://www.google.com/maps?q=6.4553064,3.4303431&z=17&output=embed"
+        allowfullscreen=""
+        loading="lazy"
+        referrerpolicy="no-referrer-when-downgrade">
+      </iframe>
+    </div>
+  </div>
+</section>
+
+<!-- Global footer include -->
+<div data-include="/footer.html"></div>
+
+<!-- SCROLL-TO-TOP -->
+<button class="scroll-top" id="scrollTopBtn" aria-label="Back to top">
+  <div class="inner"><span class="pct" id="scrollPct">0%</span></div>
+</button>
+
+<script>
+gsap.registerPlugin(ScrollTrigger);
+
+// Custom Cursor
+const cursor = document.querySelector('.cursor');
+const cursorFollower = document.querySelector('.cursor-follower');
+
+document.addEventListener('mousemove',(e)=>{
+  cursor.style.left = (e.clientX - 4) + 'px';
+  cursor.style.top  = (e.clientY - 4) + 'px';
+  setTimeout(()=>{
+    cursorFollower.style.left = (e.clientX - 16) + 'px';
+    cursorFollower.style.top  = (e.clientY - 16) + 'px';
+  },60);
+});
+
+document.addEventListener('mouseover',(e)=>{
+  const interactive = e.target.closest('a, button, input, textarea, select');
+  if(interactive){
+    cursor.style.transform = 'scale(1.6)';
+    cursor.style.opacity = '1';
+    cursorFollower.style.transform = 'scale(2.2)';
+    cursorFollower.style.borderColor = 'var(--bright-cyan)';
+    cursorFollower.style.boxShadow = '0 0 16px var(--bright-cyan), inset 0 0 12px rgba(0,212,255,.4)';
+  }
+});
+
+document.addEventListener('mouseout',(e)=>{
+  const interactive = e.target.closest('a, button, input, textarea, select');
+  if(interactive){
+    cursor.style.transform = 'scale(1)';
+    cursor.style.opacity = '0.8';
+    cursorFollower.style.transform = 'scale(1)';
+    cursorFollower.style.borderColor = 'var(--bright-cyan)';
+    cursorFollower.style.boxShadow = 'inset 0 0 8px rgba(0,212,255,.3)';
+  }
+});
+
+// GSAP Animations
+gsap.to('.hero-title',{
+  opacity:1,
+  y:0,
+  duration:1,
+  delay:.2,
+  ease:'power3.out'
+});
+gsap.to('.hero-subtitle',{
+  opacity:1,
+  y:0,
+  duration:1,
+  delay:.4,
+  ease:'power3.out'
+});
+
+gsap.to('.contact-info',{
+  scrollTrigger:{trigger:'.contact-section',start:'top 80%'},
+  opacity:1,
+  y:0,
+  duration:.8,
+  ease:'power3.out'
+});
+
+gsap.to('.contact-form-wrapper',{
+  scrollTrigger:{trigger:'.contact-section',start:'top 80%'},
+  opacity:1,
+  y:0,
+  duration:.8,
+  delay:.2,
+  ease:'power3.out'
+});
+
+gsap.to('.calendly-header',{
+  scrollTrigger:{trigger:'.calendly-section',start:'top 80%'},
+  opacity:1,
+  y:0,
+  duration:.8,
+  ease:'power3.out'
+});
+
+gsap.to('.calendly-embed-wrapper',{
+  scrollTrigger:{trigger:'.calendly-section',start:'top 70%'},
+  opacity:1,
+  y:0,
+  duration:.8,
+  delay:.2,
+  ease:'power3.out'
+});
+
+gsap.to('.map-container',{
+  scrollTrigger:{trigger:'.map-section',start:'top 80%'},
+  opacity:1,
+  y:0,
+  duration:.8,
+  ease:'power3.out'
+});
+
+// Contact Form Handling (front-end only)
+const contactForm = document.getElementById('contactForm');
+const successMessage = document.getElementById('successMessage');
+
+contactForm.addEventListener('submit',function(e){
+  e.preventDefault();
+
+  const formData = new FormData(contactForm);
+  const data = Object.fromEntries(formData);
+  console.log('Form submitted:', data);
+
+  successMessage.classList.add('show');
+  contactForm.reset();
+
+  setTimeout(()=>successMessage.classList.remove('show'),5000);
+
+  // NOTE: To actually send this, post `data` to your backend or a service (Formspree, EmailJS, etc.)
+});
+
+// Scroll-to-top
+const scrollBtn = document.getElementById('scrollTopBtn');
+const scrollPct = document.getElementById('scrollPct');
+let scrollTimeout;
+
+function setScrollProgress(){
+  const st = window.scrollY;
+  const h  = document.documentElement.scrollHeight - innerHeight;
+  const p  = h>0 ? Math.round((st/h)*100) : 0;
+  document.documentElement.style.setProperty('--scroll',p);
+  scrollBtn.style.setProperty('--scroll',p);
+  scrollPct.textContent = p + '%';
+
+  if(st>380){
+    scrollBtn.classList.add('visible');
+    scrollBtn.classList.add('scrolling');
+    clearTimeout(scrollTimeout);
+    scrollTimeout = setTimeout(()=>scrollBtn.classList.remove('scrolling'),500);
+  } else {
+    scrollBtn.classList.remove('visible','scrolling');
+    clearTimeout(scrollTimeout);
+  }
+}
+
+setScrollProgress();
+window.addEventListener('scroll',setScrollProgress,{passive:true});
+scrollBtn.addEventListener('click',()=>scrollTo({top:0,behavior:'smooth'}));
+</script>
+
+<!-- Load header/footer includes -->
+<script src="/include.js"></script>
+
+<!-- Header scroll behaviour (same pattern as Consumer Brands page) -->
+<script>
+(function waitForNav(){
+  const nav = document.getElementById('nav');
+  if (!nav){
+    requestAnimationFrame(waitForNav);
+    return;
+  }
+  function handleNavScroll(){
+    if (window.scrollY > 40){
+      nav.classList.add('scrolled');
+      nav.style.background = 'rgba(255,255,255,0.95)';
+      nav.style.backdropFilter = 'blur(10px)';
+
+      const navLinks = nav.querySelectorAll('.nav-link');
+      navLinks.forEach(link => {
+        link.style.color = '#001d3d';
+      });
+
+      const logo = nav.querySelector('.logo-text');
+      if(logo) logo.style.color = '#001d3d';
+    } else {
+      nav.classList.remove('scrolled');
+      nav.style.background = '';
+      nav.style.backdropFilter = '';
+
+      const navLinks = nav.querySelectorAll('.nav-link');
+      navLinks.forEach(link => {
+        link.style.color = '';
+      });
+
+      const logo = nav.querySelector('.logo-text');
+      if(logo) logo.style.color = '';
+    }
+  }
+  handleNavScroll();
+  window.addEventListener('scroll', handleNavScroll, { passive: true });
+})();
+</script>
+
+</body>
+</html>

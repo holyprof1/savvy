@@ -1,0 +1,1447 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Savvy Media Africa - Where Creativity Lives, Results Matter</title>
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- AOS Animation Library -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        :root {
+            --primary-color: #0066FF;
+            --secondary-color: #FF6B35;
+            --accent-gold: #FFB800;
+            --dark-bg: #0A0A0A;
+            --light-bg: #FFFFFF;
+            --text-dark: #1A1A1A;
+            --text-light: #666666;
+            --gradient-1: linear-gradient(135deg, #0066FF 0%, #00D4FF 100%);
+            --gradient-2: linear-gradient(135deg, #FF6B35 0%, #FFB800 100%);
+            --gradient-3: linear-gradient(135deg, #7B2CBF 0%, #FF006E 100%);
+        }
+        
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            line-height: 1.6;
+            color: var(--text-dark);
+            background: var(--light-bg);
+            overflow-x: hidden;
+        }
+        
+        /* Header Styles */
+        header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            padding: 1.2rem 0;
+            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s ease;
+        }
+        
+        header.scrolled {
+            padding: 0.8rem 0;
+            box-shadow: 0 2px 30px rgba(0, 0, 0, 0.1);
+        }
+        
+        nav {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--text-dark);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .logo span {
+            background: var(--gradient-1);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2.5rem;
+            align-items: center;
+        }
+        
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text-dark);
+            font-weight: 500;
+            font-size: 0.95rem;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+        
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--gradient-1);
+            transition: width 0.3s ease;
+        }
+        
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+        
+        .cta-button {
+            background: var(--gradient-1);
+            color: white;
+            padding: 0.8rem 2rem;
+            border-radius: 50px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+        }
+        
+        .cta-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(0, 102, 255, 0.3);
+        }
+        
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: var(--text-dark);
+        }
+        
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            position: relative;
+            padding-top: 80px;
+            overflow: hidden;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+        }
+        
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('https://demoo.savvymediaafrica.com/wp-content/uploads/2025/10/pg.jpg') center/cover no-repeat;
+            opacity: 0.15;
+            z-index: 0;
+        }
+        
+        .hero-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .hero-text h1 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 4.5rem;
+            font-weight: 800;
+            line-height: 1.1;
+            margin-bottom: 1.5rem;
+            color: var(--text-dark);
+        }
+        
+        .hero-text h1 .gradient-text {
+            background: var(--gradient-1);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .hero-text p {
+            font-size: 1.3rem;
+            color: var(--text-light);
+            margin-bottom: 2.5rem;
+            line-height: 1.8;
+        }
+        
+        .hero-buttons {
+            display: flex;
+            gap: 1.5rem;
+            flex-wrap: wrap;
+        }
+        
+        .btn-primary {
+            background: var(--gradient-1);
+            color: white;
+            padding: 1rem 2.5rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 35px rgba(0, 102, 255, 0.4);
+        }
+        
+        .btn-secondary {
+            background: white;
+            color: var(--text-dark);
+            padding: 1rem 2.5rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            border: 2px solid var(--text-dark);
+        }
+        
+        .btn-secondary:hover {
+            background: var(--text-dark);
+            color: white;
+        }
+        
+        .hero-image {
+            position: relative;
+        }
+        
+        .hero-image img {
+            width: 100%;
+            border-radius: 20px;
+            box-shadow: 0 25px 60px rgba(0, 0, 0, 0.2);
+            animation: float 6s ease-in-out infinite;
+        }
+        
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+        }
+        
+        /* Trust Badges */
+        .trust-badges {
+            margin-top: 3rem;
+            display: flex;
+            align-items: center;
+            gap: 2rem;
+            flex-wrap: wrap;
+        }
+        
+        .trust-badges .badge {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--text-light);
+            font-size: 0.9rem;
+        }
+        
+        .trust-badges .badge i {
+            color: var(--accent-gold);
+            font-size: 1.2rem;
+        }
+        
+        /* About Section */
+        .about {
+            padding: 8rem 2rem;
+            background: white;
+        }
+        
+        .about-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 5rem;
+            align-items: center;
+        }
+        
+        .section-label {
+            display: inline-block;
+            background: var(--gradient-1);
+            color: white;
+            padding: 0.5rem 1.5rem;
+            border-radius: 50px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        
+        .about-content h2 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 3.5rem;
+            font-weight: 800;
+            line-height: 1.2;
+            margin-bottom: 1.5rem;
+        }
+        
+        .about-content p {
+            font-size: 1.15rem;
+            color: var(--text-light);
+            margin-bottom: 2rem;
+            line-height: 1.9;
+        }
+        
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+        
+        .stat-item {
+            text-align: center;
+            padding: 1.5rem;
+            border-radius: 15px;
+            background: #f8f9fa;
+            transition: all 0.3s ease;
+        }
+        
+        .stat-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+        
+        .stat-item h3 {
+            font-size: 3rem;
+            font-weight: 800;
+            background: var(--gradient-1);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 0.5rem;
+        }
+        
+        .stat-item p {
+            font-size: 0.95rem;
+            color: var(--text-light);
+            margin: 0;
+        }
+        
+        /* Services Section */
+        .services {
+            padding: 8rem 2rem;
+            background: linear-gradient(180deg, #f8f9fa 0%, white 100%);
+        }
+        
+        .services-container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+        
+        .section-header {
+            text-align: center;
+            margin-bottom: 5rem;
+        }
+        
+        .section-header h2 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 3.5rem;
+            font-weight: 800;
+            margin-bottom: 1rem;
+        }
+        
+        .section-header p {
+            font-size: 1.2rem;
+            color: var(--text-light);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2.5rem;
+        }
+        
+        .service-card {
+            background: white;
+            padding: 3rem 2.5rem;
+            border-radius: 20px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .service-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: var(--gradient-1);
+            transform: scaleX(0);
+            transition: transform 0.3s ease;
+        }
+        
+        .service-card:hover::before {
+            transform: scaleX(1);
+        }
+        
+        .service-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
+        }
+        
+        .service-icon {
+            width: 70px;
+            height: 70px;
+            background: var(--gradient-1);
+            border-radius: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1.5rem;
+            font-size: 2rem;
+            color: white;
+        }
+        
+        .service-card:nth-child(2) .service-icon {
+            background: var(--gradient-2);
+        }
+        
+        .service-card:nth-child(3) .service-icon {
+            background: var(--gradient-3);
+        }
+        
+        .service-card:nth-child(4) .service-icon {
+            background: linear-gradient(135deg, #00D4FF 0%, #7B2CBF 100%);
+        }
+        
+        .service-card h3 {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+        
+        .service-card p {
+            color: var(--text-light);
+            line-height: 1.8;
+            margin-bottom: 1.5rem;
+        }
+        
+        .service-link {
+            color: var(--primary-color);
+            text-decoration: none;
+            font-weight: 600;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: gap 0.3s ease;
+        }
+        
+        .service-link:hover {
+            gap: 1rem;
+        }
+        
+        /* Work Ethic Section */
+        .work-ethic {
+            padding: 8rem 2rem;
+            background: var(--dark-bg);
+            color: white;
+        }
+        
+        .work-ethic-container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+        
+        .work-ethic .section-header h2 {
+            color: white;
+        }
+        
+        .work-ethic .section-header p {
+            color: rgba(255, 255, 255, 0.7);
+        }
+        
+        .ethic-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            margin-top: 4rem;
+        }
+        
+        .ethic-card {
+            position: relative;
+            border-radius: 20px;
+            overflow: hidden;
+            height: 400px;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+        
+        .ethic-card:hover {
+            transform: scale(1.05);
+        }
+        
+        .ethic-card img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .ethic-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(to top, rgba(0, 0, 0, 0.9), transparent);
+            padding: 2rem;
+            transform: translateY(70%);
+            transition: transform 0.3s ease;
+        }
+        
+        .ethic-card:hover .ethic-overlay {
+            transform: translateY(0);
+        }
+        
+        .ethic-overlay h3 {
+            font-size: 1.8rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+        
+        .ethic-overlay p {
+            color: rgba(255, 255, 255, 0.8);
+            font-size: 0.95rem;
+        }
+        
+        /* Case Studies */
+        .case-studies {
+            padding: 8rem 2rem;
+            background: white;
+        }
+        
+        .case-studies-container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+        
+        .case-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 3rem;
+            margin-top: 4rem;
+        }
+        
+        .case-card {
+            background: white;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08);
+            transition: all 0.3s ease;
+        }
+        
+        .case-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
+        }
+        
+        .case-image {
+            width: 100%;
+            height: 300px;
+            overflow: hidden;
+        }
+        
+        .case-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+        
+        .case-card:hover .case-image img {
+            transform: scale(1.1);
+        }
+        
+        .case-content {
+            padding: 2rem;
+        }
+        
+        .case-tag {
+            display: inline-block;
+            background: var(--gradient-1);
+            color: white;
+            padding: 0.3rem 1rem;
+            border-radius: 50px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            text-transform: uppercase;
+        }
+        
+        .case-content h3 {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+        
+        .case-content p {
+            color: var(--text-light);
+            line-height: 1.8;
+            margin-bottom: 1.5rem;
+        }
+        
+        .case-link {
+            color: var(--primary-color);
+            text-decoration: none;
+            font-weight: 600;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        /* CEO Section */
+        .ceo-section {
+            padding: 8rem 2rem;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+        }
+        
+        .ceo-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1.5fr;
+            gap: 5rem;
+            align-items: center;
+        }
+        
+        .ceo-image-wrapper {
+            position: relative;
+        }
+        
+        .ceo-image-wrapper img {
+            width: 100%;
+            border-radius: 20px;
+            box-shadow: 0 25px 60px rgba(0, 0, 0, 0.3);
+        }
+        
+        .ceo-content h2 {
+            font-size: 3rem;
+            font-weight: 800;
+            margin-bottom: 1.5rem;
+        }
+        
+        .ceo-content p {
+            font-size: 1.1rem;
+            line-height: 1.9;
+            margin-bottom: 1.5rem;
+            opacity: 0.95;
+        }
+        
+        .ceo-title {
+            font-size: 1rem;
+            font-weight: 600;
+            opacity: 0.8;
+            margin-top: 2rem;
+        }
+        
+        /* Testimonials */
+        .testimonials {
+            padding: 8rem 2rem;
+            background: #f8f9fa;
+        }
+        
+        .testimonials-container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+        
+        .testimonial-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 3rem;
+            margin-top: 4rem;
+        }
+        
+        .testimonial-card {
+            background: white;
+            padding: 3rem;
+            border-radius: 20px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08);
+            position: relative;
+        }
+        
+        .quote-icon {
+            font-size: 4rem;
+            color: var(--primary-color);
+            opacity: 0.2;
+            position: absolute;
+            top: 2rem;
+            left: 2rem;
+        }
+        
+        .testimonial-text {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: var(--text-dark);
+            margin-bottom: 2rem;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .testimonial-author {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+        
+        .author-avatar {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background: var(--gradient-1);
+        }
+        
+        .author-info h4 {
+            font-weight: 600;
+            margin-bottom: 0.3rem;
+        }
+        
+        .author-info p {
+            font-size: 0.9rem;
+            color: var(--text-light);
+        }
+        
+        /* Contact CTA */
+        .contact-cta {
+            padding: 8rem 2rem;
+            background: var(--dark-bg);
+            color: white;
+            text-align: center;
+        }
+        
+        .contact-cta-container {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+        
+        .contact-cta h2 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 4rem;
+            font-weight: 800;
+            margin-bottom: 1.5rem;
+            line-height: 1.2;
+        }
+        
+        .contact-cta p {
+            font-size: 1.3rem;
+            color: rgba(255, 255, 255, 0.8);
+            margin-bottom: 3rem;
+        }
+        
+        .contact-cta .btn-primary {
+            font-size: 1.1rem;
+            padding: 1.2rem 3rem;
+        }
+        
+        /* Footer */
+        footer {
+            background: #0A0A0A;
+            color: white;
+            padding: 5rem 2rem 2rem;
+        }
+        
+        .footer-container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+        
+        .footer-content {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr;
+            gap: 4rem;
+            margin-bottom: 3rem;
+        }
+        
+        .footer-about h3 {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+        
+        .footer-about p {
+            color: rgba(255, 255, 255, 0.7);
+            line-height: 1.8;
+            margin-bottom: 2rem;
+        }
+        
+        .social-links {
+            display: flex;
+            gap: 1rem;
+        }
+        
+        .social-links a {
+            width: 45px;
+            height: 45px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+        
+        .social-links a:hover {
+            background: var(--primary-color);
+            transform: translateY(-3px);
+        }
+        
+        .footer-links h4 {
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+        }
+        
+        .footer-links ul {
+            list-style: none;
+        }
+        
+        .footer-links ul li {
+            margin-bottom: 0.8rem;
+        }
+        
+        .footer-links ul li a {
+            color: rgba(255, 255, 255, 0.7);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+        
+        .footer-links ul li a:hover {
+            color: white;
+        }
+        
+        .footer-bottom {
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            padding-top: 2rem;
+            text-align: center;
+            color: rgba(255, 255, 255, 0.6);
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 1024px) {
+            .hero-content {
+                grid-template-columns: 1fr;
+                gap: 3rem;
+                text-align: center;
+            }
+            
+            .hero-text h1 {
+                font-size: 3.5rem;
+            }
+            
+            .hero-buttons {
+                justify-content: center;
+            }
+            
+            .about-container {
+                grid-template-columns: 1fr;
+                gap: 3rem;
+            }
+            
+            .ceo-container {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+            
+            .footer-content {
+                grid-template-columns: 1fr 1fr;
+                gap: 3rem;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+            
+            .mobile-menu-btn {
+                display: block;
+            }
+            
+            .hero-text h1 {
+                font-size: 2.5rem;
+            }
+            
+            .hero-text p {
+                font-size: 1.1rem;
+            }
+            
+            .section-header h2 {
+                font-size: 2.5rem;
+            }
+            
+            .about-content h2 {
+                font-size: 2.5rem;
+            }
+            
+            .stats {
+                grid-template-columns: 1fr;
+            }
+            
+            .services-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .ethic-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .case-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .testimonial-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .contact-cta h2 {
+                font-size: 2.5rem;
+            }
+            
+            .footer-content {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+            
+            .hero-buttons {
+                flex-direction: column;
+                align-items: stretch;
+            }
+            
+            .btn-primary, .btn-secondary {
+                text-align: center;
+                justify-content: center;
+            }
+        }
+        
+        /* Scroll Animations */
+        [data-aos] {
+            pointer-events: auto;
+        }
+        
+        /* Loading Animation */
+        .loader {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 10000;
+            transition: opacity 0.5s ease, visibility 0.5s ease;
+        }
+        
+        .loader.hidden {
+            opacity: 0;
+            visibility: hidden;
+        }
+        
+        .loader-spinner {
+            width: 50px;
+            height: 50px;
+            border: 5px solid #f3f3f3;
+            border-top: 5px solid var(--primary-color);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+        
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+    </style>
+</head>
+<body>
+    <!-- Loader -->
+    <div class="loader" id="loader">
+        <div class="loader-spinner"></div>
+    </div>
+
+    <!-- Header -->
+    <header id="header">
+        <nav>
+            <a href="#" class="logo">
+                SAVVY <span>MEDIA</span>
+            </a>
+            <ul class="nav-links">
+                <li><a href="#about">About</a></li>
+                <li><a href="#services">Services</a></li>
+                <li><a href="#work">Our Work</a></li>
+                <li><a href="#insights">Insights</a></li>
+                <li><a href="#contact" class="cta-button">Send Brief</a></li>
+            </ul>
+            <button class="mobile-menu-btn">
+                <i class="fas fa-bars"></i>
+            </button>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="hero-content">
+            <div class="hero-text" data-aos="fade-right" data-aos-duration="1000">
+                <h1>
+                    Where <span class="gradient-text">Creativity</span> Lives,<br>
+                    <span class="gradient-text">Results</span> Matter
+                </h1>
+                <p>
+                    Africa's leading creative and media agency. We craft bold campaigns, 
+                    build authentic brands, and deliver measurable results that move the culture forward.
+                </p>
+                <div class="hero-buttons">
+                    <a href="#contact" class="btn-primary">
+                        Send Us A Brief <i class="fas fa-arrow-right"></i>
+                    </a>
+                    <a href="#work" class="btn-secondary">View Our Work</a>
+                </div>
+                <div class="trust-badges">
+                    <div class="badge">
+                        <i class="fas fa-trophy"></i>
+                        <span>EDGE 2025 Winner</span>
+                    </div>
+                    <div class="badge">
+                        <i class="fas fa-star"></i>
+                        <span>Young Media Agency of the Year</span>
+                    </div>
+                </div>
+            </div>
+            <div class="hero-image" data-aos="fade-left" data-aos-duration="1000" data-aos-delay="200">
+                <img src="https://demoo.savvymediaafrica.com/wp-content/uploads/2025/10/pg.jpg" alt="Savvy Media Africa Hero">
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="about" id="about">
+        <div class="about-container">
+            <div class="about-image" data-aos="fade-right" data-aos-duration="1000">
+                <img src="https://demoo.savvymediaafrica.com/wp-content/uploads/2025/10/pg.jpg" alt="About Savvy Media" style="width: 100%; border-radius: 20px; box-shadow: 0 25px 60px rgba(0, 0, 0, 0.15);">
+            </div>
+            <div class="about-content" data-aos="fade-left" data-aos-duration="1000">
+                <span class="section-label">About Us</span>
+                <h2>Africa's Creative and Media Agency</h2>
+                <p>
+                    At Savvy Media Africa, we are the bridge between bold ideas and real-world impact. 
+                    We combine strategic thinking, creative excellence, and cultural insight to build 
+                    brands that resonate with African youth and audiences globally.
+                </p>
+                <p>
+                    From award-winning campaigns to digital-first strategies, we're not just telling 
+                    stories—we're shaping conversations and driving results that matter.
+                </p>
+                <div class="stats">
+                    <div class="stat-item" data-aos="fade-up" data-aos-duration="800" data-aos-delay="100">
+                        <h3>150+</h3>
+                        <p>Campaigns Delivered</p>
+                    </div>
+                    <div class="stat-item" data-aos="fade-up" data-aos-duration="800" data-aos-delay="200">
+                        <h3>50+</h3>
+                        <p>Brand Partners</p>
+                    </div>
+                    <div class="stat-item" data-aos="fade-up" data-aos-duration="800" data-aos-delay="300">
+                        <h3>10M+</h3>
+                        <p>People Reached</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section class="services" id="services">
+        <div class="services-container">
+            <div class="section-header" data-aos="fade-up" data-aos-duration="1000">
+                <span class="section-label">What We Do</span>
+                <h2>Services That Drive Results</h2>
+                <p>From strategy to execution, we deliver integrated solutions that move your brand forward</p>
+            </div>
+            <div class="services-grid">
+                <div class="service-card" data-aos="fade-up" data-aos-duration="800" data-aos-delay="100">
+                    <div class="service-icon">
+                        <i class="fas fa-lightbulb"></i>
+                    </div>
+                    <h3>Creative Campaigns</h3>
+                    <p>Bold, culture-shifting ideas that break through the noise. From ideation to production, we craft campaigns that captivate and convert.</p>
+                    <a href="#" class="service-link">
+                        Learn More <i class="fas fa-arrow-right"></i>
+                    </a>
+                </div>
+                <div class="service-card" data-aos="fade-up" data-aos-duration="800" data-aos-delay="200">
+                    <div class="service-icon">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                    <h3>Media & Distribution</h3>
+                    <p>Strategic media planning and buying across digital, social, and experiential channels to maximize your brand's reach and impact.</p>
+                    <a href="#" class="service-link">
+                        Learn More <i class="fas fa-arrow-right"></i>
+                    </a>
+                </div>
+                <div class="service-card" data-aos="fade-up" data-aos-duration="800" data-aos-delay="300">
+                    <div class="service-icon">
+                        <i class="fas fa-bullhorn"></i>
+                    </div>
+                    <h3>PR & Reputation</h3>
+                    <p>Building and protecting your brand's story. We manage reputation, secure media coverage, and create conversations that matter.</p>
+                    <a href="#" class="service-link">
+                        Learn More <i class="fas fa-arrow-right"></i>
+                    </a>
+                </div>
+                <div class="service-card" data-aos="fade-up" data-aos-duration="800" data-aos-delay="400">
+                    <div class="service-icon">
+                        <i class="fas fa-chess-knight"></i>
+                    </div>
+                    <h3>Consulting & Strategy</h3>
+                    <p>Deep youth insights and strategic guidance to position your brand for long-term success in Africa's dynamic markets.</p>
+                    <a href="#" class="service-link">
+                        Learn More <i class="fas fa-arrow-right"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Work Ethic Section -->
+    <section class="work-ethic">
+        <div class="work-ethic-container">
+            <div class="section-header" data-aos="fade-up" data-aos-duration="1000">
+                <span class="section-label" style="background: var(--gradient-2);">Our DNA</span>
+                <h2>How We Work</h2>
+                <p>These values drive everything we create</p>
+            </div>
+            <div class="ethic-grid">
+                <div class="ethic-card" data-aos="zoom-in" data-aos-duration="800" data-aos-delay="100">
+                    <img src="https://demoo.savvymediaafrica.com/wp-content/uploads/2025/10/SAVVY-WORK-ETHIC-4.jpg" alt="We are Magical">
+                    <div class="ethic-overlay">
+                        <h3>We are Magical</h3>
+                        <p>We create extraordinary experiences that leave lasting impressions</p>
+                    </div>
+                </div>
+                <div class="ethic-card" data-aos="zoom-in" data-aos-duration="800" data-aos-delay="200">
+                    <img src="https://demoo.savvymediaafrica.com/wp-content/uploads/2025/10/SAVVY-WORK-ETHIC-3.jpg" alt="We are Inclusive">
+                    <div class="ethic-overlay">
+                        <h3>We are Inclusive</h3>
+                        <p>Diverse perspectives fuel our creativity and innovation</p>
+                    </div>
+                </div>
+                <div class="ethic-card" data-aos="zoom-in" data-aos-duration="800" data-aos-delay="300">
+                    <img src="https://demoo.savvymediaafrica.com/wp-content/uploads/2025/10/SAVVY-WORK-ETHIC-2.jpg" alt="We are Cool">
+                    <div class="ethic-overlay">
+                        <h3>We are Cool</h3>
+                        <p>We stay ahead of trends and set the pace for what's next</p>
+                    </div>
+                </div>
+                <div class="ethic-card" data-aos="zoom-in" data-aos-duration="800" data-aos-delay="400">
+                    <img src="https://demoo.savvymediaafrica.com/wp-content/uploads/2025/10/Savvy-WeAreCampaign-2.jpg" alt="We are Doers">
+                    <div class="ethic-overlay">
+                        <h3>We are Doers</h3>
+                        <p>Talk is cheap. We execute with precision and deliver results</p>
+                    </div>
+                </div>
+                <div class="ethic-card" data-aos="zoom-in" data-aos-duration="800" data-aos-delay="500">
+                    <img src="https://demoo.savvymediaafrica.com/wp-content/uploads/2025/10/SAVVY-CULTUREFIT-4.jpg" alt="We are Made for the World">
+                    <div class="ethic-overlay">
+                        <h3>Made for the World</h3>
+                        <p>Rooted in Africa, built for global impact</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Case Studies Section -->
+    <section class="case-studies" id="work">
+        <div class="case-studies-container">
+            <div class="section-header" data-aos="fade-up" data-aos-duration="1000">
+                <span class="section-label">Our Work</span>
+                <h2>Projects That Made Waves</h2>
+                <p>A showcase of campaigns that delivered real results for real brands</p>
+            </div>
+            <div class="case-grid">
+                <div class="case-card" data-aos="fade-up" data-aos-duration="800" data-aos-delay="100">
+                    <div class="case-image">
+                        <img src="https://demoo.savvymediaafrica.com/wp-content/uploads/2025/10/pg.jpg" alt="Case Study 1">
+                    </div>
+                    <div class="case-content">
+                        <span class="case-tag">Creative Campaign</span>
+                        <h3>Brand Launch Campaign</h3>
+                        <p>A bold brand launch that reached 5M+ people and generated 300% ROI in the first quarter through integrated media strategy.</p>
+                        <a href="#" class="case-link">
+                            View Case Study <i class="fas fa-arrow-right"></i>
+                        </a>
+                    </div>
+                </div>
+                <div class="case-card" data-aos="fade-up" data-aos-duration="800" data-aos-delay="200">
+                    <div class="case-image">
+                        <img src="https://demoo.savvymediaafrica.com/wp-content/uploads/2025/10/pg.jpg" alt="Case Study 2">
+                    </div>
+                    <div class="case-content">
+                        <span class="case-tag" style="background: var(--gradient-2);">Social Impact</span>
+                        <h3>Youth Empowerment Initiative</h3>
+                        <p>A purpose-driven campaign that engaged 10,000+ young Africans and created meaningful social change through storytelling.</p>
+                        <a href="#" class="case-link">
+                            View Case Study <i class="fas fa-arrow-right"></i>
+                        </a>
+                    </div>
+                </div>
+                <div class="case-card" data-aos="fade-up" data-aos-duration="800" data-aos-delay="300">
+                    <div class="case-image">
+                        <img src="https://demoo.savvymediaafrica.com/wp-content/uploads/2025/10/pg.jpg" alt="Case Study 3">
+                    </div>
+                    <div class="case-content">
+                        <span class="case-tag" style="background: var(--gradient-3);">Digital Strategy</span>
+                        <h3>Digital Transformation</h3>
+                        <p>Complete digital overhaul that increased online engagement by 400% and positioned the brand as an industry leader.</p>
+                        <a href="#" class="case-link">
+                            View Case Study <i class="fas fa-arrow-right"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CEO Section -->
+    <section class="ceo-section">
+        <div class="ceo-container">
+            <div class="ceo-image-wrapper" data-aos="fade-right" data-aos-duration="1000">
+                <img src="https://demoo.savvymediaafrica.com/wp-content/uploads/2024/06/Tofunmi-Akinseye-1.png" alt="Tofunmi Akinseye - CEO">
+            </div>
+            <div class="ceo-content" data-aos="fade-left" data-aos-duration="1000">
+                <h2>"We don't just follow trends—we create them."</h2>
+                <p>
+                    At Savvy Media Africa, we believe in the power of authentic storytelling and strategic creativity. 
+                    Our mission is to amplify African voices, celebrate our culture, and deliver campaigns that 
+                    don't just capture attention—they create movements.
+                </p>
+                <p>
+                    We're building more than an agency; we're building a legacy. Join us on this journey.
+                </p>
+                <p class="ceo-title">
+                    <strong>Tofunmi Akinseye</strong><br>
+                    Founder & CEO, Savvy Media Africa
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section class="testimonials" id="insights">
+        <div class="testimonials-container">
+            <div class="section-header" data-aos="fade-up" data-aos-duration="1000">
+                <span class="section-label">Testimonials</span>
+                <h2>What Our Clients Say</h2>
+                <p>Real feedback from real partners who've experienced the Savvy difference</p>
+            </div>
+            <div class="testimonial-grid">
+                <div class="testimonial-card" data-aos="fade-up" data-aos-duration="800" data-aos-delay="100">
+                    <div class="quote-icon">"</div>
+                    <p class="testimonial-text">
+                        "Savvy Media Africa transformed our brand presence completely. Their creative approach 
+                        and understanding of youth culture helped us connect with our audience in ways we never imagined."
+                    </p>
+                    <div class="testimonial-author">
+                        <div class="author-avatar"></div>
+                        <div class="author-info">
+                            <h4>Sarah Johnson</h4>
+                            <p>Marketing Director, Tech Startup</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial-card" data-aos="fade-up" data-aos-duration="800" data-aos-delay="200">
+                    <div class="quote-icon">"</div>
+                    <p class="testimonial-text">
+                        "Working with Savvy was a game-changer. Their strategic insights and flawless execution 
+                        delivered results that exceeded our expectations by over 300%. Highly recommended!"
+                    </p>
+                    <div class="testimonial-author">
+                        <div class="author-avatar"></div>
+                        <div class="author-info">
+                            <h4>Michael Adeyemi</h4>
+                            <p>CEO, Consumer Brand</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial-card" data-aos="fade-up" data-aos-duration="800" data-aos-delay="300">
+                    <div class="quote-icon">"</div>
+                    <p class="testimonial-text">
+                        "The team's creativity and professionalism are unmatched. They don't just deliver campaigns—
+                        they create movements that resonate with our audience and drive real business results."
+                    </p>
+                    <div class="testimonial-author">
+                        <div class="author-avatar"></div>
+                        <div class="author-info">
+                            <h4>Amara Okafor</h4>
+                            <p>Brand Manager, FMCG Company</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact CTA Section -->
+    <section class="contact-cta" id="contact">
+        <div class="contact-cta-container" data-aos="zoom-in" data-aos-duration="1000">
+            <h2>Ready to Make Waves?</h2>
+            <p>
+                Let's create something extraordinary together. Send us your brief and let's turn 
+                your brand vision into a cultural moment.
+            </p>
+            <a href="#" class="btn-primary">
+                Send Us A Brief <i class="fas fa-paper-plane"></i>
+            </a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-container">
+            <div class="footer-content">
+                <div class="footer-about">
+                    <h3>SAVVY MEDIA</h3>
+                    <p>
+                        Africa's leading creative and media agency. Where creativity lives and results matter.
+                    </p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+                <div class="footer-links">
+                    <h4>Services</h4>
+                    <ul>
+                        <li><a href="#">Creative Campaigns</a></li>
+                        <li><a href="#">Media & Distribution</a></li>
+                        <li><a href="#">PR & Reputation</a></li>
+                        <li><a href="#">Consulting & Strategy</a></li>
+                    </ul>
+                </div>
+                <div class="footer-links">
+                    <h4>Company</h4>
+                    <ul>
+                        <li><a href="#">About Us</a></li>
+                        <li><a href="#">Our Work</a></li>
+                        <li><a href="#">Insights</a></li>
+                        <li><a href="#">Careers</a></li>
+                        <li><a href="#">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-links">
+                    <h4>Contact</h4>
+                    <ul>
+                        <li><a href="mailto:hello@savvymediaafrica.com">hello@savvymediaafrica.com</a></li>
+                        <li><a href="tel:+2348012345678">+234 801 234 5678</a></li>
+                        <li><a href="#">Lagos, Nigeria</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Savvy Media Africa. All rights reserved. | <a href="#" style="color: rgba(255, 255, 255, 0.6);">Privacy Policy</a> | <a href="#" style="color: rgba(255, 255, 255, 0.6);">Terms of Service</a></p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- AOS Animation Library -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    
+    <script>
+        // Initialize AOS
+        AOS.init({
+            once: true,
+            duration: 1000,
+            easing: 'ease-out'
+        });
+
+        // Hide loader when page loads
+        window.addEventListener('load', function() {
+            document.getElementById('loader').classList.add('hidden');
+        });
+
+        // Header scroll effect
+        const header = document.getElementById('header');
+        window.addEventListener('scroll', function() {
+            if (window.scrollY > 50) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+        });
+
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Mobile menu toggle (you'll need to add the mobile menu HTML)
+        const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
+        const navLinks = document.querySelector('.nav-links');
+        
+        mobileMenuBtn.addEventListener('click', function() {
+            navLinks.classList.toggle('active');
+            this.querySelector('i').classList.toggle('fa-bars');
+            this.querySelector('i').classList.toggle('fa-times');
+        });
+    </script>
+</body>
+</html>
