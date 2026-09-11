@@ -1,0 +1,550 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Corporate Campaigns - Savvy Media Africa</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+<!-- Global header/footer + nav styles -->
+<link rel="stylesheet" href="/savvy.css">
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+
+:root{
+  --deep-navy:#001d3d;
+  --navy:#002855;
+  --bright-cyan:#00D4FF;
+  --cyan:#00A8E8;
+  --bright-green:#00FF88;
+  --green:#00E676;
+  --orange:#FF6B35;
+  --yellow:#FFB800;
+  --white:#FFFFFF;
+}
+
+body{
+  font-family:'Sora',sans-serif;
+  color:var(--white);
+  background:var(--deep-navy);
+  overflow-x:hidden;
+  line-height:1.6;
+  font-weight:400;
+  cursor:none;
+}
+
+.cursor{position:fixed;width:8px;height:8px;border-radius:50%;background:var(--bright-cyan);pointer-events:none;z-index:99999;opacity:.8;transition:transform .1s ease;mix-blend-mode:screen;box-shadow:0 0 12px var(--bright-cyan),0 0 24px rgba(0,212,255,.5)}
+.cursor-follower{position:fixed;width:32px;height:32px;border-radius:50%;border:1.5px solid var(--bright-cyan);pointer-events:none;z-index:99998;opacity:.4;transition:all .25s ease;box-shadow:inset 0 0 8px rgba(0,212,255,.3)}
+
+/* ========== HERO ========== */
+.hero{min-height:90vh;display:flex;flex-direction:column;align-items:center;justify-content:center;position:relative;padding:12rem 4rem 6rem;overflow:hidden;background:linear-gradient(135deg,var(--deep-navy) 0%,var(--navy) 100%)}
+.floating-shape{position:absolute;border-radius:50%;filter:blur(120px);opacity:.12;pointer-events:none;animation:float 20s ease-in-out infinite}
+.shape-1{width:700px;height:700px;background:linear-gradient(135deg,var(--bright-cyan),var(--cyan));top:10%;left:5%}
+.shape-2{width:600px;height:600px;background:linear-gradient(135deg,var(--orange),var(--yellow));bottom:6%;right:5%;animation-delay:-10s}
+@keyframes float{0%,100%{transform:translate(0,0) scale(1)}25%{transform:translate(50px,-50px) scale(1.1)}50%{transform:translate(80px,-80px) scale(1.2)}75%{transform:translate(30px,-40px) scale(1.15)}}
+.hero-content{text-align:center;max-width:1600px;position:relative;z-index:2}
+.hero-title{font-family:'Sora',sans-serif;font-size:clamp(2.8rem,9vw,7rem);font-weight:500;line-height:1.05;margin-bottom:2rem}
+.title-line{display:block;margin-bottom:.8rem}
+.word{display:inline-block;margin-right:.25em;position:relative;opacity:0;transform:translate3d(0,100px,0) scale(.9) rotate(4deg)}
+.word.cyan{color:var(--bright-cyan)}
+.word.green{color:var(--bright-green)}
+.hero-subtitle{font-size:clamp(1rem,2vw,1.3rem);color:rgba(255,255,255,.9);max-width:900px;margin:1.5rem auto 0;line-height:1.9;opacity:0;font-weight:400}
+
+/* ========== PORTFOLIO GRID ========== */
+.portfolio-section{padding:5rem 2rem;background:var(--deep-navy)}
+.section-label{display:inline-block;background:linear-gradient(135deg,var(--orange),var(--yellow));color:var(--deep-navy);padding:.8rem 1.8rem;border-radius:999px;font-size:.85rem;font-weight:600;text-transform:uppercase;letter-spacing:2px;margin-bottom:1.5rem}
+.section-title{font-size:clamp(2.5rem,6vw,4.5rem);font-weight:600;margin-bottom:.8rem;text-align:center;line-height:1.1}
+.section-subtitle{font-size:1.2rem;color:rgba(255,255,255,.85);text-align:center;max-width:900px;margin:0 auto 4rem;font-weight:400;line-height:1.8}
+
+.portfolio-grid{
+  display:grid;
+  grid-template-columns:repeat(3,minmax(0,1fr));
+  gap:2.5rem;
+  max-width:1400px;
+  margin:0 auto;
+}
+
+.portfolio-card{position:relative;border-radius:18px;overflow:hidden;background:rgba(255,255,255,.04);backdrop-filter:blur(10px);border:1px solid rgba(0,212,255,.15);transition:.45s;opacity:0;transform:translateY(50px);cursor:pointer;display:flex;flex-direction:column;height:100%}
+.portfolio-card::before{content:'';position:absolute;inset:0;background:linear-gradient(135deg,rgba(0,212,255,.2) 0%,rgba(255,107,53,.2) 100%);opacity:0;transition:.45s;pointer-events:none;z-index:3}
+.portfolio-card:hover{border-color:rgba(0,212,255,.4);transform:translateY(-15px);box-shadow:0 25px 70px rgba(0,212,255,.25)}
+.portfolio-card:hover::before{opacity:1}
+.portfolio-image{width:100%;height:400px;overflow:hidden;position:relative;background:var(--navy);display:flex;align-items:center;justify-content:center;flex-shrink:0;aspect-ratio:1/1}
+.portfolio-image::after{content:'';position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,0) 0%,rgba(0,29,61,.4) 100%);z-index:2;pointer-events:none}
+.portfolio-image img{width:100%;height:100%;object-fit:cover;object-position:center;transition:transform .6s;position:relative;z-index:1}
+.portfolio-card:hover .portfolio-image img{transform:scale(1.1)}
+.portfolio-info{padding:2.5rem;position:relative;z-index:2;flex:1;display:flex;flex-direction:column;justify-content:flex-end;background:linear-gradient(180deg,rgba(0,29,61,.3) 0%,rgba(0,29,61,.85) 100%)}
+.portfolio-category{font-size:.8rem;color:var(--bright-green);text-transform:uppercase;letter-spacing:2px;font-weight:700;margin-bottom:1rem;display:inline-block;background:rgba(0,255,136,.12);padding:.5rem 1rem;border-radius:999px;width:fit-content}
+.portfolio-title{font-size:1.6rem;font-weight:700;margin-bottom:1rem;color:var(--white);line-height:1.2}
+.portfolio-description{font-size:.95rem;color:rgba(255,255,255,.8);line-height:1.7}
+
+/* ========== DETAIL SECTIONS ========== */
+.detail-section{padding:6rem 2rem;background:var(--navy);display:none;opacity:0;border-top:2px solid rgba(0,212,255,.2)}
+.detail-section.active{display:block;animation:revealDetail .8s ease forwards}
+@keyframes revealDetail{to{opacity:1}}
+
+.detail-container{max-width:1200px;margin:0 auto}
+
+/* ===== SINGLE COLUMN LAYOUT - IMAGES ON TOP ===== */
+.detail-header{display:grid;grid-template-columns:1fr;gap:3rem;align-items:start;margin-bottom:4rem}
+
+.detail-images{display:grid;grid-template-columns:1fr;gap:2rem}
+.detail-img-main{width:100%;border-radius:18px;overflow:hidden;box-shadow:0 30px 80px rgba(0,0,0,.5);height:500px}
+.detail-img-main img{width:100%;height:100%;object-fit:cover;display:block}
+
+.detail-imgs-small{display:grid;grid-template-columns:1fr 1fr;gap:2rem;margin-top:2rem}
+.detail-img-small{width:100%;height:280px;border-radius:14px;overflow:hidden;box-shadow:0 20px 50px rgba(0,0,0,.4)}
+.detail-img-small img{width:100%;height:100%;object-fit:cover}
+
+/* ===== VIDEO CONTAINER - PORTRAIT LAYOUT ===== */
+.detail-video-container{display:grid;grid-template-columns:repeat(2,1fr);gap:2rem;margin-top:3rem;margin-bottom:3rem}
+.detail-video-wrapper{position:relative;width:100%;padding-bottom:177.78%;height:0;overflow:hidden;border-radius:14px;box-shadow:0 20px 50px rgba(0,0,0,.4)}
+.detail-video-wrapper iframe{position:absolute;top:0;left:0;width:100%;height:100%;border:none;border-radius:14px}
+
+/* ===== CONTENT SECTION - TEXT BELOW IMAGES ===== */
+.detail-content{width:100%}
+.detail-content h2{font-size:clamp(2.2rem,4vw,3.5rem);font-weight:700;margin-bottom:1.5rem;line-height:1.2;color:var(--white)}
+.detail-client{color:var(--bright-cyan);font-weight:700;text-transform:uppercase;letter-spacing:2px;margin-bottom:2rem;font-size:.9rem;display:inline-block;background:rgba(0,212,255,.15);padding:.8rem 1.8rem;border-radius:999px;border:1px solid rgba(0,212,255,.3)}
+
+.detail-boxes{margin-top:3rem}
+.detail-box{margin-bottom:2.5rem;padding:2rem;background:rgba(0,212,255,.08);border:1px solid rgba(0,212,255,.2);border-radius:14px;transition:.3s}
+.detail-box:hover{background:rgba(0,212,255,.12);border-color:rgba(0,212,255,.4)}
+.detail-box-label{color:var(--bright-green);font-weight:700;text-transform:uppercase;letter-spacing:2px;margin-bottom:1rem;font-size:.95rem;display:flex;align-items:center;gap:.6rem}
+.detail-box-label::before{content:'→';font-size:1.3rem;color:var(--bright-cyan)}
+.detail-box-text{font-size:1.05rem;line-height:1.85;color:rgba(255,255,255,.85)}
+
+.detail-stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:2rem;margin-top:3rem;padding-top:3rem;border-top:1px solid rgba(0,212,255,.15)}
+.detail-stat{background:rgba(0,212,255,.1);border:1px solid rgba(0,212,255,.2);padding:2rem;border-radius:14px;text-align:center;transition:.3s;position:relative;z-index:2;display:flex;flex-direction:column;justify-content:center;align-items:center;min-height:130px;box-sizing:border-box;overflow:hidden}
+.detail-stat:hover{background:rgba(0,212,255,.15);border-color:rgba(0,212,255,.4);transform:translateY(-5px)}
+.detail-stat-number{font-size:clamp(1.2rem,1.8vw,1.8rem);font-weight:700;color:var(--bright-cyan);margin-bottom:.6rem;line-height:1.1;text-align:center;white-space:nowrap;max-width:100%;overflow:hidden;text-overflow:ellipsis}
+.detail-stat-label{font-size:.85rem;color:rgba(255,255,255,.7);text-transform:uppercase;letter-spacing:1.5px;font-weight:600;text-align:center;line-height:1.4;max-width:100%}
+
+/* ========== CTA ========== */
+.cta-section{padding:8rem 4rem;text-align:center;background:linear-gradient(135deg,var(--bright-cyan),var(--orange));position:relative;overflow:hidden}
+.cta-section::before{content:'';position:absolute;inset:0;background:radial-gradient(circle at 20% 80%,rgba(255,107,53,.3),transparent);pointer-events:none}
+.cta-title{font-size:clamp(2.5rem,7vw,5rem);font-weight:700;margin-bottom:1.5rem;color:var(--deep-navy);position:relative;z-index:2;line-height:1.1}
+.cta-subtitle{font-size:1.5rem;margin-bottom:2.5rem;opacity:.95;color:var(--deep-navy);font-weight:500;position:relative;z-index:2}
+.btn-primary{background:var(--deep-navy);color:var(--bright-cyan);padding:1.3rem 3.2rem;border-radius:999px;text-decoration:none;font-weight:700;font-size:1.1rem;display:inline-flex;align-items:center;gap:.8rem;box-shadow:0 15px 50px rgba(0,0,0,.3);transition:.3s;border:none;cursor:pointer;position:relative;z-index:2}
+.btn-primary:hover{transform:translateY(-4px);box-shadow:0 20px 60px rgba(0,0,0,.4)}
+
+/* ========== SCROLL TOP ========== */
+.scroll-top{position:fixed;bottom:30px;right:30px;width:70px;height:70px;border-radius:50%;z-index:9000;display:grid;place-items:center;cursor:pointer;background:conic-gradient(var(--bright-cyan) calc(var(--scroll,0)*1%),rgba(0,212,255,.15) 0);box-shadow:0 12px 40px rgba(0,212,255,.4),inset 0 0 0 8px rgba(0,29,61,.6);transform:scale(.85);opacity:0;pointer-events:none;transition:.3s ease;border:none}
+.scroll-top.visible{opacity:1;pointer-events:auto;transform:scale(1)}
+.scroll-top .inner{width:52px;height:52px;border-radius:50%;display:grid;place-items:center;background:var(--navy);color:#fff;font-weight:700}
+.scroll-top .pct{font-size:.9rem}
+
+.floating-shape{
+  z-index: 0;
+  pointer-events: none;
+}
+
+/* ========== RESPONSIVE ========== */
+@media (max-width:1200px){
+  .portfolio-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .detail-stats{grid-template-columns:repeat(auto-fit,minmax(170px,1fr))}
+}
+
+@media (max-width:900px){
+  .portfolio-grid{grid-template-columns:1fr}
+  .detail-video-container{grid-template-columns:1fr}
+}
+
+@media (max-width:768px){
+  body{cursor:default}
+  .cursor,.cursor-follower{display:none}
+  
+  .hero{padding:8rem 2rem 4rem}
+  .portfolio-section{padding:3rem 1.5rem}
+  .portfolio-grid{grid-template-columns:1fr;gap:1.5rem}
+  .portfolio-image{height:350px}
+  
+  .detail-section{padding:4rem 1.5rem}
+  .detail-header{gap:2rem}
+  .detail-img-main{height:300px}
+  .detail-imgs-small{grid-template-columns:1fr}
+  .detail-img-small{height:250px}
+  .detail-video-container{grid-template-columns:1fr;margin-top:2rem}
+  .detail-boxes{margin-top:2rem}
+  .detail-box{padding:1.5rem;margin-bottom:1.5rem}
+  .detail-stats{grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:1.5rem;margin-top:2rem;padding-top:2rem}
+  .detail-stat{min-height:110px;padding:1.5rem 1rem}
+  .detail-stat-number{font-size:clamp(1.1rem,4vw,1.6rem);white-space:normal;word-wrap:break-word}
+  .detail-stat-label{font-size:.75rem}
+  
+  .cta-section{padding:4rem 2rem}
+}
+</style>
+</head>
+<body>
+
+<!-- Custom Cursor -->
+<div class="cursor"></div>
+<div class="cursor-follower"></div>
+
+<!-- Global header include -->
+<div data-include="/header.html"></div>
+
+<!-- ========== HERO ========== -->
+<section class="hero">
+  <div class="floating-shape shape-1" data-parallax="-12"></div>
+  <div class="floating-shape shape-2" data-parallax="14"></div>
+  <div class="hero-content">
+    <div class="hero-title">
+      <div class="title-line"><span class="word">Corporate</span></div>
+      <div class="title-line"><span class="word cyan">Campaigns</span></div>
+      <div class="title-line"><span class="word green">At Scale</span></div>
+    </div>
+    <p class="hero-subtitle">Combining creativity with measurable impact. Campaigns that drive nationwide visibility and lasting brand connections.</p>
+  </div>
+</section>
+
+<!-- ========== PORTFOLIO ========== -->
+<section class="portfolio-section">
+  <div style="text-align:center">
+    <span class="section-label">Featured Work</span>
+    <h2 class="section-title">Corporate Campaigns</h2>
+    <p class="section-subtitle">Strategic partnerships delivering results for Africa's most ambitious brands</p>
+  </div>
+  <div class="portfolio-grid" id="portfolioGrid"></div>
+</section>
+
+<!-- ========== DETAILS (ON CARD CLICK) ========== -->
+<div id="detailsContainer"></div>
+
+<!-- ========== CTA ========== -->
+<section class="cta-section">
+  <h2 class="cta-title">Ready to Scale Your <span style="color:rgba(0,29,61,.7);">Corporate</span> Impact?</h2>
+  <p class="cta-subtitle">Let's build a campaign that drives visibility and delivers measurable results.</p>
+  <a href="/cdn-cgi/l/email-protection#fe969b929291be8d9f888887939b9a979f9f988c979d9fd09d9193" class="btn-primary">Start Your Project <i class="fas fa-arrow-right"></i></a>
+</section>
+
+<!-- Global footer include -->
+<div data-include="/footer.html"></div>
+
+<!-- SCROLL TOP BUTTON -->
+<button class="scroll-top" id="scrollTopBtn" aria-label="Back to top">
+  <div class="inner"><span class="pct" id="scrollPct">0%</span></div>
+</button>
+
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+gsap.registerPlugin(ScrollTrigger);
+
+const corporateProjects = [
+  {
+    id: 'mtn-naija',
+    title: 'MTN - SeeNaijaWithMTN (World Tourism Day Campaign)',
+    category: 'Digital PR',
+    image: 'https://tobi.savvymediaafrica.com/mtn-naija.png',
+    img2: 'https://savvymediaafrica.com/wp-content/uploads/2025/12/unnamed-file.png',
+    img3: 'https://savvymediaafrica.com/wp-content/uploads/2025/12/download-17.jpg',
+    videoId1: '1Z3LD3MxKNs',
+    videoId2: 'BGI2wX7cj-g',
+    client: 'MTN Nigeria',
+    challenge: `MTN set out to reshape global and local perception of Nigeria by celebrating the country's beauty, culture and diversity. The goal was to encourage people to experience Nigeria beyond the stereotypes, to spark national pride, inspire domestic tourism and replace negativity with authentic stories of who we truly are. The campaign needed to emotionally connect with Nigerians while appealing to a global audience.`,
+    solution: `We crafted and executed a powerful multi-layered launch campaign. We managed the full creative direction and production of the central asset: a cinematic video ad featuring IB Quake, which used poetic storytelling and vivid imagery to showcase Nigeria's unique landscapes and cultural richness. The campaign was formally launched with a successful premiere event, meticulously managed to include curated guest listing, guaranteed influencer attendance, and the presence of key media platforms. We ensured nationwide reach by amplifying the message through strategic media outreach, robust press coverage and platform-specific digital distribution.`,
+    results: `The campaign gained widespread attention, sparking renewed conversations about Nigeria's beauty, heritage, and tourism value. MTN successfully positioned itself as a champion of national storytelling, while #SeeNaijaWithMTN inspired audiences to reconnect with the country through a more positive and authentic lens.`,
+    achievements: [
+      { label: 'Campaign Reach', value: 'Nationwide' },
+      { label: 'Global Appeal', value: 'Achieved' },
+      { label: 'Brand Position', value: 'Champion' }
+    ]
+  },
+ {
+  id: 'bolt-nigeria',
+  title: "BOLT NIGERIA – DRIVERS' FOOTBALL TOURNAMENT",
+  category: 'Brand Amplification',
+  image: 'https://savvymediaafrica.com/wp-content/uploads/2018/09/IMG-2560-2048x1422-1.jpeg',
+  img2: 'https://savvymediaafrica.com/wp-content/uploads/2018/09/IMG-1599-2048x1349-1.jpeg',
+  img3: 'https://savvymediaafrica.com/wp-content/uploads/2018/09/IMG-1669-2048x1365-1.jpeg',
+  videoId1: null,
+  videoId2: null,
+  client: 'Bolt Nigeria',
+  challenge: `Bolt launched a community-driven football tournament designed to celebrate its drivers, strengthen brand loyalty and spotlight the human stories behind the platform.
+The brand needed strong visibility, cultural relevance and nationwide excitement around the initiative.`,
+  solution: `We supported the campaign with a full-scale PR and digital amplification strategy.
+We elevated the tournament's narrative through targeted media engagement and a coordinated social content push.
+Our efforts ensured that conversations around the competition reached lifestyle, sports and entertainment audiences across Nigeria.`,
+  results: `The campaign achieved strong positive sentiment and increased brand affinity among both riders and drivers.
+The tournament gained widespread buzz, with notable online personalities recognizing Bolt's commitment to community-building and driver empowerment - further amplifying the campaign's reach.`,
+  achievements: [
+    { label: 'Market Presence', value: 'Nationwide' },
+    { label: 'Engagement', value: 'High' },
+    { label: 'Brand Affinity', value: 'Strengthened' }
+    ]
+  },
+
+  {
+    id: 'house-of-tara',
+    title: 'House of Tara – Legacy of Beauty Transition Campaign',
+    category: 'Brand Campaign',
+    image: 'https://tobi.savvymediaafrica.com/tara.png',
+    img2: 'https://savvymediaafrica.com/wp-content/uploads/2025/12/download-21.jpg',
+    img3: 'https://savvymediaafrica.com/wp-content/uploads/2025/12/download-22.jpg',
+    videoId1: null,
+    videoId2: null,
+    client: 'House of Tara',
+    challenge: `Announce the leadership transition as House of Tara's Founder passed the baton to a new Managing Director, while preserving the brand's heritage, honoring Madam Tara's legacy and positioning the brand as a timeless industry leader.`,
+    solution: `We developed and executed the Legacy of Beauty transition campaign, crafted to celebrate the brand's history while spotlighting its new era. We managed the full PR rollout, starting with strategic announcement positioning that framed Madam Tara as a visionary founder and House of Tara as a pioneering legacy brand. This narrative was amplified through widespread media distribution across digital, print and broadcast channels, ensuring visibility and narrative consistency. To further reinforce brand continuity and introduce the new leadership, we launched a targeted Billboard campaign announcing the new Managing Director. Concurrently, we executed a robust Influencer marketing activation, where key beauty creators shared personal experiences with House of Tara products and reflected on the significance of the leadership transition, bridging the past and the future effectively.`,
+    results: `The transition announcement gained strong multi-platform visibility, strengthened consumer trust in House of Tara's legacy and sparked wide community engagement as influencers, beauty enthusiasts and media platforms celebrated the brand's evolution. The "Legacy of Beauty" narrative positioned the leadership change as a moment of growth, continuity and renewed cultural relevance.`,
+    achievements: [
+      { label: 'Community Engagement', value: 'High' },
+      { label: 'Consumer Trust', value: 'Strengthened' },
+      { label: 'Brand Love', value: 'Elevated' }
+    ]
+  },
+  {
+    id: 'gac-motors',
+    title: 'GAC Motors – Chief Diana Chen Foundation Scholarship',
+    category: 'Corporate PR',
+    image: 'https://tobi.savvymediaafrica.com/gac.png',
+    img2: 'https://savvymediaafrica.com/wp-content/uploads/2024/08/Diana-Chen-Foundation.jpg',
+    img3: 'https://savvymediaafrica.com/wp-content/uploads/2024/08/Diana-Chen-Foundation.jpg',
+    videoId1: null,
+    videoId2: null,
+    client: 'GAC Motors',
+    challenge: `The goal was to execute a high-impact, nationwide PR campaign to maximize visibility and positive sentiment for the Chief Diana Chen Foundation's scholarship grant to 25 Yaba Tech Auto Engineering students for training in China.`,
+    solution: `We designed a comprehensive, multi-platform PR strategy, crafting targeted releases and distributing content across digital, traditional (print) and broadcast media channels to ensure maximum reach. We coordinated media attendance at the official launch event to secure firsthand coverage, clearly communicating the human story behind the Foundation's significant investment in youth empowerment and the future of Nigeria's auto sector.`,
+    results: `The PR campaign achieved widespread, positive coverage in major national news outlets, including The Punch, Vanguard and THISDAY. This successfully positioned GAC Motors as a socially responsible industry leader and a primary driver of youth development and technical skill enhancement in Nigeria.`,
+    achievements: [
+      { label: 'Media Coverage', value: 'Widespread' },
+      { label: 'Major Outlets', value: '3+' },
+      { label: 'Brand Position', value: 'Leader' }
+    ]
+  },
+  {
+    id: 'africa-re',
+    title: 'Africa Re @ 40 – Corporate Legacy Celebration',
+    category: 'Corporate Events',
+    image: 'https://tobi.savvymediaafrica.com/Africare.png',
+    img2: 'https://savvymediaafrica.com/wp-content/uploads/2025/12/download-24.jpg',
+    img3: 'https://savvymediaafrica.com/wp-content/uploads/2025/12/download-25.jpg',
+    videoId1: null,
+    videoId2: null,
+    client: 'Africa Re',
+    challenge: `African Re tasked us with the end-to-end management of a high-profile sent-forth event for a departing executive with 30 years of dedicated service.`,
+    solution: `We implemented three integrated strategies. We designed the communication strategy around the honoree's 30-year legacy and Executive status, applying this consistency across all internal and external PR. Second, we took complete ownership of the experiential design and coordination. This involved conceptualizing and executing a theme that celebrated the three-decade milestone, designing the decor and ensuring seamless coordination of all event elements from start to finish. We also managed the entirety of the internal and external PR execution, crafting compelling narratives for the media ensuring positive and widespread coverage that elevated both the outgoing Executive and the African Re brand.`,
+    results: `The project successfully delivered a flawlessly executed, high-impact sent-forth event that was universally praised by African Re's management and attendees. The event achieved its core goal of providing a fitting tribute to the Executive's 30 years of service, creating a positive emotional connection with the company's long-term commitment to its staff.`,
+    achievements: [
+      { label: 'Execution', value: 'Flawless' },
+      { label: 'Impact', value: 'High' },
+      { label: 'Reception', value: 'Praised' }
+    ]
+  }
+];
+
+function renderPortfolio(projects = corporateProjects){
+  const grid = document.getElementById('portfolioGrid');
+  grid.innerHTML = projects.map(p => `
+    <div class="portfolio-card" onclick="scrollToDetail('${p.id}')">
+      <div class="portfolio-image">
+        <img src="${p.image}" alt="${p.title}" loading="lazy">
+      </div>
+      <div class="portfolio-info">
+        <span class="portfolio-category">${p.category}</span>
+        <h3 class="portfolio-title">${p.title}</h3>
+        <p class="portfolio-description" style="overflow:hidden;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical">${p.challenge}</p>
+      </div>
+    </div>
+  `).join('');
+
+  gsap.utils.toArray('.portfolio-card').forEach((card,i)=>{
+    gsap.to(card,{
+      scrollTrigger:{trigger:card,start:'top 90%'},
+      y:0,
+      opacity:1,
+      duration:0.6,
+      delay:i*0.05,
+      ease:'back.out(1.5)'
+    });
+  });
+}
+
+function renderDetails(){
+  const container = document.getElementById('detailsContainer');
+  container.innerHTML = corporateProjects.map(p => `
+    <section class="detail-section" id="detail-${p.id}">
+      <div class="detail-container">
+        <div class="detail-header">
+          <div class="detail-images">
+            <div class="detail-img-main">
+              <img src="${p.image}" alt="${p.title}">
+            </div>
+            <div class="detail-imgs-small">
+              <div class="detail-img-small"><img src="${p.img2}" alt="${p.title}"></div>
+              <div class="detail-img-small"><img src="${p.img3}" alt="${p.title}"></div>
+            </div>
+            ${(p.videoId1 || p.videoId2) ? `
+            <div class="detail-video-container">
+              ${p.videoId1 ? `<div class="detail-video-wrapper"><iframe src="https://www.youtube.com/embed/${p.videoId1}?controls=1" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen="" loading="lazy"></iframe></div>` : ''}
+              ${p.videoId2 ? `<div class="detail-video-wrapper"><iframe src="https://www.youtube.com/embed/${p.videoId2}?controls=1" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen="" loading="lazy"></iframe></div>` : ''}
+            </div>
+            ` : ''}
+          </div>
+
+          <div class="detail-content">
+            <div class="detail-client">${p.client}</div>
+            <h2>${p.title}</h2>
+
+            <div class="detail-boxes">
+              <div class="detail-box">
+                <div class="detail-box-label">Challenge</div>
+                <div class="detail-box-text">${p.challenge}</div>
+              </div>
+              <div class="detail-box">
+                <div class="detail-box-label">Solution</div>
+                <div class="detail-box-text">${p.solution}</div>
+              </div>
+              <div class="detail-box">
+                <div class="detail-box-label">Results</div>
+                <div class="detail-box-text">${p.results}</div>
+              </div>
+            </div>
+
+            <div class="detail-stats">
+              ${p.achievements.map(s => `
+                <div class="detail-stat">
+                  <div class="detail-stat-number">${s.value}</div>
+                  <div class="detail-stat-label">${s.label}</div>
+                </div>
+              `).join('')}
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  `).join('');
+}
+
+function scrollToDetail(id){
+  document.querySelectorAll('.detail-section').forEach(el => el.classList.remove('active'));
+  const el = document.getElementById(`detail-${id}`);
+  if(el){
+    el.classList.add('active');
+    setTimeout(()=>el.scrollIntoView({behavior:'smooth',block:'start'}),50);
+  }
+}
+
+// Custom cursor
+const cursor = document.querySelector('.cursor');
+const cursorFollower = document.querySelector('.cursor-follower');
+
+document.addEventListener('mousemove',e=>{
+  cursor.style.left = (e.clientX - 4) + 'px';
+  cursor.style.top  = (e.clientY - 4) + 'px';
+  setTimeout(()=>{
+    cursorFollower.style.left = (e.clientX - 16) + 'px';
+    cursorFollower.style.top  = (e.clientY - 16) + 'px';
+  },60);
+});
+
+document.addEventListener('mouseover',e=>{
+  if(e.target.closest('a, button, .portfolio-card')){
+    cursor.style.transform = 'scale(1.6)';
+    cursorFollower.style.transform = 'scale(2.2)';
+  }
+});
+
+document.addEventListener('mouseout',e=>{
+  if(e.target.closest('a, button, .portfolio-card')){
+    cursor.style.transform = 'scale(1)';
+    cursorFollower.style.transform = 'scale(1)';
+  }
+});
+
+// Hero animations
+gsap.to('.hero-title .word',{
+  y:0,scale:1,rotation:0,opacity:1,
+  duration:1,
+  stagger:0.06,
+  ease:'power4.out',
+  delay:0.05
+});
+gsap.to('.hero-subtitle',{opacity:1,duration:0.8,delay:0.8});
+
+gsap.utils.toArray('[data-parallax]').forEach(el=>{
+  const amt = +el.getAttribute('data-parallax') || 10;
+  gsap.to(el,{
+    y:amt,
+    scrollTrigger:{trigger:'.hero',start:'top top',end:'bottom top',scrub:1}
+  });
+});
+
+// Scroll top
+const scrollBtn = document.getElementById('scrollTopBtn');
+const scrollPct = document.getElementById('scrollPct');
+
+function setScrollProgress(){
+  const st = window.scrollY;
+  const h  = document.documentElement.scrollHeight - innerHeight;
+  const p  = h > 0 ? Math.round((st / h) * 100) : 0;
+  document.documentElement.style.setProperty('--scroll',p);
+  scrollBtn.style.setProperty('--scroll',p);
+  scrollPct.textContent = p + '%';
+  scrollBtn.classList.toggle('visible',st > 380);
+}
+
+setScrollProgress();
+window.addEventListener('scroll',setScrollProgress,{passive:true});
+scrollBtn.addEventListener('click',()=>window.scrollTo({top:0,behavior:'smooth'}));
+
+// Init grid + details
+renderPortfolio();
+renderDetails();
+</script>
+
+<!-- load header/footer includes -->
+<script src="/include.js"></script>
+
+<!-- header scroll behaviour (waits until header.html is injected) -->
+<script>
+(function waitForNav(){
+  const nav = document.getElementById('nav');
+  if (!nav) {
+    requestAnimationFrame(waitForNav);
+    return;
+  }
+
+  function handleNavScroll() {
+    if (window.scrollY > 80) {
+      nav.classList.add('scrolled');
+      nav.style.background = 'rgba(255,255,255,0.95)';
+      nav.style.backdropFilter = 'blur(10px)';
+      
+      const navLinks = nav.querySelectorAll('.nav-link');
+      navLinks.forEach(link => {
+        link.style.color = '#001d3d';
+      });
+      
+      const logo = nav.querySelector('.logo-text');
+      if(logo) logo.style.color = '#001d3d';
+      
+    } else {
+      nav.classList.remove('scrolled');
+      nav.style.background = '';
+      nav.style.backdropFilter = '';
+      
+      const navLinks = nav.querySelectorAll('.nav-link');
+      navLinks.forEach(link => {
+        link.style.color = '';
+      });
+      
+      const logo = nav.querySelector('.logo-text');
+      if(logo) logo.style.color = '';
+    }
+  }
+
+  handleNavScroll();
+  window.addEventListener('scroll', handleNavScroll, { passive: true });
+})();
+</script>
+
+</body>
+</html>

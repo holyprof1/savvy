@@ -1,0 +1,75 @@
+<!-- HEADER: Savvy Global Nav (MARKUP ONLY - NO SCRIPTS) -->
+<nav id="nav">
+  <div class="nav-container">
+    <!-- Logo -->
+    <a href="/" class="nav-logo">
+      <img src="/whitelogo.png" alt="Savvy Media Africa">
+    </a>
+
+    <!-- Desktop nav links -->
+    <ul class="nav-links">
+      <li><a href="/">Home</a></li>
+      <li><a href="/about">About</a></li>
+      <li><a href="/magazines">Magazines</a></li>
+
+      <!-- WORK with dropdown -->
+      <li class="has-dropdown">
+        <a href="/work">Work</a>
+        <ul class="dropdown">
+          <li><a href="/film">Film &amp; Entertainment</a></li>
+          <li><a href="/corporate">Corporate Campaigns</a></li>
+          <li><a href="/consumer">Consumer Brand Campaigns</a></li>
+        </ul>
+      </li>
+
+      <li><a href="/contact">Send a Brief</a></li>
+    </ul>
+
+    <!-- Search + mobile burger -->
+    <button class="nav-search" aria-label="Search" id="navSearch">
+      <i class="fas fa-search"></i>
+    </button>
+    <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Menu">
+      <i class="fas fa-bars"></i>
+    </button>
+  </div>
+</nav>
+
+<!-- Mobile Menu -->
+<div class="mobile-menu-overlay" id="mobileMenuOverlay"></div>
+<div class="mobile-menu" id="mobileMenu">
+  <ul>
+    <li><a href="/">Home</a></li>
+    <li><a href="/about">About</a></li>
+    <li><a href="/magazines">Magazines</a></li>
+
+    <!-- Work dropdown on mobile -->
+ <!-- WORK with dropdown (desktop + mobile-friendly toggle) -->
+<li class="has-dropdown">
+  <a href="/work">Work</a>
+
+  <ul class="mobile-sub">
+    <li><a href="/film">– Film &amp; Entertainment</a></li>
+    <li><a href="/corporate">– Corporate Campaigns</a></li>
+    <li><a href="/consumer">– Consumer Brand Campaigns</a></li>
+  </ul>
+</li>
+
+
+
+    <li><a href="/contact">Contact</a></li>
+  </ul>
+</div>
+
+<!-- Search Modal -->
+<div class="search-overlay" id="searchOverlay"></div>
+<div class="search-modal" id="searchModal">
+  <button class="search-close" id="searchClose" aria-label="Close">
+    <i class="fas fa-times"></i>
+  </button>
+  <div class="search-content">
+    <h2>Search</h2>
+    <input type="text" class="search-input" id="searchInput" placeholder="What are you looking for?">
+    <div id="searchResults"></div>
+  </div>
+</div>
