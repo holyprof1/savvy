@@ -849,7 +849,7 @@ footer{
       <div class="magazine-card">
         <div class="edition-label">17th Edition</div>
         <div class="magazine-image-wrapper">
-          <img src="/assets/img/placeholder.svg?fit=1080%2C1350&ssl=1" alt="17th Edition" class="magazine-image">
+          <img src="/assets/img/savvy-17th-edition.jpg" alt="17th Edition" class="magazine-image">
           <div class="magazine-overlay">
             <a href="https://drive.google.com/file/d/1JaxaT6CclrQplIreMyzaRjhIFHdjjX3a/view?usp=sharing" target="_blank" class="download-btn">
               <i class="fas fa-book-open"></i>
@@ -893,7 +893,7 @@ footer{
       <div class="magazine-card">
         <div class="edition-label">15th Edition</div>
         <div class="magazine-image-wrapper">
-          <img src="/assets/img/placeholder.svg?fit=1080%2C1350&ssl=1" alt="15th Edition - Influencer Issue" class="magazine-image">
+          <img src="/assets/img/savvy-15th-edition.jpg" alt="15th Edition - Influencer Issue" class="magazine-image">
           <div class="magazine-overlay">
             <a href="https://drive.google.com/file/d/1ju0VnFKF7UCw5rWX4rYODLszHF0yd4ZD/view?usp=drivesdk" target="_blank" class="download-btn">
               <i class="fas fa-book-open"></i>
@@ -915,7 +915,7 @@ footer{
       <div class="magazine-card">
         <div class="edition-label">14th Issue</div>
         <div class="magazine-image-wrapper">
-          <img src="/assets/img/placeholder.svg?fit=1200%2C1500&ssl=1" alt="14th Issue" class="magazine-image">
+          <img src="/assets/img/savvy-14th-issue.jpg" alt="14th Issue" class="magazine-image">
           <div class="magazine-overlay">
             <a href="https://drive.google.com/file/d/1-3__OKfmoxNQ-_VM09-J28FwaaNbJc5E/view?usp=drivesdk" target="_blank" class="download-btn">
               <i class="fas fa-book-open"></i>
@@ -937,7 +937,7 @@ footer{
       <div class="magazine-card">
         <div class="edition-label">13th Issue</div>
         <div class="magazine-image-wrapper">
-          <img src="/assets/img/placeholder.svg?fit=1200%2C1500&ssl=1" alt="13th Issue" class="magazine-image">
+          <img src="/assets/img/savvy-13th-issue.jpg" alt="13th Issue" class="magazine-image">
           <div class="magazine-overlay">
             <a href="https://drive.google.com/file/d/1yY6stPXPVKBqWbarmEztToL0_Pg5uRrX/view?usp=share_link" target="_blank" class="download-btn">
               <i class="fas fa-book-open"></i>
@@ -959,7 +959,7 @@ footer{
       <div class="magazine-card">
         <div class="edition-label">12th Issue</div>
         <div class="magazine-image-wrapper">
-          <img src="/assets/img/placeholder.svg?fit=864%2C1080&ssl=1" alt="Youth Invasion" class="magazine-image">
+          <img src="/assets/img/savvy-12th-youth-invasion.jpg" alt="Youth Invasion" class="magazine-image">
           <div class="magazine-overlay">
             <a href="https://drive.google.com/file/d/1-T1jznAMt8vEMc_oalpmxMkFe9HG_QRc/view?usp=drivesdk" target="_blank" class="download-btn">
               <i class="fas fa-book-open"></i>
@@ -981,7 +981,7 @@ footer{
       <div class="magazine-card">
         <div class="edition-label">11th Issue</div>
         <div class="magazine-image-wrapper">
-          <img src="/assets/img/placeholder.svg?fit=480%2C600&ssl=1" alt="Youth Resurgence" class="magazine-image">
+          <img src="/assets/img/savvy-11th-youth-resurgence.jpg" alt="Youth Resurgence" class="magazine-image">
           <div class="magazine-overlay">
             <a href="https://drive.google.com/file/d/1bZvHxHxzaZdLA-uMXgkWOiKf6ppltJPk/view?ts=6309e296" target="_blank" class="download-btn">
               <i class="fas fa-book-open"></i>
@@ -1003,7 +1003,7 @@ footer{
       <div class="magazine-card">
         <div class="edition-label">10th Issue</div>
         <div class="magazine-image-wrapper">
-          <img src="/assets/img/placeholder.svg?fit=480%2C600&ssl=1" alt="Leisure Edition" class="magazine-image">
+          <img src="/assets/img/savvy-10th-leisure.jpg" alt="Leisure Edition" class="magazine-image">
           <div class="magazine-overlay">
             <a href="https://drive.google.com/file/d/1r0Q3soUhYI6qBDQQzWPMpxS2CaFspp3x/view" target="_blank" class="download-btn">
               <i class="fas fa-book-open"></i>
@@ -1025,7 +1025,7 @@ footer{
       <div class="magazine-card">
         <div class="edition-label">9th Issue</div>
         <div class="magazine-image-wrapper">
-          <img src="/assets/img/placeholder.svg?fit=480%2C600&ssl=1" alt="Youth Edition" class="magazine-image">
+          <img src="/assets/img/savvy-9th-youth.jpg" alt="Youth Edition" class="magazine-image">
           <div class="magazine-overlay">
             <a href="https://drive.google.com/file/d/1nW8Zq_uRijteKX8WZe_c8cSCCwDtwjuF/view" target="_blank" class="download-btn">
               <i class="fas fa-book-open"></i>
@@ -1047,7 +1047,7 @@ footer{
       <div class="magazine-card">
         <div class="edition-label">8th Issue</div>
         <div class="magazine-image-wrapper">
-          <img src="/assets/img/placeholder.svg?fit=480%2C600&ssl=1" alt="Life Must Go On" class="magazine-image">
+          <img src="/assets/img/savvy-8th-life-must-go-on.jpg" alt="Life Must Go On" class="magazine-image">
           <div class="magazine-overlay">
             <a href="https://drive.google.com/file/d/16NiTZeEkpbtkyFH6AsgGJ-FlwenYRhFY/view" target="_blank" class="download-btn">
               <i class="fas fa-book-open"></i>
@@ -1069,7 +1069,7 @@ footer{
       <div class="magazine-card">
         <div class="edition-label">7th Issue</div>
         <div class="magazine-image-wrapper">
-          <img src="/assets/img/placeholder.svg?fit=480%2C600&ssl=1" alt="Women Issue" class="magazine-image">
+          <img src="/assets/img/savvy-7th-women.jpg" alt="Women Issue" class="magazine-image">
           <div class="magazine-overlay">
             <a href="https://drive.google.com/file/d/1jCDyjhqipeFdXd7iBeQBEPGNtD6E_7_7/view" target="_blank" class="download-btn">
               <i class="fas fa-book-open"></i>
@@ -1091,7 +1091,7 @@ footer{
       <div class="magazine-card">
         <div class="edition-label">6th Issue</div>
         <div class="magazine-image-wrapper">
-          <img src="/assets/img/placeholder.svg?fit=480%2C600&ssl=1" alt="Made in Naija" class="magazine-image">
+          <img src="/assets/img/savvy-6th-made-in-naija.jpg" alt="Made in Naija" class="magazine-image">
           <div class="magazine-overlay">
             <a href="https://drive.google.com/file/d/1BYF8Gr3Vz6BX_CK0QLScCP7s8giq-jgu/view?usp=drivesdk" target="_blank" class="download-btn">
               <i class="fas fa-book-open"></i>
@@ -1113,7 +1113,7 @@ footer{
       <div class="magazine-card">
         <div class="edition-label">5th Issue</div>
         <div class="magazine-image-wrapper">
-          <img src="/assets/img/placeholder.svg?fit=480%2C600&ssl=1" alt="Pleasure Edition" class="magazine-image">
+          <img src="/assets/img/savvy-5th-pleasure.jpg" alt="Pleasure Edition" class="magazine-image">
           <div class="magazine-overlay">
             <a href="https://drive.google.com/file/d/1GbtwcmwskaMC8YzRtm8vPFkhsWFhffz8/view" target="_blank" class="download-btn">
               <i class="fas fa-book-open"></i>
@@ -1135,7 +1135,7 @@ footer{
       <div class="magazine-card">
         <div class="edition-label">Digital Series</div>
         <div class="magazine-image-wrapper">
-          <img src="/assets/img/placeholder.svg?fit=480%2C600&ssl=1" alt="Covid-19 Digital Series" class="magazine-image">
+          <img src="/assets/img/savvy-covid-digital-series.jpg" alt="Covid-19 Digital Series" class="magazine-image">
           <div class="magazine-overlay">
             <a href="https://www.bellanaija.com/2020/07/osas-ighodaro-savvy-magazine/" target="_blank" class="download-btn">
               <i class="fas fa-external-link-alt"></i>
