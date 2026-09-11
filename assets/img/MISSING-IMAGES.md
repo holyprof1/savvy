@@ -30,3 +30,32 @@ Drop the real file into `/assets/img/` and replace the
 box on the dark nav. A transparent knockout (white artwork) version is
 needed for the dark state — making the current file transparent would
 hide the navy wordmark instead.
+
+## Recovery attempted — film stills are gone
+
+Checked on 11 Sep 2026, all negative:
+
+- server (`find ~`) — not present
+- cPanel `.trash` (504 entries) — not present
+- Wayback Machine CDX — savvymediaafrica.com uploads are archived only
+  for 2018–2023. Nothing from `uploads/2025/12/`.
+- Wayback replay of each file — HTTP 404
+- Downloads folder — the generically-named files there
+  (`images.jpg`, `images (1).jpg`, `download.jpg`) are interiors and an
+  exhibition logo, not film stills.
+
+The film page WAS archived (snapshot 20260418043918) but only the HTML;
+the images it references were never captured.
+
+Originals needed, by project:
+
+| Project | Files |
+|---|---|
+| last-rodeo | Screenshot-2025-12-08-122618.png, -123023.png, -122937.png |
+| alls-fair | images-1.jpg, download-10.jpg |
+| dark-october | IMG_6528.jpg, darkk.jpg, dark.jpg |
+| masked-king | IMG_6524.jpg, download-4.jpg, download-3.jpg |
+| accelerate | Screenshot-2025-12-08-165731.png, download-15.jpg |
+| visa | download-14.jpg, download-13.jpg |
+
+These will have to come from the original shoot files or the client.
