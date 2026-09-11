@@ -10,7 +10,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-<link rel="stylesheet" href="savvy.css">
+<link rel="stylesheet" href="/assets/css/savvy.css">
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
@@ -825,7 +825,7 @@ footer{
 <div class="cursor"></div>
 <div class="cursor-follower"></div>
 <!-- HEADER INCLUDE -->
-<div data-include="header.html"></div>
+<div data-include="/partials/header.html"></div>
 
 <!-- ========== NAV ========== -->
 
@@ -1281,48 +1281,7 @@ footer{
 </section>
 
 <!-- ========== FOOTER ========== -->
-<footer>
-  <div class="footer-grid">
-    <div class="footer-brand">
-      <h3>SAVVY MEDIA</h3>
-      <p>Africa's leading creative and media agency. Where creativity lives, results matter.</p>
-      <div class="social-links">
-        <a href="#" class="social-link"><i class="fab fa-facebook-f"></i></a>
-        <a href="#" class="social-link"><i class="fab fa-twitter"></i></a>
-        <a href="#" class="social-link"><i class="fab fa-instagram"></i></a>
-        <a href="#" class="social-link"><i class="fab fa-linkedin-in"></i></a>
-        <a href="#" class="social-link"><i class="fab fa-youtube"></i></a>
-      </div>
-    </div>
-    <div class="footer-column">
-      <h4>Services</h4>
-      <ul class="footer-links">
-        <li><a href="#">Creative Campaigns</a></li>
-        <li><a href="#">Media & Distribution</a></li>
-        <li><a href="#">PR & Reputation</a></li>
-        <li><a href="#">Consulting</a></li>
-      </ul>
-    </div>
-    <div class="footer-column">
-      <h4>Company</h4>
-      <ul class="footer-links">
-        <li><a href="/about">About Us</a></li>
-        <li><a href="/work">Our Work</a></li>
-        <li><a href="/magazine">Magazine</a></li>
-        <li><a href="/contact">Contact</a></li>
-      </ul>
-    </div>
-    <div class="footer-column">
-      <h4>Contact</h4>
-      <ul class="footer-links">
-        <li><a href="mailto:hello@savvymediaafrica.com">hello@savvymediaafrica.com</a></li>
-        <li><a href="tel:+2348134737798">+234 813 473 7798</a></li>
-        <li>Impact Hub, Ikoyi, Lagos</li>
-      </ul>
-    </div>
-  </div>
-  <div class="footer-bottom"><p>&copy; 2025 Savvy Media Africa. All rights reserved.</p></div>
-</footer>
+<div data-include="/partials/footer.html"></div>
 
 <!-- ========== SCROLL-TO-TOP ========== -->
 <button class="scroll-top" id="scrollTopBtn" aria-label="Back to top">
@@ -1487,6 +1446,6 @@ if (mobileMenuBtn && mobileMenu && mobileMenuOverlay) {
   window.addEventListener('scroll',setScrollProgress,{passive:true});
   scrollBtn.addEventListener('click',()=>scrollTo({top:0,behavior:'smooth'}));
 </script>
-<script src="include.js"></script>
+<script src="/assets/js/include.js"></script>
 </body>
 </html>

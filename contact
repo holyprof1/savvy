@@ -12,7 +12,7 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
 <!-- Global header/footer + nav styles -->
-<link rel="stylesheet" href="/savvy.css">
+<link rel="stylesheet" href="/assets/css/savvy.css">
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
@@ -415,6 +415,36 @@ h3{font-size:clamp(1.6rem,4vw,2.8rem)}
   animation:slideIn .5s ease;
 }
 
+.error-message{
+  display:none;
+  padding:1rem;
+  background:rgba(255,107,53,.1);
+  border:1px solid rgba(255,107,53,.35);
+  border-radius:12px;
+  color:var(--orange);
+  margin-top:1rem;
+  text-align:center;
+}
+
+.error-message.show{
+  display:block;
+  animation:slideIn .5s ease;
+}
+
+/* Honeypot — kept out of sight and out of the tab order */
+.hp-field{
+  position:absolute;
+  left:-9999px;
+  width:1px;
+  height:1px;
+  overflow:hidden;
+}
+
+.submit-btn[disabled]{
+  opacity:.6;
+  cursor:not-allowed;
+}
+
 @keyframes slideIn{
   from{opacity:0;transform:translateY(-10px)}
   to{opacity:1;transform:translateY(0)}
@@ -666,7 +696,7 @@ html, body {
 <div class="cursor-follower"></div>
 
 <!-- Global header include -->
-<div data-include="/header.html"></div>
+<div data-include="/partials/header.html"></div>
 
 <!-- ========== HERO ========== -->
 <section class="hero">
@@ -774,7 +804,14 @@ html, body {
           <textarea id="message" name="message" placeholder="Tell us about your project..." required></textarea>
         </div>
 
-        <button type="submit" class="submit-btn">
+        <!-- Spam traps: hidden from people, tempting to bots -->
+        <div class="hp-field" aria-hidden="true">
+          <label for="company_website">Company website</label>
+          <input type="text" id="company_website" name="company_website" tabindex="-1" autocomplete="off">
+        </div>
+        <input type="hidden" name="form_time" id="formTime" value="">
+
+        <button type="submit" class="submit-btn" id="submitBtn">
           Send Message
           <i class="fas fa-paper-plane"></i>
         </button>
@@ -782,6 +819,8 @@ html, body {
         <div class="success-message" id="successMessage">
           <i class="fas fa-check-circle"></i> Thank you! We'll get back to you soon.
         </div>
+
+        <div class="error-message" id="errorMessage" role="alert"></div>
       </form>
     </div>
   </div>
@@ -847,7 +886,7 @@ html, body {
 </section>
 
 <!-- Global footer include -->
-<div data-include="/footer.html"></div>
+<div data-include="/partials/footer.html"></div>
 
 <!-- SCROLL-TO-TOP -->
 <button class="scroll-top" id="scrollTopBtn" aria-label="Back to top">
@@ -951,22 +990,52 @@ gsap.to('.map-container',{
 });
 
 // Contact Form Handling (front-end only)
-const contactForm = document.getElementById('contactForm');
+const contactForm    = document.getElementById('contactForm');
 const successMessage = document.getElementById('successMessage');
+const errorMessage   = document.getElementById('errorMessage');
+const submitBtn      = document.getElementById('submitBtn');
+const formTime       = document.getElementById('formTime');
 
-contactForm.addEventListener('submit',function(e){
+/* Stamp render time so the server can reject instant bot submissions */
+if (formTime) formTime.value = Math.floor(Date.now() / 1000);
+
+contactForm.addEventListener('submit', async function (e) {
   e.preventDefault();
 
-  const formData = new FormData(contactForm);
-  const data = Object.fromEntries(formData);
-  console.log('Form submitted:', data);
+  successMessage.classList.remove('show');
+  errorMessage.classList.remove('show');
 
-  successMessage.classList.add('show');
-  contactForm.reset();
+  const original = submitBtn.innerHTML;
+  submitBtn.disabled = true;
+  submitBtn.innerHTML = 'Sending… <i class="fas fa-spinner fa-spin"></i>';
 
-  setTimeout(()=>successMessage.classList.remove('show'),5000);
+  try {
+    const response = await fetch('/api/send-brief.php', {
+      method: 'POST',
+      body: new FormData(contactForm)
+    });
 
-  // NOTE: To actually send this, post `data` to your backend or a service (Formspree, EmailJS, etc.)
+    let result = {};
+    try { result = await response.json(); } catch (_) { /* non-JSON response */ }
+
+    if (response.ok && result.ok) {
+      successMessage.classList.add('show');
+      contactForm.reset();
+      if (formTime) formTime.value = Math.floor(Date.now() / 1000);
+      setTimeout(() => successMessage.classList.remove('show'), 6000);
+    } else {
+      errorMessage.textContent = result.error
+        || 'Something went wrong. Please email hello@savvymediaafrica.com directly.';
+      errorMessage.classList.add('show');
+    }
+  } catch (err) {
+    errorMessage.textContent =
+      'We could not reach the server. Please check your connection, or email hello@savvymediaafrica.com.';
+    errorMessage.classList.add('show');
+  } finally {
+    submitBtn.disabled = false;
+    submitBtn.innerHTML = original;
+  }
 });
 
 // Scroll-to-top
@@ -999,7 +1068,7 @@ scrollBtn.addEventListener('click',()=>scrollTo({top:0,behavior:'smooth'}));
 </script>
 
 <!-- Load header/footer includes -->
-<script src="/include.js"></script>
+<script src="/assets/js/include.js"></script>
 
 <!-- Header scroll behaviour (same pattern as Consumer Brands page) -->
 <script>

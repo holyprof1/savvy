@@ -13,7 +13,7 @@
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"/>
 
 <!-- Global header + footer styles -->
-<link rel="stylesheet" href="savvy.css">
+<link rel="stylesheet" href="/assets/css/savvy.css">
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
@@ -848,7 +848,7 @@ h3{font-size:clamp(1.6rem,4vw,2.8rem)}
 <div class="cursor-follower"></div>
 
 <!-- Header include (this is what include.js needs) -->
-<div data-include="header.html"></div>
+<div data-include="/partials/header.html"></div>
 
 <!-- ========== HERO ========== -->
 <section class="hero">
@@ -856,7 +856,7 @@ h3{font-size:clamp(1.6rem,4vw,2.8rem)}
   <div class="floating-shape shape-2" data-parallax="14"></div>
 
   <div class="hero-content">
-    <div class="hero-title">
+    <h1 class="hero-title">
       <div class="title-line">
         <span class="word">Work</span>
         <span class="word cyan">That</span>
@@ -869,7 +869,7 @@ h3{font-size:clamp(1.6rem,4vw,2.8rem)}
         <span class="word">& <span class="gradient-cyan">Delivers</span></span>
         <span class="word">Results</span>
       </div>
-    </div>
+    </h1>
 
     <p class="hero-subtitle">Campaigns that sparked conversations, moved markets, and proved African creativity is world-class. Here's what we've built.</p>
   </div>
@@ -887,7 +887,7 @@ h3{font-size:clamp(1.6rem,4vw,2.8rem)}
     <!-- House of Tara -->
     <div class="portfolio-card">
       <div class="portfolio-image">
-        <img src="tara.png" alt="House of Tara Legacy">
+        <img src="/assets/img/tara.png" alt="House of Tara Legacy">
       </div>
       <div class="portfolio-info">
         <span class="portfolio-category">Brand Campaign</span>
@@ -899,7 +899,7 @@ h3{font-size:clamp(1.6rem,4vw,2.8rem)}
     <!-- GAC Motors -->
     <div class="portfolio-card">
       <div class="portfolio-image">
-        <img src="gac.png" alt="GAC Motors Nigeria">
+        <img src="/assets/img/gac.png" alt="GAC Motors Nigeria">
       </div>
       <div class="portfolio-info">
         <span class="portfolio-category">Brand Launch</span>
@@ -911,7 +911,7 @@ h3{font-size:clamp(1.6rem,4vw,2.8rem)}
     <!-- Dogtas Lagos -->
     <div class="portfolio-card">
       <div class="portfolio-image">
-        <img src="Dogtas.png" alt="Dogtas Furniture">
+        <img src="/assets/img/Dogtas.png" alt="Dogtas Furniture">
       </div>
       <div class="portfolio-info">
         <span class="portfolio-category">Retail Campaign</span>
@@ -923,7 +923,7 @@ h3{font-size:clamp(1.6rem,4vw,2.8rem)}
     <!-- MTN See Naija -->
     <div class="portfolio-card">
       <div class="portfolio-image">
-        <img src="mtn-naija.png" alt="MTN See Naija">
+        <img src="/assets/img/mtn-naija.png" alt="MTN See Naija">
       </div>
       <div class="portfolio-info">
         <span class="portfolio-category">National Campaign</span>
@@ -935,7 +935,7 @@ h3{font-size:clamp(1.6rem,4vw,2.8rem)}
     <!-- Africa Re -->
     <div class="portfolio-card">
       <div class="portfolio-image">
-        <img src="Africare.png" alt="Africa Re 40 Years">
+        <img src="/assets/img/Africare.png" alt="Africa Re 40 Years">
       </div>
       <div class="portfolio-info">
         <span class="portfolio-category">Event Production</span>
@@ -947,7 +947,7 @@ h3{font-size:clamp(1.6rem,4vw,2.8rem)}
     <!-- Purna Gummies -->
     <div class="portfolio-card">
       <div class="portfolio-image">
-        <img src="purna.png" alt="Purna Gummies">
+        <img src="/assets/img/purna.png" alt="Purna Gummies">
       </div>
       <div class="portfolio-info">
         <span class="portfolio-category">Consumer Brand</span>
@@ -969,7 +969,7 @@ h3{font-size:clamp(1.6rem,4vw,2.8rem)}
     <div class="featured-project">
       <div class="featured-images">
         <div class="featured-img-main">
-          <img src="mtn-naija.png" alt="MTN See Naija">
+          <img src="/assets/img/mtn-naija.png" alt="MTN See Naija">
         </div>
         <div class="featured-img-small">
           <img src="https://savvymediaafrica.com/wp-content/uploads/2025/12/unnamed-file.png" alt="MTN Campaign">
@@ -1111,7 +1111,7 @@ h3{font-size:clamp(1.6rem,4vw,2.8rem)}
         <div class="swiper-slide">
           <div class="case-study-card">
             <div class="case-image">
-              <img src="tara.png" alt="House of Tara">
+              <img src="/assets/img/tara.png" alt="House of Tara">
             </div>
             <div class="case-content">
               <span class="case-client">House of Tara</span>
@@ -1139,7 +1139,7 @@ h3{font-size:clamp(1.6rem,4vw,2.8rem)}
         <div class="swiper-slide">
           <div class="case-study-card">
             <div class="case-image">
-              <img src="Africare.png" alt="Africa Re">
+              <img src="/assets/img/Africare.png" alt="Africa Re">
             </div>
             <div class="case-content">
               <span class="case-client">African Reinsurance Corp</span>
@@ -1167,7 +1167,7 @@ h3{font-size:clamp(1.6rem,4vw,2.8rem)}
         <div class="swiper-slide">
           <div class="case-study-card">
             <div class="case-image">
-              <img src="mtn-naija.png" alt="MTN Campaign">
+              <img src="/assets/img/mtn-naija.png" alt="MTN Campaign">
             </div>
             <div class="case-content">
               <span class="case-client">MTN Nigeria</span>
@@ -1195,7 +1195,7 @@ h3{font-size:clamp(1.6rem,4vw,2.8rem)}
         <div class="swiper-slide">
           <div class="case-study-card">
             <div class="case-image">
-              <img src="Dogtas.png" alt="Dogtas Lagos">
+              <img src="/assets/img/Dogtas.png" alt="Dogtas Lagos">
             </div>
             <div class="case-content">
               <span class="case-client">Dogtas Furniture</span>
@@ -1223,7 +1223,7 @@ h3{font-size:clamp(1.6rem,4vw,2.8rem)}
         <div class="swiper-slide">
           <div class="case-study-card">
             <div class="case-image">
-              <img src="gac.png" alt="GAC Motors">
+              <img src="/assets/img/gac.png" alt="GAC Motors">
             </div>
             <div class="case-content">
               <span class="case-client">GAC Motors</span>
@@ -1292,7 +1292,7 @@ h3{font-size:clamp(1.6rem,4vw,2.8rem)}
 </section>
 
 <!-- Footer include -->
-<div data-include="footer.html"></div>
+<div data-include="/partials/footer.html"></div>
 
 <!-- ========== SCROLL-TO-TOP ========== -->
 <button class="scroll-top" id="scrollTopBtn" aria-label="Back to top">
@@ -1300,7 +1300,7 @@ h3{font-size:clamp(1.6rem,4vw,2.8rem)}
 </button>
 
 <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
-<script src="include.js"></script>
+<script src="/assets/js/include.js"></script>
 
 <script>
   gsap.registerPlugin(ScrollTrigger);

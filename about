@@ -13,7 +13,7 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
 <!-- Global header/footer + nav styles -->
-<link rel="stylesheet" href="/savvy.css">
+<link rel="stylesheet" href="/assets/css/savvy.css">
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
@@ -935,7 +935,7 @@ h3{font-size:clamp(1.6rem,4vw,2.8rem)}
 <div class="cursor-follower"></div>
 
 <!-- Global header include -->
-<div data-include="/header.html"></div>
+<div data-include="/partials/header.html"></div>
 
 <!-- ========== HERO ========== -->
 <section class="hero">
@@ -943,7 +943,7 @@ h3{font-size:clamp(1.6rem,4vw,2.8rem)}
   <div class="floating-shape shape-2" data-parallax="14"></div>
 
   <div class="hero-content">
-    <div class="hero-title">
+    <h1 class="hero-title">
       <div class="title-line">
         <span class="word">Architects</span>
         <span class="word cyan">of</span>
@@ -956,7 +956,7 @@ h3{font-size:clamp(1.6rem,4vw,2.8rem)}
         <span class="word">& <span class="gradient-cyan">Cultural</span></span>
         <span class="word">Impact</span>
       </div>
-    </div>
+    </h1>
 
     <div class="hero-pills-container">
       <div class="hero-pill">Since 2013</div>
@@ -1134,7 +1134,7 @@ h3{font-size:clamp(1.6rem,4vw,2.8rem)}
 </section>
 
 <!-- Global footer include -->
-<div data-include="/footer.html"></div>
+<div data-include="/partials/footer.html"></div>
 
 <!-- ========== SCROLL-TO-TOP ========== -->
 <button class="scroll-top" id="scrollTopBtn" aria-label="Back to top">
@@ -1273,7 +1273,7 @@ scrollBtn.addEventListener('click',()=>scrollTo({top:0,behavior:'smooth'}));
 </script>
 
 <!-- Load header/footer includes -->
-<script src="/include.js"></script>
+<script src="/assets/js/include.js"></script>
 
 <!-- Header scroll behaviour -->
 <script>

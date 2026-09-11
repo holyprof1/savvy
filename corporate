@@ -11,7 +11,7 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
 <!-- Global header/footer + nav styles -->
-<link rel="stylesheet" href="/savvy.css">
+<link rel="stylesheet" href="/assets/css/savvy.css">
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
@@ -190,18 +190,18 @@ body{
 <div class="cursor-follower"></div>
 
 <!-- Global header include -->
-<div data-include="/header.html"></div>
+<div data-include="/partials/header.html"></div>
 
 <!-- ========== HERO ========== -->
 <section class="hero">
   <div class="floating-shape shape-1" data-parallax="-12"></div>
   <div class="floating-shape shape-2" data-parallax="14"></div>
   <div class="hero-content">
-    <div class="hero-title">
+    <h1 class="hero-title">
       <div class="title-line"><span class="word">Corporate</span></div>
       <div class="title-line"><span class="word cyan">Campaigns</span></div>
       <div class="title-line"><span class="word green">At Scale</span></div>
-    </div>
+    </h1>
     <p class="hero-subtitle">Combining creativity with measurable impact. Campaigns that drive nationwide visibility and lasting brand connections.</p>
   </div>
 </section>
@@ -227,7 +227,7 @@ body{
 </section>
 
 <!-- Global footer include -->
-<div data-include="/footer.html"></div>
+<div data-include="/partials/footer.html"></div>
 
 <!-- SCROLL TOP BUTTON -->
 <button class="scroll-top" id="scrollTopBtn" aria-label="Back to top">
@@ -242,7 +242,7 @@ const corporateProjects = [
     id: 'mtn-naija',
     title: 'MTN - SeeNaijaWithMTN (World Tourism Day Campaign)',
     category: 'Digital PR',
-    image: 'https://tobi.savvymediaafrica.com/mtn-naija.png',
+    image: '/assets/img/mtn-naija.png',
     img2: 'https://savvymediaafrica.com/wp-content/uploads/2025/12/unnamed-file.png',
     img3: 'https://savvymediaafrica.com/wp-content/uploads/2025/12/download-17.jpg',
     videoId1: '1Z3LD3MxKNs',
@@ -285,7 +285,7 @@ The tournament gained widespread buzz, with notable online personalities recogni
     id: 'house-of-tara',
     title: 'House of Tara – Legacy of Beauty Transition Campaign',
     category: 'Brand Campaign',
-    image: 'https://tobi.savvymediaafrica.com/tara.png',
+    image: '/assets/img/tara.png',
     img2: 'https://savvymediaafrica.com/wp-content/uploads/2025/12/download-21.jpg',
     img3: 'https://savvymediaafrica.com/wp-content/uploads/2025/12/download-22.jpg',
     videoId1: null,
@@ -304,7 +304,7 @@ The tournament gained widespread buzz, with notable online personalities recogni
     id: 'gac-motors',
     title: 'GAC Motors – Chief Diana Chen Foundation Scholarship',
     category: 'Corporate PR',
-    image: 'https://tobi.savvymediaafrica.com/gac.png',
+    image: '/assets/img/gac.png',
     img2: 'https://savvymediaafrica.com/wp-content/uploads/2024/08/Diana-Chen-Foundation.jpg',
     img3: 'https://savvymediaafrica.com/wp-content/uploads/2024/08/Diana-Chen-Foundation.jpg',
     videoId1: null,
@@ -323,7 +323,7 @@ The tournament gained widespread buzz, with notable online personalities recogni
     id: 'africa-re',
     title: 'Africa Re @ 40 – Corporate Legacy Celebration',
     category: 'Corporate Events',
-    image: 'https://tobi.savvymediaafrica.com/Africare.png',
+    image: '/assets/img/Africare.png',
     img2: 'https://savvymediaafrica.com/wp-content/uploads/2025/12/download-24.jpg',
     img3: 'https://savvymediaafrica.com/wp-content/uploads/2025/12/download-25.jpg',
     videoId1: null,
@@ -501,7 +501,7 @@ renderDetails();
 </script>
 
 <!-- load header/footer includes -->
-<script src="/include.js"></script>
+<script src="/assets/js/include.js"></script>
 
 <!-- header scroll behaviour (waits until header.html is injected) -->
 <script>

@@ -1,234 +1,157 @@
-// SIMPLIFIED include.js - debug version
-console.log('✅ include.js loaded at', new Date().toLocaleTimeString());
+/* Savvy Media Africa — partial loader + global navigation
+   Loads /partials/header.html and /partials/footer.html into [data-include]
+   targets, then wires up nav scroll state, mobile menu and search. */
+(function () {
+  'use strict';
 
-async function loadIncludes() {
-  console.log('🔄 Looking for [data-include] elements...');
-  
-  const includes = document.querySelectorAll('[data-include]');
-  console.log(`Found ${includes.length} includes`);
+  /* ---------------------------------------------------------------
+     Load partials
+  --------------------------------------------------------------- */
+  async function loadIncludes() {
+    const targets = document.querySelectorAll('[data-include]');
 
-  if (includes.length === 0) {
-    console.error('❌ No [data-include] elements found!');
-    return;
-  }
+    await Promise.all(
+      Array.from(targets).map(async (el) => {
+        const file = el.getAttribute('data-include');
+        if (!file) return;
 
-  for (const el of includes) {
-    const file = el.getAttribute('data-include');
-    console.log(`Processing: ${file}`);
-    
-    if (!file) continue;
+        const path = file.startsWith('/') ? file : '/' + file;
 
-    // Ensure path starts with /
-    const path = file.startsWith('/') ? file : '/' + file;
-    console.log(`📂 Fetching from: ${path}`);
-
-    try {
-      const response = await fetch(path);
-      console.log(`Response status: ${response.status} for ${path}`);
-      
-      if (!response.ok) {
-        console.error(`❌ HTTP ${response.status} for ${path}`);
-        el.innerHTML = `<div style="background:#ff4444;color:#fff;padding:2rem;text-align:center;border-radius:8px;margin:2rem;"><h3>Error Loading ${file}</h3><p>HTTP ${response.status}</p><small>Check browser console</small></div>`;
-        continue;
-      }
-
-      const html = await response.text();
-      console.log(`✅ Got ${html.length} bytes for ${path}`);
-      
-      el.innerHTML = html;
-      console.log(`✅ Injected ${path} into DOM`);
-
-    } catch (err) {
-      console.error(`❌ Fetch failed for ${path}:`, err.message);
-      el.innerHTML = `<div style="background:#ff4444;color:#fff;padding:2rem;text-align:center;border-radius:8px;margin:2rem;"><h3>Network Error</h3><p>${err.message}</p></div>`;
-    }
-  }
-
-  console.log('✅ All includes processed');
-  
-  // Tell page that header is ready
-  document.dispatchEvent(new CustomEvent('headerLoaded'));
-  console.log('📢 Dispatched: headerLoaded');
-  
-  initializeNavigation();
-}
-
-function initializeNavigation() {
-  console.log('⚙️ Initializing navigation...');
-  
-  const nav = document.getElementById('nav');
-  const mobileMenuBtn = document.getElementById('mobileMenuBtn');
-  const mobileMenu = document.getElementById('mobileMenu');
-  const mobileMenuOverlay = document.getElementById('mobileMenuOverlay');
-  
-  console.log('nav:', !!nav);
-  console.log('mobileMenuBtn:', !!mobileMenuBtn);
-  console.log('mobileMenu:', !!mobileMenu);
-  console.log('mobileMenuOverlay:', !!mobileMenuOverlay);
-
-  // Scroll event
-  if (nav) {
-    window.addEventListener('scroll', () => {
-      if (window.scrollY > 100) {
-        nav.classList.add('scrolled');
-      } else {
-        nav.classList.remove('scrolled');
-      }
-    });
-    console.log('✅ Scroll handler attached');
-  }
-
-  // Mobile menu toggle
-  if (mobileMenuBtn && mobileMenu && mobileMenuOverlay) {
-    const toggleMobileMenu = () => {
-      mobileMenu.classList.toggle('open');
-      mobileMenuOverlay.classList.toggle('open');
-      document.body.style.overflow = mobileMenu.classList.contains('open') ? 'hidden' : 'auto';
-      console.log('📱 Mobile menu toggled');
-    };
-    
-    // Touch + Click support for iOS/Android
-    mobileMenuBtn.addEventListener('click', toggleMobileMenu);
-    mobileMenuBtn.addEventListener('touchend', (e) => {
-      e.preventDefault();
-      toggleMobileMenu();
-    }, false);
-
-    // Overlay click
-    const handleOverlayClick = () => {
-      mobileMenu.classList.remove('open');
-      mobileMenuOverlay.classList.remove('open');
-      document.body.style.overflow = 'auto';
-      console.log('📱 Mobile menu closed via overlay');
-    };
-    
-    mobileMenuOverlay.addEventListener('click', handleOverlayClick);
-    mobileMenuOverlay.addEventListener('touchend', (e) => {
-      if (e.target === mobileMenuOverlay) {
-        e.preventDefault();
-        handleOverlayClick();
-      }
-    }, false);
-
-    // Work dropdown toggle FIRST (before general link handlers)
-     // Mobile submenu toggle buttons (created in header markup as .mobile-sub-toggle)
-    document.querySelectorAll('.mobile-sub-toggle').forEach(btn => {
-      const controls = btn.getAttribute('aria-controls');
-      const panel = controls ? document.getElementById(controls) : null;
-      btn.addEventListener('click', (e) => {
-        const expanded = btn.getAttribute('aria-expanded') === 'true';
-        btn.setAttribute('aria-expanded', String(!expanded));
-        if (panel) {
-          panel.hidden = expanded; // toggle hidden
-          // toggle an 'open' class on parent to allow CSS styling
-          const parent = btn.closest('.has-dropdown');
-          if (parent) parent.classList.toggle('open', !expanded);
+        try {
+          const response = await fetch(path);
+          if (!response.ok) throw new Error('HTTP ' + response.status);
+          el.innerHTML = await response.text();
+        } catch (err) {
+          /* Fail quietly for visitors — never render an error box into
+             the page. The gap simply stays empty and the page still works. */
+          el.remove();
         }
-        // update indicator character
-        const ind = btn.querySelector('.mobile-sub-indicator');
-        if (ind) ind.textContent = expanded ? '+' : '−';
-        e.stopPropagation();
-      }, false);
+      })
+    );
 
-      // for touch devices: make sure touch doesn't accidentally navigate
-      btn.addEventListener('touchend', (e) => {
+    document.dispatchEvent(new CustomEvent('headerLoaded'));
+    initNavigation();
+  }
+
+  /* ---------------------------------------------------------------
+     Navigation
+  --------------------------------------------------------------- */
+  function initNavigation() {
+    markCurrentPage();
+    initScrollState();
+    initMobileMenu();
+    initSearch();
+  }
+
+  /* Highlight the link for the page you're on */
+  function markCurrentPage() {
+    const here = window.location.pathname.replace(/\/index\.html$/, '/') || '/';
+
+    document.querySelectorAll('#nav a[href], .mobile-menu a[href]').forEach((link) => {
+      const href = link.getAttribute('href');
+      if (!href || href.startsWith('http') || href.startsWith('#')) return;
+
+      if (href === here || (href !== '/' && here.indexOf(href) === 0)) {
+        link.classList.add('is-current');
+        link.setAttribute('aria-current', 'page');
+      }
+    });
+  }
+
+  /* Solid nav background once the page scrolls */
+  function initScrollState() {
+    const nav = document.getElementById('nav');
+    if (!nav) return;
+
+    const update = () => nav.classList.toggle('scrolled', window.scrollY > 100);
+    window.addEventListener('scroll', update, { passive: true });
+    update();
+  }
+
+  /* Mobile drawer + collapsible submenus */
+  function initMobileMenu() {
+    const btn = document.getElementById('mobileMenuBtn');
+    const menu = document.getElementById('mobileMenu');
+    const overlay = document.getElementById('mobileMenuOverlay');
+    if (!btn || !menu || !overlay) return;
+
+    const setOpen = (open) => {
+      menu.classList.toggle('open', open);
+      overlay.classList.toggle('open', open);
+      document.body.style.overflow = open ? 'hidden' : '';
+      btn.setAttribute('aria-expanded', String(open));
+    };
+
+    btn.setAttribute('aria-expanded', 'false');
+    btn.addEventListener('click', () => setOpen(!menu.classList.contains('open')));
+    overlay.addEventListener('click', () => setOpen(false));
+
+    /* Close on Escape */
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && menu.classList.contains('open')) setOpen(false);
+    });
+
+    /* Submenu toggles, where the header provides them */
+    menu.querySelectorAll('.mobile-sub-toggle').forEach((toggle) => {
+      const panel = document.getElementById(toggle.getAttribute('aria-controls') || '');
+
+      toggle.addEventListener('click', (e) => {
         e.preventDefault();
-        btn.click();
-      }, false);
-    });
+        e.stopPropagation();
 
+        const expanded = toggle.getAttribute('aria-expanded') === 'true';
+        toggle.setAttribute('aria-expanded', String(!expanded));
 
-    // Close on link click (but NOT Work dropdown items)
-       // Close on link click (but NOT child items of .has-dropdown that should toggle)
-    // Use a short timeout to avoid race conditions on iOS where immediate DOM changes can cancel navigation.
-    document.querySelectorAll('.mobile-menu a').forEach(link => {
-      // if link is inside a has-dropdown (the dropdown children) we still want clicks to navigate AND keep menu open if needed.
-      // We only skip the top-level anchor that is meant to open a submenu toggle — the toggle button handles submenu open/close.
-      if (link.closest('.has-dropdown') && link.closest('.has-dropdown').querySelector('.mobile-sub-toggle')) {
-        // allow normal navigation for the parent <a> (so tapping "Work" still goes to /work).
-        link.addEventListener('click', () => {
-          // close menu but delay slightly to let browser perform navigation (fix for iOS).
-          setTimeout(() => {
-            if (mobileMenu) mobileMenu.classList.remove('open');
-            if (mobileMenuOverlay) mobileMenuOverlay.classList.remove('open');
-            document.body.style.overflow = 'auto';
-            console.log('📱 Menu closed via link click (delayed)');
-          }, 60);
-        });
-        link.addEventListener('touchend', () => {
-          setTimeout(() => {
-            if (mobileMenu) mobileMenu.classList.remove('open');
-            if (mobileMenuOverlay) mobileMenuOverlay.classList.remove('open');
-            document.body.style.overflow = 'auto';
-          }, 60);
-        }, false);
-        return;
-      }
+        if (panel) panel.hidden = expanded;
 
-      // Normal links (non-dropdown parents / submenu items) — close after a small delay to ensure navigation works on iOS.
-      link.addEventListener('click', () => {
-        setTimeout(() => {
-          if (mobileMenu) mobileMenu.classList.remove('open');
-          if (mobileMenuOverlay) mobileMenuOverlay.classList.remove('open');
-          document.body.style.overflow = 'auto';
-          console.log('📱 Menu closed via link click (delayed)');
-        }, 60);
+        const parent = toggle.closest('.has-dropdown');
+        if (parent) parent.classList.toggle('open', !expanded);
+
+        const indicator = toggle.querySelector('.mobile-sub-indicator');
+        if (indicator) indicator.textContent = expanded ? '+' : '−';
       });
-
-      link.addEventListener('touchend', () => {
-        setTimeout(() => {
-          if (mobileMenu) mobileMenu.classList.remove('open');
-          if (mobileMenuOverlay) mobileMenuOverlay.classList.remove('open');
-          document.body.style.overflow = 'auto';
-        }, 60);
-      }, false);
     });
 
-
-    console.log('✅ Mobile menu handlers attached');
-  }
-
-  // Search
-  const navSearch = document.getElementById('navSearch');
-  const searchOverlay = document.getElementById('searchOverlay');
-  const searchModal = document.getElementById('searchModal');
-  const searchClose = document.getElementById('searchClose');
-  const searchInput = document.getElementById('searchInput');
-
-  if (navSearch) {
-    navSearch.addEventListener('click', () => {
-      if (searchOverlay) searchOverlay.classList.add('open');
-      if (searchModal) searchModal.classList.add('open');
-      if (searchInput) searchInput.focus();
-      console.log('🔍 Search opened');
+    /* Let navigation happen, then close the drawer behind it */
+    menu.querySelectorAll('a[href]').forEach((link) => {
+      link.addEventListener('click', () => setTimeout(() => setOpen(false), 60));
     });
   }
 
-  if (searchClose) {
-    searchClose.addEventListener('click', () => {
-      if (searchOverlay) searchOverlay.classList.remove('open');
-      if (searchModal) searchModal.classList.remove('open');
-      console.log('🔍 Search closed');
+  /* Search modal */
+  function initSearch() {
+    const trigger = document.getElementById('navSearch');
+    const overlay = document.getElementById('searchOverlay');
+    const modal = document.getElementById('searchModal');
+    const close = document.getElementById('searchClose');
+    const input = document.getElementById('searchInput');
+    if (!trigger || !modal) return;
+
+    const setOpen = (open) => {
+      if (overlay) overlay.classList.toggle('open', open);
+      modal.classList.toggle('open', open);
+      if (open && input) input.focus();
+    };
+
+    trigger.addEventListener('click', () => setOpen(true));
+    if (close) close.addEventListener('click', () => setOpen(false));
+    if (overlay) {
+      overlay.addEventListener('click', (e) => {
+        if (e.target === overlay) setOpen(false);
+      });
+    }
+
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && modal.classList.contains('open')) setOpen(false);
     });
   }
 
-  if (searchOverlay) {
-    searchOverlay.addEventListener('click', (e) => {
-      if (e.target === searchOverlay) {
-        searchOverlay.classList.remove('open');
-        if (searchModal) searchModal.classList.remove('open');
-      }
-    });
+  /* ---------------------------------------------------------------
+     Go
+  --------------------------------------------------------------- */
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', loadIncludes);
+  } else {
+    loadIncludes();
   }
-
-  console.log('✅ Navigation initialization complete');
-}
-
-// Run when DOM is ready
-if (document.readyState === 'loading') {
-  document.addEventListener('DOMContentLoaded', loadIncludes);
-} else {
-  loadIncludes();
-}
-
-console.log('✅ include.js setup complete');
+})();

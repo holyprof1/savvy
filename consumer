@@ -11,7 +11,7 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
 <!-- Global header/footer + nav styles -->
-<link rel="stylesheet" href="/savvy.css">
+<link rel="stylesheet" href="/assets/css/savvy.css">
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
@@ -662,18 +662,18 @@ body{
 <div class="cursor-follower"></div>
 
 <!-- Global header include -->
-<div data-include="/header.html"></div>
+<div data-include="/partials/header.html"></div>
 
 <!-- ========== HERO ========== -->
 <section class="hero">
   <div class="floating-shape shape-1" data-parallax="-12"></div>
   <div class="floating-shape shape-2" data-parallax="14"></div>
   <div class="hero-content">
-    <div class="hero-title">
+    <h1 class="hero-title">
       <div class="title-line"><span class="word">Consumer</span></div>
       <div class="title-line"><span class="word cyan">Brands</span></div>
       <div class="title-line"><span class="word green">Portfolio</span></div>
-    </div>
+    </h1>
     <p class="hero-subtitle">Building beloved brands that capture hearts, minds and market share.</p>
   </div>
 </section>
@@ -705,7 +705,7 @@ body{
 </section>
 
 <!-- Global footer include -->
-<div data-include="/footer.html"></div>
+<div data-include="/partials/footer.html"></div>
 
 <!-- SCROLL TOP BUTTON -->
 <button class="scroll-top" id="scrollTopBtn" aria-label="Back to top">
@@ -940,7 +940,7 @@ renderVideos();
 </script>
 
 <!-- Load header/footer includes -->
-<script src="/include.js"></script>
+<script src="/assets/js/include.js"></script>
 
 <!-- Header scroll behaviour (waits until header.html is injected) -->
 <script>
