@@ -22,18 +22,6 @@
 *{margin:0;padding:0;box-sizing:border-box}
 html{scroll-behavior:smooth}
 
-:root{
-  --deep-navy:#001d3d;
-  --navy:#002855;
-  --bright-cyan:#00D4FF;
-  --cyan:#00A8E8;
-  --bright-green:#00FF88;
-  --green:#00E676;
-  --orange:#FF6B35;
-  --yellow:#FFB800;
-  --white:#FFFFFF;
-  --section-pad:8rem;
-}
 
 body{
   font-family:'Sora',sans-serif;
@@ -972,10 +960,10 @@ h3{font-size:clamp(1.6rem,4vw,2.8rem)}
           <img src="/assets/img/mtn-naija.png" alt="MTN See Naija">
         </div>
         <div class="featured-img-small">
-          <img src="https://savvymediaafrica.com/wp-content/uploads/2025/12/unnamed-file.png" alt="MTN Campaign">
+          <img src="/assets/img/placeholder.svg" alt="MTN Campaign">
         </div>
         <div class="featured-img-small">
-          <img src="https://savvymediaafrica.com/wp-content/uploads/2025/12/download-17.jpg" alt="Content Impact">
+          <img src="/assets/img/placeholder.svg" alt="Content Impact">
         </div>
       </div>
 

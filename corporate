@@ -20,17 +20,6 @@
 *{margin:0;padding:0;box-sizing:border-box}
 html{scroll-behavior:smooth}
 
-:root{
-  --deep-navy:#001d3d;
-  --navy:#002855;
-  --bright-cyan:#00D4FF;
-  --cyan:#00A8E8;
-  --bright-green:#00FF88;
-  --green:#00E676;
-  --orange:#FF6B35;
-  --yellow:#FFB800;
-  --white:#FFFFFF;
-}
 
 body{
   font-family:'Sora',sans-serif;
@@ -243,8 +232,8 @@ const corporateProjects = [
     title: 'MTN - SeeNaijaWithMTN (World Tourism Day Campaign)',
     category: 'Digital PR',
     image: '/assets/img/mtn-naija.png',
-    img2: 'https://savvymediaafrica.com/wp-content/uploads/2025/12/unnamed-file.png',
-    img3: 'https://savvymediaafrica.com/wp-content/uploads/2025/12/download-17.jpg',
+    img2: '/assets/img/placeholder.svg',
+    img3: '/assets/img/placeholder.svg',
     videoId1: '1Z3LD3MxKNs',
     videoId2: 'BGI2wX7cj-g',
     client: 'MTN Nigeria',
@@ -261,9 +250,9 @@ const corporateProjects = [
   id: 'bolt-nigeria',
   title: "BOLT NIGERIA – DRIVERS' FOOTBALL TOURNAMENT",
   category: 'Brand Amplification',
-  image: 'https://savvymediaafrica.com/wp-content/uploads/2018/09/IMG-2560-2048x1422-1.jpeg',
-  img2: 'https://savvymediaafrica.com/wp-content/uploads/2018/09/IMG-1599-2048x1349-1.jpeg',
-  img3: 'https://savvymediaafrica.com/wp-content/uploads/2018/09/IMG-1669-2048x1365-1.jpeg',
+  image: '/assets/img/placeholder.svg',
+  img2: '/assets/img/placeholder.svg',
+  img3: '/assets/img/placeholder.svg',
   videoId1: null,
   videoId2: null,
   client: 'Bolt Nigeria',
@@ -286,8 +275,8 @@ The tournament gained widespread buzz, with notable online personalities recogni
     title: 'House of Tara – Legacy of Beauty Transition Campaign',
     category: 'Brand Campaign',
     image: '/assets/img/tara.png',
-    img2: 'https://savvymediaafrica.com/wp-content/uploads/2025/12/download-21.jpg',
-    img3: 'https://savvymediaafrica.com/wp-content/uploads/2025/12/download-22.jpg',
+    img2: '/assets/img/placeholder.svg',
+    img3: '/assets/img/placeholder.svg',
     videoId1: null,
     videoId2: null,
     client: 'House of Tara',
@@ -305,8 +294,8 @@ The tournament gained widespread buzz, with notable online personalities recogni
     title: 'GAC Motors – Chief Diana Chen Foundation Scholarship',
     category: 'Corporate PR',
     image: '/assets/img/gac.png',
-    img2: 'https://savvymediaafrica.com/wp-content/uploads/2024/08/Diana-Chen-Foundation.jpg',
-    img3: 'https://savvymediaafrica.com/wp-content/uploads/2024/08/Diana-Chen-Foundation.jpg',
+    img2: '/assets/img/placeholder.svg',
+    img3: '/assets/img/placeholder.svg',
     videoId1: null,
     videoId2: null,
     client: 'GAC Motors',
@@ -324,8 +313,8 @@ The tournament gained widespread buzz, with notable online personalities recogni
     title: 'Africa Re @ 40 – Corporate Legacy Celebration',
     category: 'Corporate Events',
     image: '/assets/img/Africare.png',
-    img2: 'https://savvymediaafrica.com/wp-content/uploads/2025/12/download-24.jpg',
-    img3: 'https://savvymediaafrica.com/wp-content/uploads/2025/12/download-25.jpg',
+    img2: '/assets/img/placeholder.svg',
+    img3: '/assets/img/placeholder.svg',
     videoId1: null,
     videoId2: null,
     client: 'Africa Re',

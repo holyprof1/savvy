@@ -20,17 +20,6 @@
 *{margin:0;padding:0;box-sizing:border-box}
 html{scroll-behavior:smooth}
 
-:root{
-  --deep-navy:#001d3d;
-  --navy:#002855;
-  --bright-cyan:#00D4FF;
-  --cyan:#00A8E8;
-  --bright-green:#00FF88;
-  --green:#00E676;
-  --orange:#FF6B35;
-  --yellow:#FFB800;
-  --white:#FFFFFF;
-}
 
 body{
   font-family:'Sora',sans-serif;
@@ -701,9 +690,9 @@ const filmProjects = [
     id: 'last-rodeo',
     title: 'The Last Rodeo Concert',
     category: 'Events',
-    image: 'https://savvymediaafrica.com/wp-content/uploads/2025/12/Screenshot-2025-12-08-122618.png',
-    img2: 'https://savvymediaafrica.com/wp-content/uploads/2025/12/Screenshot-2025-12-08-123023.png',
-    img3: 'https://savvymediaafrica.com/wp-content/uploads/2025/12/Screenshot-2025-12-08-122937.png',
+    image: '/assets/img/placeholder.svg',
+    img2: '/assets/img/placeholder.svg',
+    img3: '/assets/img/placeholder.svg',
     client: 'The Last Rodeo Concert',
     challenge: `We were contracted to take over the complete management and coordination of "The Last Rodeo Concert" just two weeks before showtime. The objective was to immediately stabilize the project and execute a seamless, world-class event, from technical production to media presence, under extreme time constraints.`,
     solution: `We deployed an intensive, end-to-end management strategy. We rapidly secured a valuable brand partnership with SmartCash PSB within the two-week window. Working with our technical partner, we oversaw the entire event flow and technical production, ensuring world-class sound, lighting and stage setup. Concurrently, we managed all experiential elements: designing decor and ambience, curating premium Artist Hospitality and coordinating all VVIP/VIP Care. Finally, we drove momentum through strategic Media Amplification and targeted Guest List Curation.`,
@@ -718,9 +707,9 @@ const filmProjects = [
     id:'black',
     title:'Black Panther',
     category:'pr',
-    image:'https://savvymediaafrica.com/wp-content/uploads/2025/12/download-7-1.jpg',
-    img2:'https://savvymediaafrica.com/wp-content/uploads/2025/12/download-8-1.jpg',
-    img3:'https://savvymediaafrica.com/wp-content/uploads/2025/12/download-9-1.jpg',
+    image:'/assets/img/placeholder.svg',
+    img2:'/assets/img/placeholder.svg',
+    img3:'/assets/img/placeholder.svg',
     client:'Black Panther',
     challenge:`Launch a culturally significant global blockbuster with a premiere that matched the scale, excitement and PR expectations of the Marvel brand.`,
     solution:`Savvy Media PR Solutions led the full marketing and premiere rollout – creative direction, influencer engagement, red-carpet management, press coordination and media amplification. We positioned the premiere as a cultural celebration, driving massive visibility across digital and traditional media.`,
@@ -735,9 +724,9 @@ const filmProjects = [
     id:'alls-fair',
     title:"All's Fair in Love",
     category:'pr',
-    image:'https://savvymediaafrica.com/wp-content/uploads/2025/12/images-1.jpg',
-    img2:'https://savvymediaafrica.com/wp-content/uploads/2025/12/download-10.jpg',
-    img3:'https://savvymediaafrica.com/wp-content/uploads/2025/12/images-1.jpg',
+    image:'/assets/img/placeholder.svg',
+    img2:'/assets/img/placeholder.svg',
+    img3:'/assets/img/placeholder.svg',
     client:'Deyemi Okanlawon Films',
     challenge:'Drive both cultural impact and box office success for a major film release in competitive Nigerian market.',
     solution:'Comprehensive marketing spanning digital amplification, earned media, influencer partnerships, and strategic PR. Positioned film as cultural event through targeted audience engagement. Coordinated social media campaign with 26M+ reach, influencer previews, and strategic premiere timing.',
@@ -752,9 +741,9 @@ const filmProjects = [
     id:'dark-october',
     title:'Dark October',
     category:'PR',
-    image:'https://savvymediaafrica.com/wp-content/uploads/2025/12/IMG_6528.jpg',
-    img2:'https://savvymediaafrica.com/wp-content/uploads/2025/12/darkk.jpg',
-    img3:'https://savvymediaafrica.com/wp-content/uploads/2025/12/dark.jpg',
+    image:'/assets/img/placeholder.svg',
+    img2:'/assets/img/placeholder.svg',
+    img3:'/assets/img/placeholder.svg',
     client:'Linda Ikeji Films',
     challenge:'Drive comprehensive multi-platform media coverage for thriller film release with strong genre positioning.',
     solution:`We led the full scale PR management - coordinating the premiere guest list, red carpet management and multi-platform media amplification across broadcast and digital channels.`,
@@ -769,9 +758,9 @@ const filmProjects = [
     id:'avatar',
     title:'Avatar: The Way of Water',
     category:'pr',
-    image:'https://savvymediaafrica.com/wp-content/uploads/2025/12/IMG_6526.webp',
-    img2:'https://savvymediaafrica.com/wp-content/uploads/2025/12/download-6.jpg',
-    img3:'https://savvymediaafrica.com/wp-content/uploads/2025/12/download-5.jpg',
+    image:'/assets/img/placeholder.svg',
+    img2:'/assets/img/placeholder.svg',
+    img3:'/assets/img/placeholder.svg',
     client:'20th Century Studios',
     challenge:'Translate global blockbuster into locally relevant cultural moment for Nigerian and West African audiences.',
     solution:"Original content production creating Nigeria's first Avatar-inspired cultural landmark. Commissioned iconic mural installation in Lagos combining global blockbuster themes with local artistic expression. Coordinated unveiling ceremony with artist interviews, community engagement, and media partnerships.",
@@ -786,9 +775,9 @@ const filmProjects = [
     id:'masked-king',
     title:'The Masked King',
     category:'PR',
-    image:'https://savvymediaafrica.com/wp-content/uploads/2025/12/IMG_6524.jpg',
-    img2:'https://savvymediaafrica.com/wp-content/uploads/2025/12/download-4.jpg',
-    img3:'https://savvymediaafrica.com/wp-content/uploads/2025/12/download-3.jpg',
+    image:'/assets/img/placeholder.svg',
+    img2:'/assets/img/placeholder.svg',
+    img3:'/assets/img/placeholder.svg',
     client:'The Masked King',
     challenge:'Position The Masked King as a culturally significant film in a crowded Nollywood market and build strong nationwide awareness ahead of its release and festival run.',
     solution:'We delivered a full end-to-end marketing and PR campaign spanning creative strategy, content marketing, premiere experience design, influencer partnerships, media amplification, and nationwide press rounds. The campaign built strong emotional connection with audiences and positioned the film as an important cultural moment.',
@@ -803,9 +792,9 @@ const filmProjects = [
     id:'accelerate',
     title:'Accelerate Filmmakers Project',
     category:'pr',
-    image:'https://savvymediaafrica.com/wp-content/uploads/2025/12/Screenshot-2025-12-08-165731.png',
-    img2:'https://savvymediaafrica.com/wp-content/uploads/2025/12/download-15.jpg',
-    img3:'https://savvymediaafrica.com/wp-content/uploads/2025/12/download-15.jpg',
+    image:'/assets/img/placeholder.svg',
+    img2:'/assets/img/placeholder.svg',
+    img3:'/assets/img/placeholder.svg',
     client:'Accelerate Program',
     challenge:"Position the Accelerate Filmmakers Project as Africa's premier filmmaker development initiative.",
     solution:'Comprehensive marketing campaign with media partnerships highlighting program impact and filmmaker testimonials, plus launch events and showcases.',
@@ -820,9 +809,9 @@ const filmProjects = [
     id:'visa',
     title:'Visa on Arrival Season 5',
     category:'pr',
-    image:'https://savvymediaafrica.com/wp-content/uploads/2025/12/download-14.jpg',
-    img2:'https://savvymediaafrica.com/wp-content/uploads/2025/12/download-13.jpg',
-    img3:'https://savvymediaafrica.com/wp-content/uploads/2025/12/download-14.jpg',
+    image:'/assets/img/placeholder.svg',
+    img2:'/assets/img/placeholder.svg',
+    img3:'/assets/img/placeholder.svg',
     client:'Visa on Arrival',
     challenge:'Maintain viewership momentum while attracting new audiences for Season 5 launch.',
     solution:`We managed the full PR rollout - coordinating guest listings for the premiere, handling red-carpet and press interactions and driving media amplification across key platforms before, during and after the event.`,

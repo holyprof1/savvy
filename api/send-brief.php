@@ -127,9 +127,17 @@ $body = "A new brief was submitted on " . SITE_NAME . ".\n\n"
       . "Submitted: " . gmdate('D, d M Y H:i:s') . " UTC\n"
       . "IP:        {$ip}\n";
 
+/*
+ * mail() is disabled on this server (see disable_functions), so the message
+ * is piped straight into Exim via the sendmail binary. Exim honours the
+ * domain's MX, which points at Zoho — no SMTP credentials needed.
+ */
 $headers = [
+    'To'                        => MAIL_TO,
+    'Subject'                   => '=?UTF-8?B?' . base64_encode($subject) . '?=',
     'From'                      => sprintf('%s Website <%s>', SITE_NAME, MAIL_FROM),
     'Reply-To'                  => sprintf('%s <%s>', $safeName, $email),
+    'Date'                      => date(DATE_RFC2822),
     'MIME-Version'              => '1.0',
     'Content-Type'              => 'text/plain; charset=UTF-8',
     'Content-Transfer-Encoding' => '8bit',
@@ -142,16 +150,21 @@ foreach ($headers as $key => $value) {
     $headerLines[] = $key . ': ' . $value;
 }
 
-$sent = mail(
-    MAIL_TO,
-    '=?UTF-8?B?' . base64_encode($subject) . '?=',
-    $body,
-    implode("\r\n", $headerLines),
-    '-f' . MAIL_FROM
-);
+$mime = implode("\n", $headerLines) . "\n\n" . $body;
 
-if (!$sent) {
-    error_log('[savvy-brief] mail() failed for ' . $email);
+$sendmail = '/usr/sbin/sendmail -t -i -f' . escapeshellarg(MAIL_FROM);
+$pipe     = @popen($sendmail, 'w');
+
+if ($pipe === false) {
+    error_log('[savvy-brief] could not open sendmail pipe');
+    fail(500, 'We could not send your message. Please email hello@savvymediaafrica.com directly.');
+}
+
+fwrite($pipe, $mime);
+$status = pclose($pipe);
+
+if ($status !== 0) {
+    error_log('[savvy-brief] sendmail exited with status ' . $status . ' for ' . $email);
     fail(500, 'We could not send your message. Please email hello@savvymediaafrica.com directly.');
 }
 

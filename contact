@@ -21,18 +21,6 @@
 *{margin:0;padding:0;box-sizing:border-box}
 html{scroll-behavior:smooth}
 
-:root{
-  --deep-navy:#001d3d;
-  --navy:#002855;
-  --bright-cyan:#00D4FF;
-  --cyan:#00A8E8;
-  --bright-green:#00FF88;
-  --green:#00E676;
-  --orange:#FF6B35;
-  --yellow:#FFB800;
-  --white:#FFFFFF;
-  --section-pad:8rem;
-}
 
 body{
   font-family:'Sora',sans-serif;
