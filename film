@@ -4,6 +4,7 @@
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 <title>Film & Entertainment - Savvy Media Africa</title>
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -758,7 +759,7 @@ const filmProjects = [
     id:'avatar',
     title:'Avatar: The Way of Water',
     category:'pr',
-    image:'/assets/img/avater.png',
+    image:'/assets/img/avatar-premiere.webp',
     img2:'/assets/img/avater.png',
     img3:'/assets/img/avater.png',
     client:'20th Century Studios',
