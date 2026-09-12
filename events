@@ -58,20 +58,111 @@ body{
 
 /* ========== INDEX CARDS ========== */
 .index-section{padding:4rem 2rem 2rem;background:var(--deep-navy)}
-.index-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:2rem;max-width:1100px;margin:0 auto}
-.index-card{display:flex;gap:1.4rem;align-items:center;padding:1.4rem;border-radius:18px;background:rgba(255,255,255,.04);border:1px solid rgba(0,212,255,.15);text-decoration:none;color:inherit;transition:.35s}
-.index-card:hover{border-color:rgba(0,212,255,.45);transform:translateY(-6px);box-shadow:0 20px 50px rgba(0,212,255,.18)}
-.index-thumb{width:96px;height:96px;border-radius:14px;overflow:hidden;flex-shrink:0;background:var(--navy)}
-.index-thumb img{width:100%;height:100%;object-fit:cover;object-position:center 22%}
-.index-cat{font-size:.72rem;color:var(--bright-green);text-transform:uppercase;letter-spacing:2px;font-weight:700;display:block;margin-bottom:.35rem}
-.index-title{font-size:1.2rem;font-weight:700;line-height:1.25;margin-bottom:.3rem}
-.index-meta{font-size:.82rem;color:rgba(255,255,255,.6);line-height:1.5}
+.index-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:2.5rem;max-width:1300px;margin:0 auto}
+
+/* Full cards, not thumbnail rows - these are the entry points to the
+   two projects, so they carry a real image and a visible affordance. */
+.index-card{
+  display:flex;flex-direction:column;
+  border-radius:22px;overflow:hidden;
+  background:rgba(255,255,255,.04);
+  border:1px solid rgba(0,212,255,.18);
+  text-decoration:none;color:inherit;
+  transition:transform .4s ease,border-color .4s ease,box-shadow .4s ease;
+}
+.index-card:hover,
+.index-card:focus-visible{
+  border-color:rgba(0,212,255,.5);
+  transform:translateY(-10px);
+  box-shadow:0 28px 70px rgba(0,212,255,.22);
+  outline:none;
+}
+/* card whose project is currently open */
+.index-card[aria-expanded="true"]{
+  border-color:var(--bright-cyan);
+  box-shadow:0 20px 55px rgba(0,212,255,.28);
+}
+.index-thumb{width:100%;aspect-ratio:16/10;overflow:hidden;background:var(--navy);position:relative}
+.index-thumb::after{
+  content:'';position:absolute;inset:0;z-index:2;pointer-events:none;
+  background:linear-gradient(180deg,rgba(0,29,61,0) 45%,rgba(0,29,61,.7) 100%);
+}
+.index-thumb img{width:100%;height:100%;object-fit:cover;object-position:center 22%;transition:transform .6s ease}
+.index-card:hover .index-thumb img{transform:scale(1.07)}
+
+.index-body{padding:2rem 2.2rem 2.2rem}
+.index-cat{
+  font-size:.75rem;color:var(--bright-green);text-transform:uppercase;
+  letter-spacing:2px;font-weight:700;display:inline-block;
+  background:rgba(0,255,136,.12);padding:.45rem 1rem;border-radius:999px;
+  margin-bottom:1rem;
+}
+.index-title{font-size:clamp(1.45rem,2.2vw,1.95rem);font-weight:700;line-height:1.2;margin-bottom:.6rem}
+.index-meta{font-size:.95rem;color:rgba(255,255,255,.68);line-height:1.6;margin-bottom:1.4rem}
+
+/* explicit "this is a link" cue */
+.index-cta{
+  display:inline-flex;align-items:center;gap:.6rem;
+  font-size:.95rem;font-weight:700;color:var(--bright-cyan);
+  letter-spacing:.02em;
+}
+.index-cta i{transition:transform .3s ease}
+.index-card:hover .index-cta i{transform:translateX(6px)}
 
 /* ========== ENTRY SECTIONS ========== */
-.entry{padding:6rem 2rem;border-top:2px solid rgba(0,212,255,.18)}
+/* Collapsed until its card is clicked */
+.entry{
+  display:none;
+  padding:6rem 2rem;
+  border-top:2px solid rgba(0,212,255,.18);
+}
+.entry.open{display:block;animation:revealEntry .7s ease forwards}
+@keyframes revealEntry{from{opacity:0}to{opacity:1}}
+
+/* Staggered reveal driven purely by CSS, so nothing can be left
+   stranded at opacity 0 if a scroll trigger never fires. */
+@keyframes riseIn{from{opacity:0;transform:translateY(26px)}to{opacity:1;transform:none}}
+.entry.open .detail-box,
+.entry.open .stat,
+.entry.open .pillar,
+.entry.open .scope-list li,
+.entry.open .gallery-grid figure{
+  animation:riseIn .5s ease both;
+}
+.entry.open .detail-box:nth-child(2){animation-delay:.06s}
+.entry.open .detail-box:nth-child(3){animation-delay:.12s}
+.entry.open .stat:nth-child(2){animation-delay:.06s}
+.entry.open .stat:nth-child(3){animation-delay:.12s}
+.entry.open .pillar:nth-child(2){animation-delay:.08s}
+.entry.open .pillar:nth-child(3){animation-delay:.16s}
+.entry.open .gallery-grid figure:nth-child(2){animation-delay:.05s}
+.entry.open .gallery-grid figure:nth-child(3){animation-delay:.1s}
+.entry.open .gallery-grid figure:nth-child(4){animation-delay:.15s}
+.entry.open .gallery-grid figure:nth-child(n+5){animation-delay:.2s}
+
+@media (prefers-reduced-motion:reduce){
+  .entry.open .detail-box,
+  .entry.open .stat,
+  .entry.open .pillar,
+  .entry.open .scope-list li,
+  .entry.open .gallery-grid figure{animation:none}
+  .entry.open{animation:none}
+}
 .entry:nth-of-type(odd){background:var(--navy)}
 .entry:nth-of-type(even){background:var(--deep-navy)}
 .entry-inner{max-width:1200px;margin:0 auto}
+
+/* collapse control at the end of an open entry */
+.entry-close{
+  display:inline-flex;align-items:center;gap:.6rem;
+  margin-top:3rem;padding:.9rem 1.8rem;
+  border-radius:999px;border:1px solid rgba(0,212,255,.3);
+  background:rgba(0,212,255,.1);color:var(--bright-cyan);
+  font-family:'Sora',sans-serif;font-size:.92rem;font-weight:700;
+  cursor:pointer;transition:.3s;
+  -webkit-tap-highlight-color:transparent;
+}
+.entry-close:hover{background:rgba(0,212,255,.18);border-color:rgba(0,212,255,.5)}
 
 .entry-head{margin-bottom:3rem}
 .entry-client{color:var(--bright-cyan);font-weight:700;text-transform:uppercase;letter-spacing:2px;font-size:.85rem;display:inline-block;background:rgba(0,212,255,.15);padding:.7rem 1.6rem;border-radius:999px;border:1px solid rgba(0,212,255,.3);margin-bottom:1.2rem}
@@ -213,20 +304,28 @@ body{
 <!-- ========== INDEX ========== -->
 <section class="index-section">
   <div class="index-grid">
-    <a class="index-card" href="#africa-re-sendforth">
-      <div class="index-thumb"><img src="/assets/img/africa-re-sendforth-1.jpg" alt="" width="1000" height="750" loading="lazy" decoding="async"></div>
-      <div>
+    <a class="index-card" href="#africa-re-sendforth"
+       aria-controls="africa-re-sendforth" aria-expanded="false">
+      <div class="index-thumb">
+        <img src="/assets/img/africa-re-sendforth-1.jpg" alt="Africa Re Executive Send-Forth Ceremony" width="1000" height="750" loading="lazy" decoding="async">
+      </div>
+      <div class="index-body">
         <span class="index-cat">Institutional Events</span>
-        <div class="index-title">Executive Send-Forth Ceremony</div>
-        <div class="index-meta">Africa Re &middot; Ikoyi, Lagos &middot; June 2025</div>
+        <h3 class="index-title">Executive Send-Forth Ceremony</h3>
+        <p class="index-meta">Africa Re &middot; The Colonnades Hotel, Ikoyi, Lagos &middot; June 2025 &middot; 200 Guests</p>
+        <span class="index-cta"><span class="index-cta-text">View the project</span> <i class="fas fa-arrow-right"></i></span>
       </div>
     </a>
-    <a class="index-card" href="#taef-afretrade">
-      <div class="index-thumb"><img src="/assets/img/taef-afretrade-1.jpg" alt="" width="1024" height="1280" loading="lazy" decoding="async"></div>
-      <div>
+    <a class="index-card" href="#taef-afretrade"
+       aria-controls="taef-afretrade" aria-expanded="false">
+      <div class="index-thumb">
+        <img src="/assets/img/taef-afretrade-1.jpg" alt="TAEF Afretrade Entrepreneur's Festival" width="1024" height="1280" loading="lazy" decoding="async">
+      </div>
+      <div class="index-body">
         <span class="index-cat">Continental Summits</span>
-        <div class="index-title">Afretrade Entrepreneur's Festival</div>
-        <div class="index-meta">TAEF &middot; Lagos, Nigeria &middot; 465K+ reach</div>
+        <h3 class="index-title">Afretrade Entrepreneur's Festival</h3>
+        <p class="index-meta">TAEF &middot; Lagos, Nigeria &middot; 465K+ total reach &middot; 3 delivery pillars</p>
+        <span class="index-cta"><span class="index-cta-text">View the project</span> <i class="fas fa-arrow-right"></i></span>
       </div>
     </a>
   </div>
@@ -299,16 +398,21 @@ body{
     <div class="gallery-block">
       <div class="gallery-heading">
         <h3>On the night</h3>
-        <span class="gallery-count">5 photographs</span>
+        <span class="gallery-count">4 photographs</span>
       </div>
+      <!-- sendforth-1 is the hero above and near-identical to -2, so the
+           gallery runs -2, -4, -3, -5: exactly one row of four -->
       <div class="gallery-grid" data-gallery="africa-re">
-        <figure><img src="/assets/img/africa-re-sendforth-1.jpg" alt="Main hall and stage" loading="lazy" decoding="async"></figure>
         <figure><img src="/assets/img/africa-re-sendforth-2.jpg" alt="Ceremony on the main screen" loading="lazy" decoding="async"></figure>
         <figure><img src="/assets/img/africa-re-sendforth-4.jpg" alt="Stage and table settings" loading="lazy" decoding="async"></figure>
         <figure><img src="/assets/img/africa-re-sendforth-3.jpg" alt="Branded guest activation" loading="lazy" decoding="async"></figure>
         <figure><img src="/assets/img/africa-re-sendforth-5.jpg" alt="Venue build and set construction" loading="lazy" decoding="async"></figure>
       </div>
     </div>
+
+    <button class="entry-close" type="button" data-close="africa-re-sendforth">
+      <i class="fas fa-chevron-up"></i> Close this project
+    </button>
 
   </div>
 </section>
@@ -401,6 +505,10 @@ body{
       </div>
     </div>
 
+    <button class="entry-close" type="button" data-close="taef-afretrade">
+      <i class="fas fa-chevron-up"></i> Close this project
+    </button>
+
   </div>
 </section>
 
@@ -429,6 +537,78 @@ body{
 
 <script>
 gsap.registerPlugin(ScrollTrigger);
+
+/* ---------- project open/close ----------
+   Entries are collapsed until their card is clicked. One open at a
+   time; clicking the open card again collapses it. The hash is kept
+   in sync so a link straight to #taef-afretrade still works. */
+(function(){
+  const cards = [...document.querySelectorAll('.index-card')];
+  const entries = [...document.querySelectorAll('.entry')];
+
+  function cardFor(id){ return cards.find(c => c.getAttribute('aria-controls') === id); }
+
+  function setLabel(card, isOpen){
+    const t = card.querySelector('.index-cta-text');
+    const i = card.querySelector('.index-cta i');
+    if (t) t.textContent = isOpen ? 'Hide the project' : 'View the project';
+    if (i) i.className = isOpen ? 'fas fa-chevron-up' : 'fas fa-arrow-right';
+  }
+
+  function closeAll(){
+    entries.forEach(e => e.classList.remove('open'));
+    cards.forEach(c => { c.setAttribute('aria-expanded','false'); setLabel(c,false); });
+  }
+
+  function open(id, scroll){
+    const entry = document.getElementById(id);
+    const card = cardFor(id);
+    if (!entry || !card) return;
+    closeAll();
+    entry.classList.add('open');
+    card.setAttribute('aria-expanded','true');
+    setLabel(card, true);
+    /* images inside were display:none, so nudge ScrollTrigger */
+    if (window.ScrollTrigger) ScrollTrigger.refresh();
+    if (scroll) setTimeout(()=>entry.scrollIntoView({behavior:'smooth',block:'start'}), 60);
+  }
+
+  function close(id){
+    const entry = document.getElementById(id);
+    const card = cardFor(id);
+    if (entry) entry.classList.remove('open');
+    if (card){
+      card.setAttribute('aria-expanded','false');
+      setLabel(card,false);
+      card.scrollIntoView({behavior:'smooth',block:'center'});
+    }
+    if (history.replaceState) history.replaceState(null,'',location.pathname);
+  }
+
+  cards.forEach(card => {
+    card.addEventListener('click', e => {
+      e.preventDefault();
+      const id = card.getAttribute('aria-controls');
+      if (card.getAttribute('aria-expanded') === 'true') { close(id); return; }
+      open(id, true);
+      if (history.replaceState) history.replaceState(null,'','#'+id);
+    });
+  });
+
+  document.querySelectorAll('.entry-close').forEach(btn => {
+    btn.addEventListener('click', () => close(btn.dataset.close));
+  });
+
+  /* deep link: /events#taef-afretrade opens that project. Also runs on
+     hashchange, since a hash-only change is a same-document navigation
+     and would not re-run this script. */
+  function openFromHash(scroll){
+    const id = location.hash.replace('#','');
+    if (id && document.getElementById(id) && cardFor(id)) open(id, scroll);
+  }
+  window.addEventListener('hashchange', () => openFromHash(true));
+  openFromHash(true);
+})();
 
 /* ---------- lightbox ---------- */
 (function(){
@@ -515,10 +695,14 @@ gsap.utils.toArray('[data-parallax]').forEach(el=>{
   gsap.to(el,{y:amt,scrollTrigger:{trigger:'.hero',start:'top top',end:'bottom top',scrub:1}});
 });
 
-gsap.utils.toArray('.index-card, .detail-box, .stat, .pillar, .gallery-grid figure').forEach((el,i)=>{
+/* Only the index cards get a scroll-triggered reveal. Everything inside
+   an entry animates from CSS on .open instead - a gsap.from() sets
+   opacity:0 in JS and depends on ScrollTrigger firing, which is not
+   guaranteed for content that starts inside a display:none section. */
+gsap.utils.toArray('.index-card').forEach((el,i)=>{
   gsap.from(el,{
-    scrollTrigger:{trigger:el,start:'top 92%'},
-    y:34,opacity:0,duration:.55,delay:(i%6)*0.04,ease:'power2.out'
+    scrollTrigger:{trigger:el,start:'top 95%',once:true},
+    y:34,opacity:0,duration:.55,delay:i*0.08,ease:'power2.out'
   });
 });
 
