@@ -675,3 +675,141 @@ footer{
     color:var(--bright-cyan);
   }
 }
+
+/* ==========================================================
+   MOBILE FIXES — added after device testing (iPhone 390px)
+   ========================================================== */
+
+/* 1. Horizontal scroll guard.
+   body{overflow-x:hidden} alone does not stop the html element
+   scrolling, which let a 420px decorative circle drag the whole
+   page sideways on a 390px screen. */
+html{
+  overflow-x:hidden;
+  max-width:100%;
+}
+
+/* 2. Flex children must be allowed to shrink.
+   Default min-width:auto meant a long email address forced
+   .contact-text wider than its container and pushed the page out. */
+.contact-item > *,
+.contact-text,
+.footer-links li{
+  min-width:0;
+}
+.contact-text a,
+.footer-links a{
+  overflow-wrap:anywhere;
+}
+
+/* 3. Logo: readable on the dark nav, and visible on mobile.
+   whitelogo.png has a solid white background, so on the navy nav it
+   read as a bare white rectangle. Presenting it as a rounded white
+   chip makes that deliberate; on the scrolled (white) nav the chip
+   disappears and the mark sits directly on the background. */
+nav .nav-logo{
+  display:inline-flex;
+}
+nav .nav-logo img{
+  height:42px;
+  width:auto;
+  display:block;
+  background:#fff;
+  padding:5px 9px;
+  border-radius:10px;
+}
+nav.scrolled .nav-logo img{
+  background:transparent;
+  padding:0;
+  border-radius:0;
+  height:36px;
+}
+
+/* 4. Tap targets — the search and menu buttons were 22x26 and 20x26,
+   well under the 44px minimum for comfortable touch. */
+/* Size only — do NOT set display here, or it overrides the
+   display:none that keeps the burger off desktop. */
+nav .nav-search,
+nav .mobile-menu-btn{
+  min-width:44px;
+  min-height:44px;
+  align-items:center;
+  justify-content:center;
+  padding:0;
+}
+
+@media (max-width:768px){
+  nav .nav-search,
+  nav .mobile-menu-btn{
+    display:inline-flex;
+  }
+}
+
+/* Mobile drawer links were 31px tall */
+.mobile-menu a{
+  display:block;
+  padding:.55rem 0;
+  min-height:44px;
+  line-height:1.7;
+}
+
+/* Search modal close button was 24x37 */
+.search-close{
+  min-width:44px;
+  min-height:44px;
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+}
+
+/* Footer links were 18px tall */
+.footer-links a,
+.social-link{
+  display:inline-flex;
+  align-items:center;
+  min-height:40px;
+}
+
+/* 5. Keep media inside its box on small screens */
+img,
+svg,
+video{
+  max-width:100%;
+  height:auto;
+}
+
+/* 6. Visible keyboard focus (there was none) */
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible{
+  outline:2px solid var(--bright-cyan);
+  outline-offset:3px;
+}
+
+@media (prefers-reduced-motion:reduce){
+  *{
+    animation-duration:.01ms !important;
+    animation-iteration-count:1 !important;
+    transition-duration:.01ms !important;
+    scroll-behavior:auto !important;
+  }
+}
+
+/* 7. Mobile drawer submenu stacked under its parent.
+   It was flex-direction:row, so "Work" and its three child links sat
+   side by side and every label wrapped onto 2-3 lines. */
+.mobile-menu .has-dropdown{
+  display:flex;
+  flex-direction:column;
+  align-items:flex-start;
+}
+.mobile-menu .mobile-sub{
+  width:100%;
+  margin-top:.5rem;
+  padding-left:1rem;
+}
+.mobile-menu .mobile-sub a{
+  white-space:normal;
+}

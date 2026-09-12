@@ -12,7 +12,7 @@
 
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"/>
-<link rel="stylesheet" href="/assets/css/savvy.css">
+<link rel="stylesheet" href="/assets/css/savvy.css?v=202609122144">
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
@@ -1037,8 +1037,8 @@ footer{
     bottom:-120px;
     left:50%;
     transform:translateX(-50%);
-    width:420px;
-    height:420px;
+    width:min(420px,100vw);
+    height:min(420px,100vw);
     background:radial-gradient(
       circle,
       rgba(0,212,255,.25) 0%,
@@ -1069,11 +1069,6 @@ footer{
   nav .nav-container{
     justify-content:flex-end;
     gap:1.2rem;
-  }
-  
-  /* Hide logo on mobile until scrolled */
-  .nav-logo{
-    display:none;
   }
   
   /* Show icons on mobile */
@@ -1561,7 +1556,7 @@ body.capture-mode .quote-section{
   <div class="inner"><span class="pct" id="scrollPct">0%</span></div>
 </button>
 
-<script src="/assets/js/include.js"></script>
+<script src="/assets/js/include.js?v=202609122144"></script>
 <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
 <script>
 /* Custom cursor (independent of header/footer) */
@@ -1600,89 +1595,11 @@ document.addEventListener('mouseout',(e)=>{
   }
 });
 
-/* Init all header-related JS after header.html is injected */
-function initHeaderStuff(){
-  const nav=document.getElementById('nav');
-  const mobileMenuBtn=document.getElementById('mobileMenuBtn');
-  const mobileMenu=document.getElementById('mobileMenu');
-  const mobileMenuOverlay=document.getElementById('mobileMenuOverlay');
-  const mobileMenuLinks=document.querySelectorAll('.mobile-menu a');
-
-  const navSearch=document.getElementById('navSearch');
-  const searchOverlay=document.getElementById('searchOverlay');
-  const searchModal=document.getElementById('searchModal');
-  const searchClose=document.getElementById('searchClose');
-  const searchInput=document.getElementById('searchInput');
-  const searchResults=document.getElementById('searchResults');
-
-  if(nav){
-    window.addEventListener('scroll',()=>{
-      window.scrollY>100?nav.classList.add('scrolled'):nav.classList.remove('scrolled');
-    });
-  }
-
-  function closeMobileMenu(){
-    if(!mobileMenu || !mobileMenuOverlay) return;
-    mobileMenu.classList.remove('open');
-    mobileMenuOverlay.classList.remove('open');
-    document.body.style.overflow='auto';
-  }
-  function openMobileMenu(){
-    if(!mobileMenu || !mobileMenuOverlay) return;
-    mobileMenu.classList.add('open');
-    mobileMenuOverlay.classList.add('open');
-    document.body.style.overflow='hidden';
-  }
-
-  if(mobileMenuBtn && mobileMenu && mobileMenuOverlay){
-    mobileMenuBtn.addEventListener('click',()=>{
-      mobileMenu.classList.contains('open')?closeMobileMenu():openMobileMenu();
-    });
-    mobileMenuOverlay.addEventListener('click',closeMobileMenu);
-    mobileMenuLinks.forEach(link=>link.addEventListener('click',closeMobileMenu));
-  }
-
-  const searchIndex=[
-    {title:'Work',text:'Projects That Made Waves',url:'#work'},
-    {title:'Services',text:'Creative Campaigns, Media Distribution',url:'#services'},
-    {title:'About',text:'Our Story Values Team',url:'/about'},
-    {title:'Contact',text:'Ready to Make Waves',url:'#contact'},
-  ];
-
-  function performSearch(q){
-    if(!searchResults) return;
-    if(!q.trim()){searchResults.innerHTML='';return;}
-    const s=q.toLowerCase();
-    const r=searchIndex.filter(i=>i.title.toLowerCase().includes(s)||i.text.toLowerCase().includes(s));
-    if(r.length===0){
-      searchResults.innerHTML='<p style="color:rgba(255,255,255,.6);margin-top:2rem">No results found</p>';
-      return;
-    }
-    searchResults.innerHTML=r.map(i=>`<a href="${i.url}" class="search-result-item" onclick="document.getElementById('searchOverlay').click()"><h3 style="color:var(--bright-cyan)">${i.title}</h3><p style="color:rgba(255,255,255,.7)">${i.text}</p></a>`).join('');
-  }
-
-  function openSearch(){
-    if(!searchOverlay || !searchModal) return;
-    searchOverlay.classList.add('open');
-    searchModal.classList.add('open');
-    document.body.style.overflow='hidden';
-    if(searchInput) setTimeout(()=>searchInput.focus(),300);
-  }
-  function closeSearch(){
-    if(!searchOverlay || !searchModal) return;
-    searchOverlay.classList.remove('open');
-    searchModal.classList.remove('open');
-    document.body.style.overflow='auto';
-    if(searchInput) searchInput.value='';
-    if(searchResults) searchResults.innerHTML='';
-  }
-
-  if(navSearch) navSearch.addEventListener('click',openSearch);
-  if(searchClose) searchClose.addEventListener('click',closeSearch);
-  if(searchOverlay) searchOverlay.addEventListener('click',closeSearch);
-  if(searchInput) searchInput.addEventListener('input',(e)=>performSearch(e.target.value));
-  document.addEventListener('keydown',(e)=>{if(e.key==='Escape'&&searchModal && searchModal.classList.contains('open')){closeSearch();}});
-
+/* Smooth-scroll for in-page anchors.
+   Nav, mobile menu and search are handled globally by include.js —
+   this page used to duplicate them, which double-toggled the burger
+   and left the mobile menu unable to open. */
+document.addEventListener('headerLoaded', function(){
   document.querySelectorAll('a[href^="#"]').forEach(a=>{
     a.addEventListener('click',e=>{
       const target=document.querySelector(a.getAttribute('href'));
@@ -1692,10 +1609,7 @@ function initHeaderStuff(){
       }
     });
   });
-}
-
-/* include.js should dispatch this when header.html is loaded */
-document.addEventListener('headerLoaded',initHeaderStuff);
+});
 
 /* GSAP & scroll animations */
 gsap.registerPlugin(ScrollTrigger);
@@ -1812,46 +1726,6 @@ const caseSwiper=new Swiper('.caseSwiper',{
   breakpoints:{768:{slidesPerView:2},1024:{slidesPerView:3}}
 });
 
-// mobile submenu toggle (works after include injection)
-(function(){
-  const mobileSubToggles = document.querySelectorAll('.mobile-sub-toggle');
-  mobileSubToggles.forEach(btn=>{
-    btn.addEventListener('click', ()=>{
-      const id = btn.getAttribute('aria-controls');
-      const ul = document.getElementById(id);
-      if(!ul) return;
-      const expanded = btn.getAttribute('aria-expanded') === 'true';
-      btn.setAttribute('aria-expanded', String(!expanded));
-      ul.hidden = expanded;
-      const ind = btn.querySelector('.mobile-sub-indicator');
-      if(ind) ind.textContent = expanded ? '+' : '−';
-    });
-  });
-
-  const mobileMenuClose = document.getElementById('mobileMenuClose');
-  const mobileMenuOverlay = document.getElementById('mobileMenuOverlay');
-  const mobileMenu = document.getElementById('mobileMenu');
-  const mobileMenuBtn = document.getElementById('mobileMenuBtn');
-
-  function closeMobile(){
-    if(mobileMenu) mobileMenu.classList.remove('open');
-    if(mobileMenuOverlay) mobileMenuOverlay.classList.remove('open');
-    document.body.style.overflow = '';
-  }
-  function openMobile(){
-    if(mobileMenu) mobileMenu.classList.add('open');
-    if(mobileMenuOverlay) mobileMenuOverlay.classList.add('open');
-    document.body.style.overflow = 'hidden';
-  }
-
-  if(mobileMenuBtn) mobileMenuBtn.addEventListener('click', openMobile);
-  if(mobileMenuOverlay) mobileMenuOverlay.addEventListener('click', closeMobile);
-  if(mobileMenuClose) mobileMenuClose.addEventListener('click', closeMobile);
-
-  document.querySelectorAll('.mobile-menu a').forEach(a=>{
-    a.addEventListener('click', () => closeMobile());
-  });
-})();
 
 </script>
 

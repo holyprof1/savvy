@@ -11,7 +11,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-<link rel="stylesheet" href="/assets/css/savvy.css">
+<link rel="stylesheet" href="/assets/css/savvy.css?v=202609122144">
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
@@ -1329,36 +1329,7 @@ if (nav) {
   });
 }
 
-  // Mobile Menu
- const mobileMenuBtn = document.getElementById('mobileMenuBtn');
-const mobileMenu = document.getElementById('mobileMenu');
-const mobileMenuOverlay = document.getElementById('mobileMenuOverlay');
-
-if (mobileMenuBtn && mobileMenu && mobileMenuOverlay) {
-
-  const mobileMenuLinks = document.querySelectorAll('.mobile-menu a');
-
-  function closeMobileMenu(){
-    mobileMenu.classList.remove('open');
-    mobileMenuOverlay.classList.remove('open');
-    document.body.style.overflow = 'auto';
-  }
-
-  mobileMenuBtn.addEventListener('click', ()=>{
-    if(mobileMenu.classList.contains('open')){
-      closeMobileMenu();
-    } else {
-      mobileMenu.classList.add('open');
-      mobileMenuOverlay.classList.add('open');
-      document.body.style.overflow = 'hidden';
-    }
-  });
-
-  mobileMenuOverlay.addEventListener('click', closeMobileMenu);
-  mobileMenuLinks.forEach(link =>
-    link.addEventListener('click', closeMobileMenu)
-  );
-}
+  // Nav, mobile menu and search are handled globally by include.js
 
 
   // GSAP Animations
@@ -1435,6 +1406,6 @@ if (mobileMenuBtn && mobileMenu && mobileMenuOverlay) {
   window.addEventListener('scroll',setScrollProgress,{passive:true});
   scrollBtn.addEventListener('click',()=>scrollTo({top:0,behavior:'smooth'}));
 </script>
-<script src="/assets/js/include.js"></script>
+<script src="/assets/js/include.js?v=202609122144"></script>
 </body>
 </html>

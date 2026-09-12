@@ -12,7 +12,7 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
 <!-- Global header/footer + nav styles -->
-<link rel="stylesheet" href="/assets/css/savvy.css">
+<link rel="stylesheet" href="/assets/css/savvy.css?v=202609122144">
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
@@ -990,7 +990,7 @@ renderDetails();
 </script>
 
 <!-- load header/footer includes -->
-<script src="/assets/js/include.js"></script>
+<script src="/assets/js/include.js?v=202609122144"></script>
 
 <!-- header scroll behaviour (waits until header.html is injected) -->
 <script>
