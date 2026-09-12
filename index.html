@@ -703,6 +703,10 @@ nav.scrolled .nav-links .dropdown a{
   gap:3rem;
   margin-top:1.8rem;
 }
+/* 7 cards in a 3-col grid leave one alone on the last row - centre it */
+.services-grid > .service-card:last-child:nth-child(3n+1){
+  grid-column:2;
+}
 .service-card{
   background:rgba(255,255,255,.04);
   backdrop-filter:blur(10px);
@@ -1021,6 +1025,8 @@ footer{
 /* Responsive */
 @media (max-width:1200px){
   .services-grid{grid-template-columns:repeat(2,1fr)}
+  /* no centre column to sit in below 3 columns */
+  .services-grid > .service-card:last-child:nth-child(3n+1){grid-column:auto}
 }
 @media (max-width:1024px){
   nav{padding:1.4rem 2rem}
@@ -1463,6 +1469,11 @@ body.capture-mode .quote-section{
         <h3 class="service-title">Community Building</h3>
         <p class="service-description">We build engaged communities through authentic storytelling and meaningful experiences.</p>
       </div>
+      <div class="service-card">
+        <div class="service-icon"><i class="fas fa-champagne-glasses"></i></div>
+        <h3 class="service-title">Experiential Events &amp; Production</h3>
+        <p class="service-description">End-to-end event management for high-profile institutions, brands, and private clients. From concept and vendor coordination to on-ground execution — we produce experiences that reflect the calibre of the people in the room.</p>
+      </div>
     </div>
   </div>
 </section>
@@ -1512,6 +1523,17 @@ body.capture-mode .quote-section{
                 <h3 class="case-title">Consumer Brand Campaigns</h3>
                 <p class="case-description">We use authentic, culture-led storytelling to turn emerging brands into household names and generate real, measurable engagement.</p>
                 <a href="/consumer" class="case-link">See More <i class="fas fa-arrow-right"></i></a>
+              </div>
+            </div>
+          </div>
+          <div class="swiper-slide">
+            <div class="case-card">
+              <div class="case-image-wrapper"><img class="case-image" src="/assets/img/events-tile.jpg" alt="Events &amp; Experiential" width="1000" height="750" loading="lazy" decoding="async"></div>
+              <div class="case-content">
+                <span class="case-tag">Events &amp; Experiential</span>
+                <h3 class="case-title">High-Protocol Event Production</h3>
+                <p class="case-description">From institutional send-forths to continental summits — we produce events that reflect the calibre of the people in the room.</p>
+                <a href="/events" class="case-link">See More <i class="fas fa-arrow-right"></i></a>
               </div>
             </div>
           </div>

@@ -1,0 +1,436 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Events &amp; Experiential Programmes - Savvy Media Africa</title>
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<meta name="description" content="High-protocol event production for institutions, brands, and international audiences across Africa.">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+<!-- Global header/footer + nav styles -->
+<link rel="stylesheet" href="/assets/css/savvy.css">
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+
+body{
+  font-family:'Sora',sans-serif;
+  color:var(--white);
+  background:var(--deep-navy);
+  overflow-x:hidden;
+  line-height:1.6;
+  font-weight:400;
+  cursor:none;
+}
+
+.cursor{position:fixed;width:8px;height:8px;border-radius:50%;background:var(--bright-cyan);pointer-events:none;z-index:99999;opacity:.8;transition:transform .1s ease;mix-blend-mode:screen;box-shadow:0 0 12px var(--bright-cyan),0 0 24px rgba(0,212,255,.5)}
+.cursor-follower{position:fixed;width:32px;height:32px;border-radius:50%;border:1.5px solid var(--bright-cyan);pointer-events:none;z-index:99998;opacity:.4;transition:all .25s ease;box-shadow:inset 0 0 8px rgba(0,212,255,.3)}
+
+/* ========== HERO ========== */
+.hero{min-height:90vh;display:flex;flex-direction:column;align-items:center;justify-content:center;position:relative;padding:12rem 4rem 6rem;overflow:hidden;background:linear-gradient(135deg,var(--deep-navy) 0%,var(--navy) 100%)}
+.floating-shape{position:absolute;border-radius:50%;filter:blur(120px);opacity:.12;pointer-events:none;animation:float 20s ease-in-out infinite;z-index:0}
+.shape-1{width:700px;height:700px;background:linear-gradient(135deg,var(--bright-cyan),var(--cyan));top:10%;left:5%}
+.shape-2{width:600px;height:600px;background:linear-gradient(135deg,var(--orange),var(--yellow));bottom:6%;right:5%;animation-delay:-10s}
+@keyframes float{0%,100%{transform:translate(0,0) scale(1)}25%{transform:translate(50px,-50px) scale(1.1)}50%{transform:translate(80px,-80px) scale(1.2)}75%{transform:translate(30px,-40px) scale(1.15)}}
+.hero-content{text-align:center;max-width:1600px;position:relative;z-index:2}
+.hero-title{font-family:'Sora',sans-serif;font-size:clamp(2.8rem,9vw,7rem);font-weight:500;line-height:1.05;margin-bottom:2rem}
+.title-line{display:block;margin-bottom:.8rem}
+.word{display:inline-block;margin-right:.25em;position:relative;opacity:0;transform:translate3d(0,100px,0) scale(.9) rotate(4deg)}
+.word.cyan{color:var(--bright-cyan)}
+.word.green{color:var(--bright-green)}
+.hero-subtitle{font-size:clamp(1rem,2vw,1.3rem);color:rgba(255,255,255,.9);max-width:900px;margin:1.5rem auto 0;line-height:1.9;opacity:0;font-weight:400}
+
+/* ========== PORTFOLIO GRID ========== */
+.portfolio-section{padding:5rem 2rem;background:var(--deep-navy)}
+.section-label{display:inline-block;background:linear-gradient(135deg,var(--orange),var(--yellow));color:var(--deep-navy);padding:.8rem 1.8rem;border-radius:999px;font-size:.85rem;font-weight:600;text-transform:uppercase;letter-spacing:2px;margin-bottom:1.5rem}
+.section-title{font-size:clamp(2.5rem,6vw,4.5rem);font-weight:600;margin-bottom:.8rem;text-align:center;line-height:1.1}
+.section-subtitle{font-size:1.2rem;color:rgba(255,255,255,.85);text-align:center;max-width:900px;margin:0 auto 4rem;font-weight:400;line-height:1.8}
+
+/* Two entries read better as a 2-up grid than a sparse 3-up */
+.portfolio-grid{
+  display:grid;
+  grid-template-columns:repeat(2,minmax(0,1fr));
+  gap:2.5rem;
+  max-width:1100px;
+  margin:0 auto;
+}
+
+.portfolio-card{position:relative;border-radius:18px;overflow:hidden;background:rgba(255,255,255,.04);backdrop-filter:blur(10px);border:1px solid rgba(0,212,255,.15);transition:.45s;opacity:0;transform:translateY(50px);cursor:pointer;display:flex;flex-direction:column;height:100%}
+.portfolio-card::before{content:'';position:absolute;inset:0;background:linear-gradient(135deg,rgba(0,212,255,.2) 0%,rgba(255,107,53,.2) 100%);opacity:0;transition:.45s;pointer-events:none;z-index:3}
+.portfolio-card:hover{border-color:rgba(0,212,255,.4);transform:translateY(-15px);box-shadow:0 25px 70px rgba(0,212,255,.25)}
+.portfolio-card:hover::before{opacity:1}
+.portfolio-image{width:100%;overflow:hidden;position:relative;background:var(--navy);flex-shrink:0;aspect-ratio:1/1}
+.portfolio-image::after{content:'';position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,0) 0%,rgba(0,29,61,.4) 100%);z-index:2;pointer-events:none}
+/* object-position favours the upper third so faces survive the square crop */
+.portfolio-image img{width:100%;height:100%;object-fit:cover;object-position:center 22%;transition:transform .6s;position:relative;z-index:1}
+.portfolio-card:hover .portfolio-image img{transform:scale(1.1)}
+.portfolio-info{padding:2.5rem;position:relative;z-index:2;flex:1;display:flex;flex-direction:column;background:linear-gradient(180deg,rgba(0,29,61,.3) 0%,rgba(0,29,61,.85) 100%)}
+.portfolio-category{font-size:.8rem;color:var(--bright-green);text-transform:uppercase;letter-spacing:2px;font-weight:700;margin-bottom:1rem;display:inline-block;background:rgba(0,255,136,.12);padding:.5rem 1rem;border-radius:999px;width:fit-content}
+.portfolio-title{font-size:1.6rem;font-weight:700;margin-bottom:.6rem;color:var(--white);line-height:1.2}
+.portfolio-meta{font-size:.85rem;color:var(--bright-cyan);font-weight:600;margin-bottom:1rem;line-height:1.6}
+.portfolio-description{font-size:.95rem;color:rgba(255,255,255,.8);line-height:1.7}
+
+/* ========== DETAIL SECTIONS ========== */
+.detail-section{padding:6rem 2rem;background:var(--navy);display:none;opacity:0;border-top:2px solid rgba(0,212,255,.2)}
+.detail-section.active{display:block;animation:revealDetail .8s ease forwards}
+@keyframes revealDetail{to{opacity:1}}
+
+.detail-container{max-width:1200px;margin:0 auto}
+.detail-header{display:grid;grid-template-columns:1fr;gap:3rem;align-items:start;margin-bottom:4rem}
+.detail-images{display:grid;grid-template-columns:1fr;gap:2rem}
+
+/* Source photography is a mix of landscape and 4:5 portrait, so the
+   banner is height-capped and biased upward rather than fixed-tall. */
+.detail-img-main{width:100%;border-radius:18px;overflow:hidden;box-shadow:0 30px 80px rgba(0,0,0,.5);height:clamp(320px,44vw,520px)}
+.detail-img-main img{width:100%;height:100%;object-fit:cover;object-position:center 25%;display:block}
+
+.detail-imgs-small{display:grid;grid-template-columns:1fr 1fr;gap:2rem;margin-top:2rem}
+.detail-img-small{width:100%;height:300px;border-radius:14px;overflow:hidden;box-shadow:0 20px 50px rgba(0,0,0,.4)}
+.detail-img-small img{width:100%;height:100%;object-fit:cover;object-position:center 22%}
+
+.detail-content{width:100%}
+.detail-content h2{font-size:clamp(2.2rem,4vw,3.5rem);font-weight:700;margin-bottom:1rem;line-height:1.2;color:var(--white)}
+.detail-client{color:var(--bright-cyan);font-weight:700;text-transform:uppercase;letter-spacing:2px;margin-bottom:1.5rem;font-size:.9rem;display:inline-block;background:rgba(0,212,255,.15);padding:.8rem 1.8rem;border-radius:999px;border:1px solid rgba(0,212,255,.3)}
+.detail-meta{font-size:1rem;color:rgba(255,255,255,.75);font-weight:500;margin-bottom:1rem;display:flex;align-items:center;gap:.6rem;flex-wrap:wrap}
+.detail-meta i{color:var(--bright-green)}
+
+.detail-boxes{margin-top:2.5rem}
+.detail-box{margin-bottom:2.5rem;padding:2rem;background:rgba(0,212,255,.08);border:1px solid rgba(0,212,255,.2);border-radius:14px;transition:.3s}
+.detail-box:hover{background:rgba(0,212,255,.12);border-color:rgba(0,212,255,.4)}
+.detail-box-label{color:var(--bright-green);font-weight:700;text-transform:uppercase;letter-spacing:2px;margin-bottom:1rem;font-size:.95rem;display:flex;align-items:center;gap:.6rem}
+.detail-box-label::before{content:'\2192';font-size:1.3rem;color:var(--bright-cyan)}
+.detail-box-text{font-size:1.05rem;line-height:1.85;color:rgba(255,255,255,.85)}
+
+.detail-stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:2rem;margin-top:3rem;padding-top:3rem;border-top:1px solid rgba(0,212,255,.15)}
+.detail-stat{background:rgba(0,212,255,.1);border:1px solid rgba(0,212,255,.2);padding:2rem;border-radius:14px;text-align:center;transition:.3s;position:relative;z-index:2;display:flex;flex-direction:column;justify-content:center;align-items:center;min-height:130px;box-sizing:border-box;overflow:hidden}
+.detail-stat:hover{background:rgba(0,212,255,.15);border-color:rgba(0,212,255,.4);transform:translateY(-5px)}
+.detail-stat-number{font-size:clamp(1.1rem,1.6vw,1.6rem);font-weight:700;color:var(--bright-cyan);margin-bottom:.6rem;line-height:1.2;text-align:center;max-width:100%}
+.detail-stat-label{font-size:.85rem;color:rgba(255,255,255,.7);text-transform:uppercase;letter-spacing:1.5px;font-weight:600;text-align:center;line-height:1.4;max-width:100%}
+
+/* ========== CTA ========== */
+.cta-section{padding:8rem 4rem;text-align:center;background:linear-gradient(135deg,var(--bright-cyan),var(--orange));position:relative;overflow:hidden}
+.cta-section::before{content:'';position:absolute;inset:0;background:radial-gradient(circle at 20% 80%,rgba(255,107,53,.3),transparent);pointer-events:none}
+.cta-title{font-size:clamp(2.5rem,7vw,5rem);font-weight:700;margin-bottom:1.5rem;color:var(--deep-navy);position:relative;z-index:2;line-height:1.1}
+.cta-subtitle{font-size:1.35rem;margin-bottom:2.5rem;opacity:.95;color:var(--deep-navy);font-weight:500;position:relative;z-index:2;max-width:800px;margin-left:auto;margin-right:auto;line-height:1.7}
+.btn-primary{background:var(--deep-navy);color:var(--bright-cyan);padding:1.3rem 3.2rem;border-radius:999px;text-decoration:none;font-weight:700;font-size:1.1rem;display:inline-flex;align-items:center;gap:.8rem;box-shadow:0 15px 50px rgba(0,0,0,.3);transition:.3s;border:none;cursor:pointer;position:relative;z-index:2}
+.btn-primary:hover{transform:translateY(-4px);box-shadow:0 20px 60px rgba(0,0,0,.4)}
+
+/* ========== SCROLL TOP ========== */
+.scroll-top{position:fixed;bottom:30px;right:30px;width:70px;height:70px;border-radius:50%;z-index:9000;display:grid;place-items:center;cursor:pointer;background:conic-gradient(var(--bright-cyan) calc(var(--scroll,0)*1%),rgba(0,212,255,.15) 0);box-shadow:0 12px 40px rgba(0,212,255,.4),inset 0 0 0 8px rgba(0,29,61,.6);transform:scale(.85);opacity:0;pointer-events:none;transition:.3s ease;border:none}
+.scroll-top.visible{opacity:1;pointer-events:auto;transform:scale(1)}
+.scroll-top .inner{width:52px;height:52px;border-radius:50%;display:grid;place-items:center;background:var(--navy);color:#fff;font-weight:700}
+.scroll-top .pct{font-size:.9rem}
+
+/* ========== RESPONSIVE ========== */
+@media (max-width:900px){
+  .portfolio-grid{grid-template-columns:1fr;max-width:560px}
+}
+
+@media (max-width:768px){
+  body{cursor:default}
+  .cursor,.cursor-follower{display:none}
+
+  .hero{padding:8rem 1.5rem 4rem}
+  .portfolio-section{padding:3rem 1.5rem}
+  .portfolio-grid{gap:1.5rem}
+  .portfolio-info{padding:1.8rem}
+
+  .detail-section{padding:4rem 1.5rem}
+  .detail-header{gap:2rem}
+  .detail-imgs-small{grid-template-columns:1fr}
+  .detail-img-small{height:260px}
+  .detail-boxes{margin-top:2rem}
+  .detail-box{padding:1.5rem;margin-bottom:1.5rem}
+  .detail-stats{grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:1.5rem;margin-top:2rem;padding-top:2rem}
+  .detail-stat{min-height:110px;padding:1.5rem 1rem}
+  .detail-stat-label{font-size:.75rem}
+
+  .cta-section{padding:4rem 1.5rem}
+}
+</style>
+</head>
+<body>
+
+<!-- Custom Cursor -->
+<div class="cursor"></div>
+<div class="cursor-follower"></div>
+
+<!-- Global header include -->
+<div data-include="/partials/header.html"></div>
+
+<!-- ========== HERO ========== -->
+<section class="hero">
+  <div class="floating-shape shape-1" data-parallax="-12"></div>
+  <div class="floating-shape shape-2" data-parallax="14"></div>
+  <div class="hero-content">
+    <h1 class="hero-title">
+      <div class="title-line"><span class="word">Events &amp;</span></div>
+      <div class="title-line"><span class="word cyan">Experiential</span></div>
+      <div class="title-line"><span class="word green">Programmes</span></div>
+    </h1>
+    <p class="hero-subtitle">High-protocol event production for institutions, brands, and international audiences across Africa.</p>
+  </div>
+</section>
+
+<!-- ========== PORTFOLIO ========== -->
+<section class="portfolio-section">
+  <div style="text-align:center">
+    <span class="section-label">Featured Work</span>
+    <h2 class="section-title">Events We Have Delivered</h2>
+    <p class="section-subtitle">Institutional ceremonies and continental summits, produced end to end.</p>
+  </div>
+  <div class="portfolio-grid" id="portfolioGrid"></div>
+</section>
+
+<!-- ========== DETAILS (ON CARD CLICK) ========== -->
+<div id="detailsContainer"></div>
+
+<!-- ========== CTA ========== -->
+<section class="cta-section">
+  <h2 class="cta-title">Planning a High-Profile Event?</h2>
+  <p class="cta-subtitle">Tell us about it. We'll tell you what it takes to deliver it at the standard it deserves.</p>
+  <a href="mailto:hello@savvymediaafrica.com?subject=Event%20Brief%20-%20Savvy%20Media%20Africa" class="btn-primary">Send Us a Brief <i class="fas fa-arrow-right"></i></a>
+</section>
+
+<!-- Global footer include -->
+<div data-include="/partials/footer.html"></div>
+
+<!-- SCROLL TOP BUTTON -->
+<button class="scroll-top" id="scrollTopBtn" aria-label="Back to top">
+  <div class="inner"><span class="pct" id="scrollPct">0%</span></div>
+</button>
+
+<script>
+gsap.registerPlugin(ScrollTrigger);
+
+const eventsProjects = [
+  {
+    id: 'africa-re-sendforth',
+    title: 'Executive Send-Forth Ceremony',
+    category: 'Institutional Events',
+    client: 'Africa Re',
+    meta: 'The Colonnades Hotel, Ikoyi, Lagos &middot; June 2025 &middot; 200 Guests',
+    image: '/assets/img/africa-re-sendforth-1.jpg',
+    img2: '/assets/img/africa-re-sendforth-2.jpg',
+    img3: '/assets/img/africa-re-sendforth-3.jpg',
+    brief: `Full-scope delivery for a pan-African institutional event.`,
+    delivery: `Venue sourcing, stage design, lighting, catering, entertainment, gifting, digital experience (e-invites and a QR-linked digital programme), and complete on-ground management.`,
+    outcome: `Guests travelled from across the African continent.`,
+    achievements: [
+      { label: 'Venue', value: 'The Colonnades, Ikoyi' },
+      { label: 'Date', value: 'June 2025' },
+      { label: 'Guests', value: '200' }
+    ]
+  },
+  {
+    id: 'taef-afretrade',
+    title: "Afretrade Entrepreneur's Festival",
+    category: 'Continental Summits',
+    client: 'TAEF',
+    meta: 'Lagos, Nigeria',
+    image: '/assets/img/taef-afretrade-1.jpg',
+    img2: '/assets/img/taef-afretrade-2.jpg',
+    img3: '/assets/img/taef-afretrade-3.jpg',
+    brief: `Three high-value pillars of a continental trade and investment summit.`,
+    delivery: `Flagship Gala Night production at The Delborough, official press conference management, and VVIP section coordination at Eko Hotel for heads of state and senior international officials.`,
+    outcome: `465K+ total reach across earned and produced content.`,
+    achievements: [
+      { label: 'Total Media Reach', value: '465K+' },
+      { label: 'Pillars Delivered', value: '3' },
+      { label: 'Location', value: 'Lagos, Nigeria' }
+    ]
+  }
+];
+
+function renderPortfolio(projects = eventsProjects){
+  const grid = document.getElementById('portfolioGrid');
+  grid.innerHTML = projects.map(p => `
+    <div class="portfolio-card" onclick="scrollToDetail('${p.id}')">
+      <div class="portfolio-image">
+        <img src="${p.image}" alt="${p.client} - ${p.title}" width="1024" height="1024" loading="lazy" decoding="async">
+      </div>
+      <div class="portfolio-info">
+        <span class="portfolio-category">${p.category}</span>
+        <h3 class="portfolio-title">${p.title}</h3>
+        <p class="portfolio-meta">${p.meta}</p>
+        <p class="portfolio-description">${p.brief}</p>
+      </div>
+    </div>
+  `).join('');
+
+  gsap.utils.toArray('.portfolio-card').forEach((card,i)=>{
+    gsap.to(card,{
+      scrollTrigger:{trigger:card,start:'top 90%'},
+      y:0,
+      opacity:1,
+      duration:0.6,
+      delay:i*0.05,
+      ease:'back.out(1.5)'
+    });
+  });
+}
+
+function renderDetails(){
+  const container = document.getElementById('detailsContainer');
+  container.innerHTML = eventsProjects.map(p => `
+    <section class="detail-section" id="detail-${p.id}">
+      <div class="detail-container">
+        <div class="detail-header">
+          <div class="detail-images">
+            <div class="detail-img-main">
+              <img src="${p.image}" alt="${p.client} - ${p.title}" loading="lazy" decoding="async">
+            </div>
+            <div class="detail-imgs-small">
+              <div class="detail-img-small"><img src="${p.img2}" alt="${p.client} - ${p.title}" loading="lazy" decoding="async"></div>
+              <div class="detail-img-small"><img src="${p.img3}" alt="${p.client} - ${p.title}" loading="lazy" decoding="async"></div>
+            </div>
+          </div>
+
+          <div class="detail-content">
+            <div class="detail-client">${p.client}</div>
+            <h2>${p.title}</h2>
+            <p class="detail-meta"><i class="fas fa-location-dot"></i> ${p.meta}</p>
+
+            <div class="detail-boxes">
+              <div class="detail-box">
+                <div class="detail-box-label">Brief</div>
+                <div class="detail-box-text">${p.brief}</div>
+              </div>
+              <div class="detail-box">
+                <div class="detail-box-label">Delivery</div>
+                <div class="detail-box-text">${p.delivery}</div>
+              </div>
+              <div class="detail-box">
+                <div class="detail-box-label">Outcome</div>
+                <div class="detail-box-text">${p.outcome}</div>
+              </div>
+            </div>
+
+            <div class="detail-stats">
+              ${p.achievements.map(s => `
+                <div class="detail-stat">
+                  <div class="detail-stat-number">${s.value}</div>
+                  <div class="detail-stat-label">${s.label}</div>
+                </div>
+              `).join('')}
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  `).join('');
+}
+
+function scrollToDetail(id){
+  document.querySelectorAll('.detail-section').forEach(el => el.classList.remove('active'));
+  const el = document.getElementById(`detail-${id}`);
+  if(el){
+    el.classList.add('active');
+    setTimeout(()=>el.scrollIntoView({behavior:'smooth',block:'start'}),50);
+  }
+}
+
+// Custom cursor
+const cursor = document.querySelector('.cursor');
+const cursorFollower = document.querySelector('.cursor-follower');
+
+document.addEventListener('mousemove',e=>{
+  cursor.style.left = (e.clientX - 4) + 'px';
+  cursor.style.top  = (e.clientY - 4) + 'px';
+  setTimeout(()=>{
+    cursorFollower.style.left = (e.clientX - 16) + 'px';
+    cursorFollower.style.top  = (e.clientY - 16) + 'px';
+  },60);
+});
+
+document.addEventListener('mouseover',e=>{
+  if(e.target.closest('a, button, .portfolio-card')){
+    cursor.style.transform = 'scale(1.6)';
+    cursorFollower.style.transform = 'scale(2.2)';
+  }
+});
+
+document.addEventListener('mouseout',e=>{
+  if(e.target.closest('a, button, .portfolio-card')){
+    cursor.style.transform = 'scale(1)';
+    cursorFollower.style.transform = 'scale(1)';
+  }
+});
+
+// Hero animations
+gsap.to('.hero-title .word',{
+  y:0,scale:1,rotation:0,opacity:1,
+  duration:1,
+  stagger:0.06,
+  ease:'power4.out',
+  delay:0.05
+});
+gsap.to('.hero-subtitle',{opacity:1,duration:0.8,delay:0.8});
+
+gsap.utils.toArray('[data-parallax]').forEach(el=>{
+  const amt = +el.getAttribute('data-parallax') || 10;
+  gsap.to(el,{
+    y:amt,
+    scrollTrigger:{trigger:'.hero',start:'top top',end:'bottom top',scrub:1}
+  });
+});
+
+// Scroll top
+const scrollBtn = document.getElementById('scrollTopBtn');
+const scrollPct = document.getElementById('scrollPct');
+
+function setScrollProgress(){
+  const st = window.scrollY;
+  const h  = document.documentElement.scrollHeight - innerHeight;
+  const p  = h > 0 ? Math.round((st / h) * 100) : 0;
+  document.documentElement.style.setProperty('--scroll',p);
+  scrollBtn.style.setProperty('--scroll',p);
+  scrollPct.textContent = p + '%';
+  scrollBtn.classList.toggle('visible',st > 380);
+}
+
+setScrollProgress();
+window.addEventListener('scroll',setScrollProgress,{passive:true});
+scrollBtn.addEventListener('click',()=>window.scrollTo({top:0,behavior:'smooth'}));
+
+// Init grid + details
+renderPortfolio();
+renderDetails();
+</script>
+
+<!-- load header/footer includes -->
+<script src="/assets/js/include.js"></script>
+
+<!-- header scroll behaviour (waits until header.html is injected) -->
+<script>
+(function waitForNav(){
+  const nav = document.getElementById('nav');
+  if (!nav) {
+    requestAnimationFrame(waitForNav);
+    return;
+  }
+
+  function handleNavScroll() {
+    if (window.scrollY > 80) {
+      nav.classList.add('scrolled');
+    } else {
+      nav.classList.remove('scrolled');
+    }
+  }
+
+  handleNavScroll();
+  window.addEventListener('scroll', handleNavScroll, { passive: true });
+})();
+</script>
+
+</body>
+</html>
