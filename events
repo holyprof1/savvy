@@ -36,92 +36,110 @@ body{
 .cursor-follower{position:fixed;width:32px;height:32px;border-radius:50%;border:1.5px solid var(--bright-cyan);pointer-events:none;z-index:99998;opacity:.4;transition:all .25s ease;box-shadow:inset 0 0 8px rgba(0,212,255,.3)}
 
 /* ========== HERO ========== */
-.hero{min-height:90vh;display:flex;flex-direction:column;align-items:center;justify-content:center;position:relative;padding:12rem 4rem 6rem;overflow:hidden;background:linear-gradient(135deg,var(--deep-navy) 0%,var(--navy) 100%)}
+.hero{min-height:82vh;display:flex;flex-direction:column;align-items:center;justify-content:center;position:relative;padding:12rem 4rem 5rem;overflow:hidden;background:linear-gradient(135deg,var(--deep-navy) 0%,var(--navy) 100%)}
 .floating-shape{position:absolute;border-radius:50%;filter:blur(120px);opacity:.12;pointer-events:none;animation:float 20s ease-in-out infinite;z-index:0}
 .shape-1{width:700px;height:700px;background:linear-gradient(135deg,var(--bright-cyan),var(--cyan));top:10%;left:5%}
 .shape-2{width:600px;height:600px;background:linear-gradient(135deg,var(--orange),var(--yellow));bottom:6%;right:5%;animation-delay:-10s}
 @keyframes float{0%,100%{transform:translate(0,0) scale(1)}25%{transform:translate(50px,-50px) scale(1.1)}50%{transform:translate(80px,-80px) scale(1.2)}75%{transform:translate(30px,-40px) scale(1.15)}}
-.hero-content{text-align:center;max-width:1600px;position:relative;z-index:2}
-.hero-title{font-family:'Sora',sans-serif;font-size:clamp(2.8rem,9vw,7rem);font-weight:500;line-height:1.05;margin-bottom:2rem}
-.title-line{display:block;margin-bottom:.8rem}
+.hero-content{text-align:center;max-width:1500px;position:relative;z-index:2}
+.hero-title{font-size:clamp(2.6rem,8vw,6.4rem);font-weight:500;line-height:1.05;margin-bottom:1.6rem}
+.title-line{display:block;margin-bottom:.6rem}
 .word{display:inline-block;margin-right:.25em;position:relative;opacity:0;transform:translate3d(0,100px,0) scale(.9) rotate(4deg)}
 .word.cyan{color:var(--bright-cyan)}
 .word.green{color:var(--bright-green)}
-.hero-subtitle{font-size:clamp(1rem,2vw,1.3rem);color:rgba(255,255,255,.9);max-width:900px;margin:1.5rem auto 0;line-height:1.9;opacity:0;font-weight:400}
+.hero-subtitle{font-size:clamp(1rem,2vw,1.3rem);color:rgba(255,255,255,.9);max-width:880px;margin:1.4rem auto 0;line-height:1.9;opacity:0}
 
-/* ========== PORTFOLIO GRID ========== */
-.portfolio-section{padding:5rem 2rem;background:var(--deep-navy)}
+/* ========== INTRO ========== */
+.intro-section{padding:5rem 2rem 1rem;background:var(--deep-navy)}
+.intro-inner{max-width:1000px;margin:0 auto;text-align:center}
 .section-label{display:inline-block;background:linear-gradient(135deg,var(--orange),var(--yellow));color:var(--deep-navy);padding:.8rem 1.8rem;border-radius:999px;font-size:.85rem;font-weight:600;text-transform:uppercase;letter-spacing:2px;margin-bottom:1.5rem}
-.section-title{font-size:clamp(2.5rem,6vw,4.5rem);font-weight:600;margin-bottom:.8rem;text-align:center;line-height:1.1}
-.section-subtitle{font-size:1.2rem;color:rgba(255,255,255,.85);text-align:center;max-width:900px;margin:0 auto 4rem;font-weight:400;line-height:1.8}
+.intro-text{font-size:clamp(1.15rem,2.2vw,1.5rem);line-height:1.85;color:rgba(255,255,255,.9);font-weight:400}
+.intro-text strong{color:var(--bright-cyan);font-weight:600}
 
-/* Two entries read better as a 2-up grid than a sparse 3-up */
-.portfolio-grid{
-  display:grid;
-  grid-template-columns:repeat(2,minmax(0,1fr));
-  gap:2.5rem;
-  max-width:1100px;
-  margin:0 auto;
-}
+/* ========== INDEX CARDS ========== */
+.index-section{padding:4rem 2rem 2rem;background:var(--deep-navy)}
+.index-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:2rem;max-width:1100px;margin:0 auto}
+.index-card{display:flex;gap:1.4rem;align-items:center;padding:1.4rem;border-radius:18px;background:rgba(255,255,255,.04);border:1px solid rgba(0,212,255,.15);text-decoration:none;color:inherit;transition:.35s}
+.index-card:hover{border-color:rgba(0,212,255,.45);transform:translateY(-6px);box-shadow:0 20px 50px rgba(0,212,255,.18)}
+.index-thumb{width:96px;height:96px;border-radius:14px;overflow:hidden;flex-shrink:0;background:var(--navy)}
+.index-thumb img{width:100%;height:100%;object-fit:cover;object-position:center 22%}
+.index-cat{font-size:.72rem;color:var(--bright-green);text-transform:uppercase;letter-spacing:2px;font-weight:700;display:block;margin-bottom:.35rem}
+.index-title{font-size:1.2rem;font-weight:700;line-height:1.25;margin-bottom:.3rem}
+.index-meta{font-size:.82rem;color:rgba(255,255,255,.6);line-height:1.5}
 
-.portfolio-card{position:relative;border-radius:18px;overflow:hidden;background:rgba(255,255,255,.04);backdrop-filter:blur(10px);border:1px solid rgba(0,212,255,.15);transition:.45s;opacity:0;transform:translateY(50px);cursor:pointer;display:flex;flex-direction:column;height:100%}
-.portfolio-card::before{content:'';position:absolute;inset:0;background:linear-gradient(135deg,rgba(0,212,255,.2) 0%,rgba(255,107,53,.2) 100%);opacity:0;transition:.45s;pointer-events:none;z-index:3}
-.portfolio-card:hover{border-color:rgba(0,212,255,.4);transform:translateY(-15px);box-shadow:0 25px 70px rgba(0,212,255,.25)}
-.portfolio-card:hover::before{opacity:1}
-.portfolio-image{width:100%;overflow:hidden;position:relative;background:var(--navy);flex-shrink:0;aspect-ratio:1/1}
-.portfolio-image::after{content:'';position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,0) 0%,rgba(0,29,61,.4) 100%);z-index:2;pointer-events:none}
-/* object-position favours the upper third so faces survive the square crop */
-.portfolio-image img{width:100%;height:100%;object-fit:cover;object-position:center 22%;transition:transform .6s;position:relative;z-index:1}
-.portfolio-card:hover .portfolio-image img{transform:scale(1.1)}
-.portfolio-info{padding:2.5rem;position:relative;z-index:2;flex:1;display:flex;flex-direction:column;background:linear-gradient(180deg,rgba(0,29,61,.3) 0%,rgba(0,29,61,.85) 100%)}
-.portfolio-category{font-size:.8rem;color:var(--bright-green);text-transform:uppercase;letter-spacing:2px;font-weight:700;margin-bottom:1rem;display:inline-block;background:rgba(0,255,136,.12);padding:.5rem 1rem;border-radius:999px;width:fit-content}
-.portfolio-title{font-size:1.6rem;font-weight:700;margin-bottom:.6rem;color:var(--white);line-height:1.2}
-.portfolio-meta{font-size:.85rem;color:var(--bright-cyan);font-weight:600;margin-bottom:1rem;line-height:1.6}
-.portfolio-description{font-size:.95rem;color:rgba(255,255,255,.8);line-height:1.7}
+/* ========== ENTRY SECTIONS ========== */
+.entry{padding:6rem 2rem;border-top:2px solid rgba(0,212,255,.18)}
+.entry:nth-of-type(odd){background:var(--navy)}
+.entry:nth-of-type(even){background:var(--deep-navy)}
+.entry-inner{max-width:1200px;margin:0 auto}
 
-/* ========== DETAIL SECTIONS ========== */
-.detail-section{padding:6rem 2rem;background:var(--navy);display:none;opacity:0;border-top:2px solid rgba(0,212,255,.2)}
-.detail-section.active{display:block;animation:revealDetail .8s ease forwards}
-@keyframes revealDetail{to{opacity:1}}
+.entry-head{margin-bottom:3rem}
+.entry-client{color:var(--bright-cyan);font-weight:700;text-transform:uppercase;letter-spacing:2px;font-size:.85rem;display:inline-block;background:rgba(0,212,255,.15);padding:.7rem 1.6rem;border-radius:999px;border:1px solid rgba(0,212,255,.3);margin-bottom:1.2rem}
+.entry-title{font-size:clamp(2rem,4.5vw,3.4rem);font-weight:700;line-height:1.15;margin-bottom:.9rem}
+.entry-meta{display:flex;flex-wrap:wrap;gap:.6rem 1.6rem;font-size:.98rem;color:rgba(255,255,255,.78);font-weight:500}
+.entry-meta span{display:inline-flex;align-items:center;gap:.5rem}
+.entry-meta i{color:var(--bright-green);font-size:.9rem}
 
-.detail-container{max-width:1200px;margin:0 auto}
-.detail-header{display:grid;grid-template-columns:1fr;gap:3rem;align-items:start;margin-bottom:4rem}
-.detail-images{display:grid;grid-template-columns:1fr;gap:2rem}
+/* hero image for each entry */
+.entry-hero{width:100%;height:clamp(300px,42vw,520px);border-radius:18px;overflow:hidden;box-shadow:0 30px 80px rgba(0,0,0,.5);margin-bottom:2.5rem}
+.entry-hero img{width:100%;height:100%;object-fit:cover;object-position:center 25%;display:block}
 
-/* Source photography is a mix of landscape and 4:5 portrait, so the
-   banner is height-capped and biased upward rather than fixed-tall. */
-.detail-img-main{width:100%;border-radius:18px;overflow:hidden;box-shadow:0 30px 80px rgba(0,0,0,.5);height:clamp(320px,44vw,520px)}
-.detail-img-main img{width:100%;height:100%;object-fit:cover;object-position:center 25%;display:block}
-
-.detail-imgs-small{display:grid;grid-template-columns:1fr 1fr;gap:2rem;margin-top:2rem}
-.detail-img-small{width:100%;height:300px;border-radius:14px;overflow:hidden;box-shadow:0 20px 50px rgba(0,0,0,.4)}
-.detail-img-small img{width:100%;height:100%;object-fit:cover;object-position:center 22%}
-
-.detail-content{width:100%}
-.detail-content h2{font-size:clamp(2.2rem,4vw,3.5rem);font-weight:700;margin-bottom:1rem;line-height:1.2;color:var(--white)}
-.detail-client{color:var(--bright-cyan);font-weight:700;text-transform:uppercase;letter-spacing:2px;margin-bottom:1.5rem;font-size:.9rem;display:inline-block;background:rgba(0,212,255,.15);padding:.8rem 1.8rem;border-radius:999px;border:1px solid rgba(0,212,255,.3)}
-.detail-meta{font-size:1rem;color:rgba(255,255,255,.75);font-weight:500;margin-bottom:1rem;display:flex;align-items:center;gap:.6rem;flex-wrap:wrap}
-.detail-meta i{color:var(--bright-green)}
-
-.detail-boxes{margin-top:2.5rem}
-.detail-box{margin-bottom:2.5rem;padding:2rem;background:rgba(0,212,255,.08);border:1px solid rgba(0,212,255,.2);border-radius:14px;transition:.3s}
+/* narrative */
+.entry-body{display:grid;grid-template-columns:1.15fr .85fr;gap:3rem;align-items:start}
+.detail-box{margin-bottom:1.6rem;padding:1.8rem;background:rgba(0,212,255,.08);border:1px solid rgba(0,212,255,.2);border-radius:14px;transition:.3s}
 .detail-box:hover{background:rgba(0,212,255,.12);border-color:rgba(0,212,255,.4)}
-.detail-box-label{color:var(--bright-green);font-weight:700;text-transform:uppercase;letter-spacing:2px;margin-bottom:1rem;font-size:.95rem;display:flex;align-items:center;gap:.6rem}
-.detail-box-label::before{content:'\2192';font-size:1.3rem;color:var(--bright-cyan)}
-.detail-box-text{font-size:1.05rem;line-height:1.85;color:rgba(255,255,255,.85)}
+.detail-box-label{color:var(--bright-green);font-weight:700;text-transform:uppercase;letter-spacing:2px;margin-bottom:.8rem;font-size:.9rem;display:flex;align-items:center;gap:.6rem}
+.detail-box-label::before{content:'\2192';font-size:1.2rem;color:var(--bright-cyan)}
+.detail-box-text{font-size:1.05rem;line-height:1.85;color:rgba(255,255,255,.86)}
 
-.detail-stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:2rem;margin-top:3rem;padding-top:3rem;border-top:1px solid rgba(0,212,255,.15)}
-.detail-stat{background:rgba(0,212,255,.1);border:1px solid rgba(0,212,255,.2);padding:2rem;border-radius:14px;text-align:center;transition:.3s;position:relative;z-index:2;display:flex;flex-direction:column;justify-content:center;align-items:center;min-height:130px;box-sizing:border-box;overflow:hidden}
-.detail-stat:hover{background:rgba(0,212,255,.15);border-color:rgba(0,212,255,.4);transform:translateY(-5px)}
-.detail-stat-number{font-size:clamp(1.1rem,1.6vw,1.6rem);font-weight:700;color:var(--bright-cyan);margin-bottom:.6rem;line-height:1.2;text-align:center;max-width:100%}
-.detail-stat-label{font-size:.85rem;color:rgba(255,255,255,.7);text-transform:uppercase;letter-spacing:1.5px;font-weight:600;text-align:center;line-height:1.4;max-width:100%}
+/* stats rail */
+.entry-stats{display:grid;gap:1rem}
+.stat{background:rgba(0,212,255,.1);border:1px solid rgba(0,212,255,.2);padding:1.6rem;border-radius:14px;transition:.3s}
+.stat:hover{background:rgba(0,212,255,.15);border-color:rgba(0,212,255,.4);transform:translateY(-4px)}
+.stat-number{font-size:clamp(1.3rem,2vw,1.9rem);font-weight:700;color:var(--bright-cyan);line-height:1.2;margin-bottom:.3rem}
+.stat-label{font-size:.78rem;color:rgba(255,255,255,.68);text-transform:uppercase;letter-spacing:1.5px;font-weight:600}
+
+/* scope chips */
+.scope-block{margin-top:2.5rem}
+.scope-heading{font-size:1.05rem;font-weight:700;text-transform:uppercase;letter-spacing:2px;color:var(--bright-green);margin-bottom:1.2rem}
+.scope-list{display:flex;flex-wrap:wrap;gap:.7rem;list-style:none}
+.scope-list li{display:inline-flex;align-items:center;gap:.55rem;padding:.7rem 1.2rem;border-radius:999px;background:rgba(0,255,136,.08);border:1px solid rgba(0,255,136,.22);font-size:.92rem;font-weight:500;color:rgba(255,255,255,.9)}
+.scope-list i{color:var(--bright-green);font-size:.78rem}
+
+/* pillars */
+.pillars{margin-top:2.5rem;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:1.5rem}
+.pillar{padding:1.8rem;border-radius:16px;background:rgba(255,255,255,.04);border:1px solid rgba(0,212,255,.18);transition:.35s}
+.pillar:hover{border-color:rgba(0,212,255,.42);transform:translateY(-6px)}
+.pillar-num{font-size:2.2rem;font-weight:800;color:rgba(0,212,255,.35);line-height:1;margin-bottom:.6rem}
+.pillar-title{font-size:1.1rem;font-weight:700;margin-bottom:.5rem;line-height:1.3}
+.pillar-text{font-size:.94rem;color:rgba(255,255,255,.78);line-height:1.7}
+
+/* gallery */
+.gallery-block{margin-top:3.5rem}
+.gallery-heading{display:flex;align-items:baseline;justify-content:space-between;flex-wrap:wrap;gap:.6rem;margin-bottom:1.4rem}
+.gallery-heading h3{font-size:1.3rem;font-weight:700}
+.gallery-count{font-size:.85rem;color:rgba(255,255,255,.55);font-weight:500}
+.gallery-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:1rem}
+.gallery-grid figure{margin:0;border-radius:14px;overflow:hidden;background:var(--navy);box-shadow:0 14px 36px rgba(0,0,0,.35);cursor:pointer;transition:.35s}
+.gallery-grid figure:hover{transform:translateY(-5px);box-shadow:0 22px 50px rgba(0,212,255,.22)}
+.gallery-grid img{width:100%;aspect-ratio:1/1;object-fit:cover;object-position:center 20%;display:block;transition:transform .6s}
+.gallery-grid figure:hover img{transform:scale(1.07)}
+
+/* lightbox */
+.lightbox{position:fixed;inset:0;z-index:9500;background:rgba(0,8,20,.94);display:none;align-items:center;justify-content:center;padding:2rem}
+.lightbox.open{display:flex}
+.lightbox img{max-width:min(1100px,94vw);max-height:88vh;border-radius:12px;box-shadow:0 30px 90px rgba(0,0,0,.7)}
+.lightbox-close{position:absolute;top:1.2rem;right:1.4rem;width:48px;height:48px;border-radius:50%;border:1px solid rgba(0,212,255,.35);background:rgba(0,212,255,.12);color:var(--bright-cyan);font-size:1.2rem;cursor:pointer;display:flex;align-items:center;justify-content:center}
+.lightbox-nav{position:absolute;top:50%;transform:translateY(-50%);width:52px;height:52px;border-radius:50%;border:1px solid rgba(0,212,255,.3);background:rgba(0,212,255,.12);color:var(--bright-cyan);font-size:1.1rem;cursor:pointer;display:flex;align-items:center;justify-content:center}
+.lightbox-prev{left:1.2rem}
+.lightbox-next{right:1.2rem}
 
 /* ========== CTA ========== */
 .cta-section{padding:8rem 4rem;text-align:center;background:linear-gradient(135deg,var(--bright-cyan),var(--orange));position:relative;overflow:hidden}
 .cta-section::before{content:'';position:absolute;inset:0;background:radial-gradient(circle at 20% 80%,rgba(255,107,53,.3),transparent);pointer-events:none}
-.cta-title{font-size:clamp(2.5rem,7vw,5rem);font-weight:700;margin-bottom:1.5rem;color:var(--deep-navy);position:relative;z-index:2;line-height:1.1}
-.cta-subtitle{font-size:1.35rem;margin-bottom:2.5rem;opacity:.95;color:var(--deep-navy);font-weight:500;position:relative;z-index:2;max-width:800px;margin-left:auto;margin-right:auto;line-height:1.7}
-.btn-primary{background:var(--deep-navy);color:var(--bright-cyan);padding:1.3rem 3.2rem;border-radius:999px;text-decoration:none;font-weight:700;font-size:1.1rem;display:inline-flex;align-items:center;gap:.8rem;box-shadow:0 15px 50px rgba(0,0,0,.3);transition:.3s;border:none;cursor:pointer;position:relative;z-index:2}
+.cta-title{font-size:clamp(2.4rem,6.5vw,4.6rem);font-weight:700;margin-bottom:1.4rem;color:var(--deep-navy);position:relative;z-index:2;line-height:1.1}
+.cta-subtitle{font-size:1.3rem;margin:0 auto 2.4rem;opacity:.95;color:var(--deep-navy);font-weight:500;position:relative;z-index:2;max-width:780px;line-height:1.7}
+.btn-primary{background:var(--deep-navy);color:var(--bright-cyan);padding:1.3rem 3.2rem;border-radius:999px;text-decoration:none;font-weight:700;font-size:1.1rem;display:inline-flex;align-items:center;gap:.8rem;box-shadow:0 15px 50px rgba(0,0,0,.3);transition:.3s;position:relative;z-index:2}
 .btn-primary:hover{transform:translateY(-4px);box-shadow:0 20px 60px rgba(0,0,0,.4)}
 
 /* ========== SCROLL TOP ========== */
@@ -131,30 +149,33 @@ body{
 .scroll-top .pct{font-size:.9rem}
 
 /* ========== RESPONSIVE ========== */
+@media (max-width:1100px){
+  .entry-body{grid-template-columns:1fr;gap:2rem}
+  .entry-stats{grid-template-columns:repeat(3,minmax(0,1fr))}
+  .gallery-grid{grid-template-columns:repeat(3,minmax(0,1fr))}
+}
+
 @media (max-width:900px){
-  .portfolio-grid{grid-template-columns:1fr;max-width:560px}
+  .index-grid{grid-template-columns:1fr;max-width:560px}
+  .pillars{grid-template-columns:1fr}
 }
 
 @media (max-width:768px){
   body{cursor:default}
   .cursor,.cursor-follower{display:none}
 
-  .hero{padding:8rem 1.5rem 4rem}
-  .portfolio-section{padding:3rem 1.5rem}
-  .portfolio-grid{gap:1.5rem}
-  .portfolio-info{padding:1.8rem}
-
-  .detail-section{padding:4rem 1.5rem}
-  .detail-header{gap:2rem}
-  .detail-imgs-small{grid-template-columns:1fr}
-  .detail-img-small{height:260px}
-  .detail-boxes{margin-top:2rem}
-  .detail-box{padding:1.5rem;margin-bottom:1.5rem}
-  .detail-stats{grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:1.5rem;margin-top:2rem;padding-top:2rem}
-  .detail-stat{min-height:110px;padding:1.5rem 1rem}
-  .detail-stat-label{font-size:.75rem}
-
+  .hero{padding:8rem 1.5rem 3.5rem;min-height:auto}
+  .intro-section{padding:3.5rem 1.5rem 1rem}
+  .index-section{padding:2.5rem 1.5rem 1rem}
+  .entry{padding:3.5rem 1.5rem}
+  .entry-stats{grid-template-columns:1fr}
+  .gallery-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:.7rem}
+  .detail-box{padding:1.4rem}
+  .index-card{padding:1rem;gap:1rem}
+  .index-thumb{width:74px;height:74px}
   .cta-section{padding:4rem 1.5rem}
+  .lightbox{padding:1rem}
+  .lightbox-nav{width:44px;height:44px}
 }
 </style>
 </head>
@@ -181,18 +202,207 @@ body{
   </div>
 </section>
 
-<!-- ========== PORTFOLIO ========== -->
-<section class="portfolio-section">
-  <div style="text-align:center">
-    <span class="section-label">Featured Work</span>
-    <h2 class="section-title">Events We Have Delivered</h2>
-    <p class="section-subtitle">Institutional ceremonies and continental summits, produced end to end.</p>
+<!-- ========== INTRO ========== -->
+<section class="intro-section">
+  <div class="intro-inner">
+    <span class="section-label">What We Do</span>
+    <p class="intro-text">End-to-end event management for high-profile institutions, brands, and private clients. From concept and vendor coordination to on-ground execution — we produce experiences that <strong>reflect the calibre of the people in the room.</strong></p>
   </div>
-  <div class="portfolio-grid" id="portfolioGrid"></div>
 </section>
 
-<!-- ========== DETAILS (ON CARD CLICK) ========== -->
-<div id="detailsContainer"></div>
+<!-- ========== INDEX ========== -->
+<section class="index-section">
+  <div class="index-grid">
+    <a class="index-card" href="#africa-re-sendforth">
+      <div class="index-thumb"><img src="/assets/img/africa-re-sendforth-1.jpg" alt="" width="1000" height="750" loading="lazy" decoding="async"></div>
+      <div>
+        <span class="index-cat">Institutional Events</span>
+        <div class="index-title">Executive Send-Forth Ceremony</div>
+        <div class="index-meta">Africa Re &middot; Ikoyi, Lagos &middot; June 2025</div>
+      </div>
+    </a>
+    <a class="index-card" href="#taef-afretrade">
+      <div class="index-thumb"><img src="/assets/img/taef-afretrade-1.jpg" alt="" width="1024" height="1280" loading="lazy" decoding="async"></div>
+      <div>
+        <span class="index-cat">Continental Summits</span>
+        <div class="index-title">Afretrade Entrepreneur's Festival</div>
+        <div class="index-meta">TAEF &middot; Lagos, Nigeria &middot; 465K+ reach</div>
+      </div>
+    </a>
+  </div>
+</section>
+
+<!-- ========== ENTRY 1 : AFRICA RE ========== -->
+<section class="entry" id="africa-re-sendforth">
+  <div class="entry-inner">
+
+    <div class="entry-head">
+      <div class="entry-client">Africa Re</div>
+      <h2 class="entry-title">Executive Send-Forth Ceremony</h2>
+      <div class="entry-meta">
+        <span><i class="fas fa-location-dot"></i> The Colonnades Hotel, Ikoyi, Lagos</span>
+        <span><i class="fas fa-calendar-days"></i> June 2025</span>
+        <span><i class="fas fa-user-group"></i> 200 Guests</span>
+      </div>
+    </div>
+
+    <div class="entry-hero">
+      <img src="/assets/img/africa-re-sendforth-1.jpg" alt="Africa Re Executive Send-Forth Ceremony - main hall and stage" loading="lazy" decoding="async">
+    </div>
+
+    <div class="entry-body">
+      <div>
+        <div class="detail-box">
+          <div class="detail-box-label">Brief</div>
+          <div class="detail-box-text">Full-scope delivery for a pan-African institutional event.</div>
+        </div>
+        <div class="detail-box">
+          <div class="detail-box-label">Delivery</div>
+          <div class="detail-box-text">Venue sourcing, stage design, lighting, catering, entertainment, gifting, digital experience (e-invites and a QR-linked digital programme), and complete on-ground management.</div>
+        </div>
+        <div class="detail-box">
+          <div class="detail-box-label">Outcome</div>
+          <div class="detail-box-text">Guests travelled from across the African continent.</div>
+        </div>
+      </div>
+
+      <div class="entry-stats">
+        <div class="stat">
+          <div class="stat-number">200</div>
+          <div class="stat-label">Guests Hosted</div>
+        </div>
+        <div class="stat">
+          <div class="stat-number">Pan-African</div>
+          <div class="stat-label">Guest Travel</div>
+        </div>
+        <div class="stat">
+          <div class="stat-number">Full Scope</div>
+          <div class="stat-label">Delivery Model</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="scope-block">
+      <div class="scope-heading">Scope Delivered</div>
+      <ul class="scope-list">
+        <li><i class="fas fa-check"></i> Venue sourcing</li>
+        <li><i class="fas fa-check"></i> Stage design</li>
+        <li><i class="fas fa-check"></i> Lighting</li>
+        <li><i class="fas fa-check"></i> Catering</li>
+        <li><i class="fas fa-check"></i> Entertainment</li>
+        <li><i class="fas fa-check"></i> Gifting</li>
+        <li><i class="fas fa-check"></i> Digital experience &mdash; e-invites &amp; QR-linked programme</li>
+        <li><i class="fas fa-check"></i> Complete on-ground management</li>
+      </ul>
+    </div>
+
+    <div class="gallery-block">
+      <div class="gallery-heading">
+        <h3>On the night</h3>
+        <span class="gallery-count">5 photographs</span>
+      </div>
+      <div class="gallery-grid" data-gallery="africa-re">
+        <figure><img src="/assets/img/africa-re-sendforth-1.jpg" alt="Main hall and stage" loading="lazy" decoding="async"></figure>
+        <figure><img src="/assets/img/africa-re-sendforth-2.jpg" alt="Ceremony on the main screen" loading="lazy" decoding="async"></figure>
+        <figure><img src="/assets/img/africa-re-sendforth-4.jpg" alt="Stage and table settings" loading="lazy" decoding="async"></figure>
+        <figure><img src="/assets/img/africa-re-sendforth-3.jpg" alt="Branded guest activation" loading="lazy" decoding="async"></figure>
+        <figure><img src="/assets/img/africa-re-sendforth-5.jpg" alt="Venue build and set construction" loading="lazy" decoding="async"></figure>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ========== ENTRY 2 : TAEF ========== -->
+<section class="entry" id="taef-afretrade">
+  <div class="entry-inner">
+
+    <div class="entry-head">
+      <div class="entry-client">TAEF</div>
+      <h2 class="entry-title">Afretrade Entrepreneur's Festival</h2>
+      <div class="entry-meta">
+        <span><i class="fas fa-location-dot"></i> Lagos, Nigeria</span>
+        <span><i class="fas fa-chart-line"></i> 465K+ total reach</span>
+        <span><i class="fas fa-layer-group"></i> 3 delivery pillars</span>
+      </div>
+    </div>
+
+    <div class="entry-hero">
+      <img src="/assets/img/taef-afretrade-1.jpg" alt="TAEF Afretrade Entrepreneur's Festival - main stage" loading="lazy" decoding="async">
+    </div>
+
+    <div class="entry-body">
+      <div>
+        <div class="detail-box">
+          <div class="detail-box-label">Brief</div>
+          <div class="detail-box-text">Three high-value pillars of a continental trade and investment summit.</div>
+        </div>
+        <div class="detail-box">
+          <div class="detail-box-label">Delivery</div>
+          <div class="detail-box-text">Flagship Gala Night production at The Delborough, official press conference management, and VVIP section coordination at Eko Hotel for heads of state and senior international officials.</div>
+        </div>
+        <div class="detail-box">
+          <div class="detail-box-label">Outcome</div>
+          <div class="detail-box-text">465K+ total reach across earned and produced content.</div>
+        </div>
+      </div>
+
+      <div class="entry-stats">
+        <div class="stat">
+          <div class="stat-number">465K+</div>
+          <div class="stat-label">Total Media Reach</div>
+        </div>
+        <div class="stat">
+          <div class="stat-number">3</div>
+          <div class="stat-label">Pillars Delivered</div>
+        </div>
+        <div class="stat">
+          <div class="stat-number">Heads of State</div>
+          <div class="stat-label">VVIP Section</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="pillars">
+      <div class="pillar">
+        <div class="pillar-num">01</div>
+        <div class="pillar-title">Gala Night Production</div>
+        <div class="pillar-text">Flagship Gala Night produced at The Delborough.</div>
+      </div>
+      <div class="pillar">
+        <div class="pillar-num">02</div>
+        <div class="pillar-title">Press Conference</div>
+        <div class="pillar-text">Official press conference management for the summit.</div>
+      </div>
+      <div class="pillar">
+        <div class="pillar-num">03</div>
+        <div class="pillar-title">VVIP Coordination</div>
+        <div class="pillar-text">VVIP section coordination at Eko Hotel for heads of state and senior international officials.</div>
+      </div>
+    </div>
+
+    <div class="gallery-block">
+      <div class="gallery-heading">
+        <h3>From the floor</h3>
+        <span class="gallery-count">11 photographs</span>
+      </div>
+      <div class="gallery-grid" data-gallery="taef">
+        <figure><img src="/assets/img/taef-afretrade-1.jpg" alt="Speaker at the TAEF podium" loading="lazy" decoding="async"></figure>
+        <figure><img src="/assets/img/taef-afretrade-2.jpg" alt="Main stage and screen" loading="lazy" decoding="async"></figure>
+        <figure><img src="/assets/img/taef-afretrade-5.jpg" alt="Address from the podium" loading="lazy" decoding="async"></figure>
+        <figure><img src="/assets/img/taef-afretrade-3.jpg" alt="Delegates in conversation" loading="lazy" decoding="async"></figure>
+        <figure><img src="/assets/img/taef-afretrade-4.jpg" alt="Seated delegate" loading="lazy" decoding="async"></figure>
+        <figure><img src="/assets/img/taef-afretrade-6.jpg" alt="Guests in the VVIP section" loading="lazy" decoding="async"></figure>
+        <figure><img src="/assets/img/taef-afretrade-7.jpg" alt="Audience response" loading="lazy" decoding="async"></figure>
+        <figure><img src="/assets/img/taef-afretrade-8.jpg" alt="Delegate taking notes" loading="lazy" decoding="async"></figure>
+        <figure><img src="/assets/img/taef-afretrade-9.jpg" alt="Senior guests seated" loading="lazy" decoding="async"></figure>
+        <figure><img src="/assets/img/taef-afretrade-10.jpg" alt="Delegate in the audience" loading="lazy" decoding="async"></figure>
+        <figure><img src="/assets/img/taef-afretrade-11.jpg" alt="Guest at the summit" loading="lazy" decoding="async"></figure>
+      </div>
+    </div>
+
+  </div>
+</section>
 
 <!-- ========== CTA ========== -->
 <section class="cta-section">
@@ -204,6 +414,14 @@ body{
 <!-- Global footer include -->
 <div data-include="/partials/footer.html"></div>
 
+<!-- LIGHTBOX -->
+<div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Photograph viewer">
+  <button class="lightbox-close" id="lbClose" type="button" aria-label="Close viewer"><i class="fas fa-times"></i></button>
+  <button class="lightbox-nav lightbox-prev" id="lbPrev" type="button" aria-label="Previous photograph"><i class="fas fa-chevron-left"></i></button>
+  <img id="lbImg" alt="">
+  <button class="lightbox-nav lightbox-next" id="lbNext" type="button" aria-label="Next photograph"><i class="fas fa-chevron-right"></i></button>
+</div>
+
 <!-- SCROLL TOP BUTTON -->
 <button class="scroll-top" id="scrollTopBtn" aria-label="Back to top">
   <div class="inner"><span class="pct" id="scrollPct">0%</span></div>
@@ -212,134 +430,53 @@ body{
 <script>
 gsap.registerPlugin(ScrollTrigger);
 
-const eventsProjects = [
-  {
-    id: 'africa-re-sendforth',
-    title: 'Executive Send-Forth Ceremony',
-    category: 'Institutional Events',
-    client: 'Africa Re',
-    meta: 'The Colonnades Hotel, Ikoyi, Lagos &middot; June 2025 &middot; 200 Guests',
-    image: '/assets/img/africa-re-sendforth-1.jpg',
-    img2: '/assets/img/africa-re-sendforth-2.jpg',
-    img3: '/assets/img/africa-re-sendforth-3.jpg',
-    brief: `Full-scope delivery for a pan-African institutional event.`,
-    delivery: `Venue sourcing, stage design, lighting, catering, entertainment, gifting, digital experience (e-invites and a QR-linked digital programme), and complete on-ground management.`,
-    outcome: `Guests travelled from across the African continent.`,
-    achievements: [
-      { label: 'Venue', value: 'The Colonnades, Ikoyi' },
-      { label: 'Date', value: 'June 2025' },
-      { label: 'Guests', value: '200' }
-    ]
-  },
-  {
-    id: 'taef-afretrade',
-    title: "Afretrade Entrepreneur's Festival",
-    category: 'Continental Summits',
-    client: 'TAEF',
-    meta: 'Lagos, Nigeria',
-    image: '/assets/img/taef-afretrade-1.jpg',
-    img2: '/assets/img/taef-afretrade-2.jpg',
-    img3: '/assets/img/taef-afretrade-3.jpg',
-    brief: `Three high-value pillars of a continental trade and investment summit.`,
-    delivery: `Flagship Gala Night production at The Delborough, official press conference management, and VVIP section coordination at Eko Hotel for heads of state and senior international officials.`,
-    outcome: `465K+ total reach across earned and produced content.`,
-    achievements: [
-      { label: 'Total Media Reach', value: '465K+' },
-      { label: 'Pillars Delivered', value: '3' },
-      { label: 'Location', value: 'Lagos, Nigeria' }
-    ]
+/* ---------- lightbox ---------- */
+(function(){
+  const box = document.getElementById('lightbox');
+  const img = document.getElementById('lbImg');
+  let group = [], idx = 0;
+
+  function show(i){
+    if(!group.length) return;
+    idx = (i + group.length) % group.length;
+    const src = group[idx].querySelector('img');
+    img.src = src.getAttribute('src');
+    img.alt = src.getAttribute('alt') || '';
   }
-];
 
-function renderPortfolio(projects = eventsProjects){
-  const grid = document.getElementById('portfolioGrid');
-  grid.innerHTML = projects.map(p => `
-    <div class="portfolio-card" onclick="scrollToDetail('${p.id}')">
-      <div class="portfolio-image">
-        <img src="${p.image}" alt="${p.client} - ${p.title}" width="1024" height="1024" loading="lazy" decoding="async">
-      </div>
-      <div class="portfolio-info">
-        <span class="portfolio-category">${p.category}</span>
-        <h3 class="portfolio-title">${p.title}</h3>
-        <p class="portfolio-meta">${p.meta}</p>
-        <p class="portfolio-description">${p.brief}</p>
-      </div>
-    </div>
-  `).join('');
+  function open(fig){
+    group = [...fig.closest('.gallery-grid').querySelectorAll('figure')];
+    show(group.indexOf(fig));
+    box.classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
 
-  gsap.utils.toArray('.portfolio-card').forEach((card,i)=>{
-    gsap.to(card,{
-      scrollTrigger:{trigger:card,start:'top 90%'},
-      y:0,
-      opacity:1,
-      duration:0.6,
-      delay:i*0.05,
-      ease:'back.out(1.5)'
-    });
+  function close(){
+    box.classList.remove('open');
+    document.body.style.overflow = '';
+    /* removeAttribute, not src='' - an empty src makes the browser
+       re-request the page itself as an image */
+    img.removeAttribute('src');
+  }
+
+  document.querySelectorAll('.gallery-grid figure').forEach(fig=>{
+    fig.addEventListener('click', ()=>open(fig));
   });
-}
 
-function renderDetails(){
-  const container = document.getElementById('detailsContainer');
-  container.innerHTML = eventsProjects.map(p => `
-    <section class="detail-section" id="detail-${p.id}">
-      <div class="detail-container">
-        <div class="detail-header">
-          <div class="detail-images">
-            <div class="detail-img-main">
-              <img src="${p.image}" alt="${p.client} - ${p.title}" loading="lazy" decoding="async">
-            </div>
-            <div class="detail-imgs-small">
-              <div class="detail-img-small"><img src="${p.img2}" alt="${p.client} - ${p.title}" loading="lazy" decoding="async"></div>
-              <div class="detail-img-small"><img src="${p.img3}" alt="${p.client} - ${p.title}" loading="lazy" decoding="async"></div>
-            </div>
-          </div>
+  document.getElementById('lbClose').addEventListener('click', close);
+  document.getElementById('lbPrev').addEventListener('click', e=>{ e.stopPropagation(); show(idx-1); });
+  document.getElementById('lbNext').addEventListener('click', e=>{ e.stopPropagation(); show(idx+1); });
+  box.addEventListener('click', e=>{ if(e.target === box) close(); });
 
-          <div class="detail-content">
-            <div class="detail-client">${p.client}</div>
-            <h2>${p.title}</h2>
-            <p class="detail-meta"><i class="fas fa-location-dot"></i> ${p.meta}</p>
+  document.addEventListener('keydown', e=>{
+    if(!box.classList.contains('open')) return;
+    if(e.key === 'Escape') close();
+    else if(e.key === 'ArrowLeft') show(idx-1);
+    else if(e.key === 'ArrowRight') show(idx+1);
+  });
+})();
 
-            <div class="detail-boxes">
-              <div class="detail-box">
-                <div class="detail-box-label">Brief</div>
-                <div class="detail-box-text">${p.brief}</div>
-              </div>
-              <div class="detail-box">
-                <div class="detail-box-label">Delivery</div>
-                <div class="detail-box-text">${p.delivery}</div>
-              </div>
-              <div class="detail-box">
-                <div class="detail-box-label">Outcome</div>
-                <div class="detail-box-text">${p.outcome}</div>
-              </div>
-            </div>
-
-            <div class="detail-stats">
-              ${p.achievements.map(s => `
-                <div class="detail-stat">
-                  <div class="detail-stat-number">${s.value}</div>
-                  <div class="detail-stat-label">${s.label}</div>
-                </div>
-              `).join('')}
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-  `).join('');
-}
-
-function scrollToDetail(id){
-  document.querySelectorAll('.detail-section').forEach(el => el.classList.remove('active'));
-  const el = document.getElementById(`detail-${id}`);
-  if(el){
-    el.classList.add('active');
-    setTimeout(()=>el.scrollIntoView({behavior:'smooth',block:'start'}),50);
-  }
-}
-
-// Custom cursor
+/* ---------- custom cursor ---------- */
 const cursor = document.querySelector('.cursor');
 const cursorFollower = document.querySelector('.cursor-follower');
 
@@ -353,38 +490,39 @@ document.addEventListener('mousemove',e=>{
 });
 
 document.addEventListener('mouseover',e=>{
-  if(e.target.closest('a, button, .portfolio-card')){
+  if(e.target.closest('a, button, .gallery-grid figure, .index-card')){
     cursor.style.transform = 'scale(1.6)';
     cursorFollower.style.transform = 'scale(2.2)';
   }
 });
 
 document.addEventListener('mouseout',e=>{
-  if(e.target.closest('a, button, .portfolio-card')){
+  if(e.target.closest('a, button, .gallery-grid figure, .index-card')){
     cursor.style.transform = 'scale(1)';
     cursorFollower.style.transform = 'scale(1)';
   }
 });
 
-// Hero animations
+/* ---------- hero + reveal animations ---------- */
 gsap.to('.hero-title .word',{
   y:0,scale:1,rotation:0,opacity:1,
-  duration:1,
-  stagger:0.06,
-  ease:'power4.out',
-  delay:0.05
+  duration:1,stagger:0.06,ease:'power4.out',delay:0.05
 });
 gsap.to('.hero-subtitle',{opacity:1,duration:0.8,delay:0.8});
 
 gsap.utils.toArray('[data-parallax]').forEach(el=>{
   const amt = +el.getAttribute('data-parallax') || 10;
-  gsap.to(el,{
-    y:amt,
-    scrollTrigger:{trigger:'.hero',start:'top top',end:'bottom top',scrub:1}
+  gsap.to(el,{y:amt,scrollTrigger:{trigger:'.hero',start:'top top',end:'bottom top',scrub:1}});
+});
+
+gsap.utils.toArray('.index-card, .detail-box, .stat, .pillar, .gallery-grid figure').forEach((el,i)=>{
+  gsap.from(el,{
+    scrollTrigger:{trigger:el,start:'top 92%'},
+    y:34,opacity:0,duration:.55,delay:(i%6)*0.04,ease:'power2.out'
   });
 });
 
-// Scroll top
+/* ---------- scroll progress ---------- */
 const scrollBtn = document.getElementById('scrollTopBtn');
 const scrollPct = document.getElementById('scrollPct');
 
@@ -401,10 +539,6 @@ function setScrollProgress(){
 setScrollProgress();
 window.addEventListener('scroll',setScrollProgress,{passive:true});
 scrollBtn.addEventListener('click',()=>window.scrollTo({top:0,behavior:'smooth'}));
-
-// Init grid + details
-renderPortfolio();
-renderDetails();
 </script>
 
 <!-- load header/footer includes -->
@@ -414,21 +548,12 @@ renderDetails();
 <script>
 (function waitForNav(){
   const nav = document.getElementById('nav');
-  if (!nav) {
-    requestAnimationFrame(waitForNav);
-    return;
+  if (!nav) { requestAnimationFrame(waitForNav); return; }
+  function handleNavScroll(){
+    nav.classList.toggle('scrolled', window.scrollY > 80);
   }
-
-  function handleNavScroll() {
-    if (window.scrollY > 80) {
-      nav.classList.add('scrolled');
-    } else {
-      nav.classList.remove('scrolled');
-    }
-  }
-
   handleNavScroll();
-  window.addEventListener('scroll', handleNavScroll, { passive: true });
+  window.addEventListener('scroll', handleNavScroll, { passive:true });
 })();
 </script>
 
